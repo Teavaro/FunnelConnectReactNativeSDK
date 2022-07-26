@@ -62,6 +62,7 @@ const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const {FunnelConnectSDK} = NativeModules;
+  console.log('Native Modules: ', NativeModules);
   FunnelConnectSDK.initialize('testSdkToken');
 
   const backgroundStyle = {
