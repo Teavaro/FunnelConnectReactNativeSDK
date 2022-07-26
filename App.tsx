@@ -17,6 +17,7 @@ import {
   Text,
   useColorScheme,
   View,
+  NativeModules,
 } from 'react-native';
 
 import {
@@ -59,6 +60,9 @@ const Section: React.FC<
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
+
+  const {FunnelConnectSDK} = NativeModules;
+  FunnelConnectSDK.initialize('testSdkToken');
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
