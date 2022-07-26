@@ -126,3 +126,5 @@ package-lock.json
 
 # Android memory profiler files
 *.hprof
+
+ios/build/*

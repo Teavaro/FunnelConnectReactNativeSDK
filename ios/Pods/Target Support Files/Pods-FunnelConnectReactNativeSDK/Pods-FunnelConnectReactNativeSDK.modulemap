@@ -1,0 +1,6 @@
+module Pods_FunnelConnectReactNativeSDK {
+  umbrella header "Pods-FunnelConnectReactNativeSDK-umbrella.h"
+
+  export *
+  module * { export * }
+}
