@@ -1,6 +1,0 @@
-module Pods_FunnelConnectReactNativeSDK_FunnelConnectReactNativeSDKTests {
-  umbrella header "Pods-FunnelConnectReactNativeSDK-FunnelConnectReactNativeSDKTests-umbrella.h"
-
-  export *
-  module * { export * }
-}
