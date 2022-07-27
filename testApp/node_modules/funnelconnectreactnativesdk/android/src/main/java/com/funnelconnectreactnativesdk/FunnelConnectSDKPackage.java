@@ -14,7 +14,9 @@ import com.facebook.react.bridge.JavaScriptModule;
 public class FunnelConnectSDKPackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-      return Arrays.<NativeModule>asList(new FunnelConnectSDKModule(reactContext));
+        List<NativeModule> modules = new ArrayList<>();
+        modules.add(new FunnelConnectSDKModule(reactContext));
+        return modules;
     }
 
     // Deprecated from RN 0.47
