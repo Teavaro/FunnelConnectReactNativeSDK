@@ -3078,6 +3078,10 @@ functions-have-names@^1.2.2:
   resolved "https://registry.yarnpkg.com/functions-have-names/-/functions-have-names-1.2.3.tgz#0404fe4ee2ba2f607f0e0ec3c80bae994133b834"
   integrity sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==
 
+funnelconnectreactnativesdk@Teavaro/FunnelConnectReactNativeSDK#minimal-setup-variation:
+  version "0.0.1"
+  resolved "git+ssh://git@github.com/Teavaro/FunnelConnectReactNativeSDK.git#1b53422f722f4cfcc6c34ea8e7b34e5a36b008a1"
+
 gensync@^1.0.0-beta.2:
   version "1.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/gensync/-/gensync-1.0.0-beta.2.tgz#32a6ee76c3d7f52d46b2b1ae5d93fea8580a25e0"
