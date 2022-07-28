@@ -6,7 +6,9 @@ const LINKING_ERROR =
   '- You rebuilt the app after installing the package\n' +
   '- You are not using Expo managed workflow\n';
 
-const Funnelconnectreactnativesdk = NativeModules.Funnelconnectreactnativesdk  ? NativeModules.Funnelconnectreactnativesdk  : new Proxy(
+const Funnelconnectreactnativesdk = NativeModules.Funnelconnectreactnativesdk
+  ? NativeModules.Funnelconnectreactnativesdk
+  : new Proxy(
       {},
       {
         get() {
@@ -15,6 +17,12 @@ const Funnelconnectreactnativesdk = NativeModules.Funnelconnectreactnativesdk  ?
       }
     );
 
-export function multiply(a: number, b: number): Promise<number> {
+function multiply(a: number, b: number): Promise<number> {
   return Funnelconnectreactnativesdk.multiply(a, b);
 }
+
+function initialze(sdkToken: string): void {
+  return Funnelconnectreactnativesdk.initialize(sdkToken);
+}
+
+export { multiply, initialze };
