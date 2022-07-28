@@ -1,20 +1,24 @@
 package com.funnelconnectreactnativesdk
+import android.app.Application
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
 import com.facebook.react.bridge.ReactMethod
 import com.facebook.react.bridge.Promise
+import com.teavaro.funnelConnect.core.initializer.FunnelConnectSDK
 
-class FunnelconnectreactnativesdkModule(reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
 
     override fun getName(): String {
         return "Funnelconnectreactnativesdk"
     }
 
     @ReactMethod
-    fun initialize(sdkToken: String) {
-      println("Hello Android Context")
+    fun initializeSDK() {
+      FunnelConnectSDK.initialize(reactContext.applicationContext as Application, 123)
     }
 
+     fun getUmidgetUmid(): String? = FunnelConnectSDK.cdp().getUmid()
+  
     // Example method
     // See https://reactnative.dev/docs/native-modules-android
     @ReactMethod
