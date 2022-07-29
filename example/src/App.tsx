@@ -11,9 +11,9 @@ export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
 
   React.useEffect(() => {
-    multiply(3, 7).then(setResult);
+    // multiply(3, 7).then(setResult);
     initializeSDK();
-    setTimeout(() => console.log(getUmidgetUmid()), 10000);
+    setTimeout(() => console.log("RNLogger", getUmidgetUmid()), 10000);
   }, []);
 
   return (
