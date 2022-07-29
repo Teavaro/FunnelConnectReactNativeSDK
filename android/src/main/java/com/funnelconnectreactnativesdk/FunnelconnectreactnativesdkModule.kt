@@ -17,7 +17,10 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       FunnelConnectSDK.initialize(reactContext.applicationContext as Application, 123)
     }
 
-     fun getUmidgetUmid(): String? = FunnelConnectSDK.cdp().getUmid()
+    @ReactMethod
+    fun getUmidgetUmid(): String? {
+      FunnelConnectSDK.cdp().getUmid()
+    }
   
     // Example method
     // See https://reactnative.dev/docs/native-modules-android
@@ -25,5 +28,4 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
     fun multiply(a: Int, b: Int, promise: Promise) {
           promise.resolve(a * b)
         }
-
-    }
+}

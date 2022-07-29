@@ -21,8 +21,12 @@ function multiply(a: number, b: number): Promise<number> {
   return Funnelconnectreactnativesdk.multiply(a, b);
 }
 
-function initialze(sdkToken: string): void {
-  return Funnelconnectreactnativesdk.initialize(sdkToken);
+function initializeSDK(): void {
+  return Funnelconnectreactnativesdk.initializeSDK();
 }
 
-export { multiply, initialze };
+function getUmidgetUmid(): string {
+  return Funnelconnectreactnativesdk.getUmidgetUmid();
+}
+
+export { multiply, initializeSDK, getUmidgetUmid };

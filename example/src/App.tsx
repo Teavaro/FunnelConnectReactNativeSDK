@@ -1,14 +1,19 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { multiply, initialze } from 'funnelconnectreactnativesdk';
+import {
+  multiply,
+  initializeSDK,
+  getUmidgetUmid,
+} from 'funnelconnectreactnativesdk';
 
 export default function App() {
   const [result, setResult] = React.useState<number | undefined>();
 
   React.useEffect(() => {
     multiply(3, 7).then(setResult);
-    initialze('testString');
+    initializeSDK();
+    setTimeout(() => console.log(getUmidgetUmid()), 10000);
   }, []);
 
   return (
