@@ -25,8 +25,12 @@ function initializeSDK(): void {
   return Funnelconnectreactnativesdk.initializeSDK();
 }
 
-function getUmidgetUmid(): string {
-  return Funnelconnectreactnativesdk.getUmidgetUmid();
+function startCDP(): void {
+  return Funnelconnectreactnativesdk.startCDP();
 }
 
-export { multiply, initializeSDK, getUmidgetUmid };
+function getUmid(): string {
+  return Funnelconnectreactnativesdk.getUmid();
+}
+
+export { multiply, initializeSDK, startCDP, getUmid };

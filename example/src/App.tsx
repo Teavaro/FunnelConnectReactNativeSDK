@@ -1,19 +1,21 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import {
-  multiply,
-  initializeSDK,
-  getUmidgetUmid,
-} from 'funnelconnectreactnativesdk';
+import { initializeSDK, startCDP, getUmid } from 'funnelconnectreactnativesdk';
 
 export default function App() {
-  const [result, setResult] = React.useState<number | undefined>();
+  const [result, setResult] = React.useState<string | undefined>();
 
   React.useEffect(() => {
-    // multiply(3, 7).then(setResult);
     initializeSDK();
-    setTimeout(() => console.log("RNLogger", getUmidgetUmid()), 10000);
+    setTimeout(() => {
+      startCDP();
+      setTimeout(() => {
+        const umid = getUmid();
+        console.log('umid: ', umid);
+        setResult(umid);
+      }, 20000);
+    }, 20000);
   }, []);
 
   return (
