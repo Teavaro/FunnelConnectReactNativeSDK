@@ -6,6 +6,7 @@ import {
   getStaticString,
   resolveMultiplicationPromise,
   resolveUserDataPromise,
+  resolveUserMapPromise,
   callCallback,
   callProvidedCallback,
   callUserDataProvidedCallback,
@@ -30,7 +31,7 @@ export default function App() {
     setStaticString(getStaticStringResult);
 
     resolveMultiplicationPromise(25, 4).then(setMultiplicationResult);
-    resolveUserDataPromise(25, 4).then((result) => {
+    resolveUserMapPromise(25, 4).then((result) => {
       console.log(result);
       console.log(JSON.stringify(result));
       setUserData(result);

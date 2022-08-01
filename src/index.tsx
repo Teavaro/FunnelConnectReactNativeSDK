@@ -37,6 +37,10 @@ function resolveUserDataPromise(a: number, b: number): Promise<any> {
   return Funnelconnectreactnativesdk.resolveUserDataPromise(a, b);
 }
 
+function resolveUserMapPromise(a: number, b: number): Promise<any> {
+  return Funnelconnectreactnativesdk.resolveUserMapPromise(a, b);
+}
+
 function callCallback(name: string, location: string): void {
   Funnelconnectreactnativesdk.callCallback(
     name,
@@ -65,6 +69,7 @@ export {
   getStaticString,
   resolveMultiplicationPromise,
   resolveUserDataPromise,
+  resolveUserMapPromise,
   callCallback,
   callProvidedCallback,
   callUserDataProvidedCallback,
