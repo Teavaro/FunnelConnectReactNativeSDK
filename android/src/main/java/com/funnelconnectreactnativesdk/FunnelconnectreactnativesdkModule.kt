@@ -1,17 +1,17 @@
 package com.funnelconnectreactnativesdk
-import android.app.Application
-import com.facebook.react.bridge.ReactApplicationContext
-import com.facebook.react.bridge.ReactContextBaseJavaModule
-import com.facebook.react.bridge.ReactMethod
-import com.facebook.react.bridge.Promise
-// import com.teavaro.funnelConnect.core.initializer.FunnelConnectSDK
-import com.teavaro.funnelConnect.core.services.ErrorCallback
-import com.teavaro.funnelConnect.core.services.cdp.DataCallback
 
-class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicationContext) : ReactContextBaseJavaModule(reactContext) {
+import android.app.Application
+import com.facebook.react.bridge.*
+
+// import com.teavaro.funnelConnect.core.initializer.FunnelConnectSDK
+// import com.teavaro.funnelConnect.core.services.ErrorCallback
+// import com.teavaro.funnelConnect.core.services.cdp.DataCallback
+
+class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicationContext) :
+  ReactContextBaseJavaModule(reactContext) {
 
   override fun getName(): String {
-      return "Funnelconnectreactnativesdk"
+    return "Funnelconnectreactnativesdk"
   }
 
   @ReactMethod
@@ -21,7 +21,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun getStaticString(): String {
-   return "Test of static string from native module"
+    return "Test of static string from native module"
   }
 
   @ReactMethod
