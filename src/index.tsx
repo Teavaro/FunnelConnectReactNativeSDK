@@ -22,6 +22,10 @@ function printNativeLog(): void {
 }
 
 function getStaticString(): string {
+  console.log(
+    'Funnelconnectreactnativesdk.getStaticString(): ',
+    Funnelconnectreactnativesdk.getStaticString
+  );
   return Funnelconnectreactnativesdk.getStaticString();
 }
 
