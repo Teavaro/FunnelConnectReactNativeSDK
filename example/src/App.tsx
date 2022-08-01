@@ -6,12 +6,18 @@ import {
   getStaticString,
   resolveMultiplicationPromise,
   callCallback,
+  callProvidedCallback,
 } from 'funnelconnectreactnativesdk';
 
 export default function App() {
   const [staticString, setStaticString] = React.useState<string>();
   const [multiplicationResult, setMultiplicationResult] =
     React.useState<number>();
+  const [callbackResult, setCallbackResult] = React.useState<string>();
+
+  const callbackFunction = (someParamProvidedByNativeInvoke: string) => {
+    setCallbackResult(someParamProvidedByNativeInvoke);
+  };
 
   React.useEffect(() => {
     printNativeLog();
@@ -23,12 +29,15 @@ export default function App() {
     resolveMultiplicationPromise(25, 4).then(setMultiplicationResult);
 
     callCallback('Test name', 'Test location');
+
+    callProvidedCallback('sdkToken', callbackFunction);
   }, []);
 
   return (
     <View style={styles.container}>
       <Text>Static string: {staticString}</Text>
       <Text>Multiplication result: {multiplicationResult}</Text>
+      <Text>Callback result: {callbackResult}</Text>
     </View>
   );
 }

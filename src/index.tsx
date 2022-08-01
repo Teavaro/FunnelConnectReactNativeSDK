@@ -45,9 +45,14 @@ function callCallback(name: string, location: string): void {
   );
 }
 
+function callProvidedCallback(parameter: string, callback: Function): void {
+  Funnelconnectreactnativesdk.callProvidedCallback(parameter, callback);
+}
+
 export {
   printNativeLog,
   getStaticString,
   resolveMultiplicationPromise,
   callCallback,
+  callProvidedCallback,
 };

@@ -33,4 +33,9 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   fun callCallback(name: String, location: String, callback: Callback) {
     callback.invoke(name, location)
   }
+
+  @ReactMethod
+  fun callProvidedCallback(parameter: String, callback: Callback) {
+    callback.invoke(parameter + "test output string extension")
+  }
 }
