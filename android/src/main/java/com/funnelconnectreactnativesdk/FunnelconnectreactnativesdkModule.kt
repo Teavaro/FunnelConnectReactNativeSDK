@@ -36,6 +36,16 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   }
 
   @ReactMethod
+  fun resolveUserMapPromise(a: Int, b: Int, promise: Promise) {
+    val newUser = UserData("a@b.com", "FirstName", "myAddress")
+    val userMap = WritableNativeMap()
+    userMap.putString("id", newUser.id)
+    userMap.putString("name", newUser.name)
+    userMap.putString("address", newUser.address)
+    promise.resolve(userMap)
+  }
+
+  @ReactMethod
   fun callCallback(name: String, location: String, callback: Callback) {
     callback.invoke(name, location)
   }
