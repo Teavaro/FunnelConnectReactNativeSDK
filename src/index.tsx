@@ -33,6 +33,10 @@ function resolveMultiplicationPromise(a: number, b: number): Promise<number> {
   return Funnelconnectreactnativesdk.resolveMultiplicationPromise(a, b);
 }
 
+function resolveUserDataPromise(a: number, b: number): Promise<number> {
+  return Funnelconnectreactnativesdk.resolveUserDataPromise(a, b);
+}
+
 function callCallback(name: string, location: string): void {
   Funnelconnectreactnativesdk.callCallback(
     name,
@@ -49,10 +53,19 @@ function callProvidedCallback(parameter: string, callback: Function): void {
   Funnelconnectreactnativesdk.callProvidedCallback(parameter, callback);
 }
 
+function callUserDataProvidedCallback(
+  parameter: string,
+  callback: Function
+): void {
+  Funnelconnectreactnativesdk.callProvidedCallback(parameter, callback);
+}
+
 export {
   printNativeLog,
   getStaticString,
   resolveMultiplicationPromise,
+  resolveUserDataPromise,
   callCallback,
   callProvidedCallback,
+  callUserDataProvidedCallback,
 };

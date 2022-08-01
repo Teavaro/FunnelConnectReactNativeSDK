@@ -5,8 +5,10 @@ import {
   printNativeLog,
   getStaticString,
   resolveMultiplicationPromise,
+  resolveUserDataPromise,
   callCallback,
   callProvidedCallback,
+  callUserDataProvidedCallback,
 } from 'funnelconnectreactnativesdk';
 
 export default function App() {
@@ -14,6 +16,7 @@ export default function App() {
   const [multiplicationResult, setMultiplicationResult] =
     React.useState<number>();
   const [callbackResult, setCallbackResult] = React.useState<string>();
+  const [userData, setUserData] = React.useState<any>();
 
   const callbackFunction = (someParamProvidedByNativeInvoke: string) => {
     setCallbackResult(someParamProvidedByNativeInvoke);
@@ -27,6 +30,11 @@ export default function App() {
     setStaticString(getStaticStringResult);
 
     resolveMultiplicationPromise(25, 4).then(setMultiplicationResult);
+    resolveUserDataPromise(25, 4).then((result) => {
+      console.log(result);
+      console.log(JSON.stringify(result));
+      setUserData(result);
+    });
 
     callCallback('Test name', 'Test location');
 
@@ -38,6 +46,7 @@ export default function App() {
       <Text>Static string: {staticString}</Text>
       <Text>Multiplication result: {multiplicationResult}</Text>
       <Text>Callback result: {callbackResult}</Text>
+      <Text>Callback result: {userData}</Text>
     </View>
   );
 }
