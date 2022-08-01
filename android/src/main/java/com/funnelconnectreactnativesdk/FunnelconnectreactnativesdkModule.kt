@@ -30,6 +30,12 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   }
 
   @ReactMethod
+  fun resolveUserDataPromise(a: Int, b: Int, promise: Promise) {
+    val newUser = UserData("a@b.com", "FirstName", "myAddress")
+    promise.resolve(newUser)
+  }
+
+  @ReactMethod
   fun callCallback(name: String, location: String, callback: Callback) {
     callback.invoke(name, location)
   }
@@ -38,4 +44,12 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   fun callProvidedCallback(parameter: String, callback: Callback) {
     callback.invoke(parameter + "test output string extension")
   }
+
+  @ReactMethod
+  fun callUserDataProvidedCallback(parameter: String, callback: Callback) {
+    val newUser = UserData("a@b.com", "FirstName", "myAddress")
+    callback.invoke(newUser)
+  }
 }
+
+data class UserData(val id: String, val name: String, val address: String)
