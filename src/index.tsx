@@ -33,7 +33,7 @@ function resolveMultiplicationPromise(a: number, b: number): Promise<number> {
   return Funnelconnectreactnativesdk.resolveMultiplicationPromise(a, b);
 }
 
-function resolveUserDataPromise(a: number, b: number): Promise<number> {
+function resolveUserDataPromise(a: number, b: number): Promise<any> {
   return Funnelconnectreactnativesdk.resolveUserDataPromise(a, b);
 }
 
