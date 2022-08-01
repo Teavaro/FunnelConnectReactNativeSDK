@@ -1,26 +1,34 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text } from 'react-native';
-import { initializeSDK, startCDP, getUmid } from 'funnelconnectreactnativesdk';
+import {
+  printNativeLog,
+  getStaticString,
+  resolveMultiplicationPromise,
+  callCallback,
+} from 'funnelconnectreactnativesdk';
 
 export default function App() {
-  const [result, setResult] = React.useState<string | undefined>();
+  const [staticString, setStaticString] = React.useState<string>();
+  const [multiplicationResult, setMultiplicationResult] =
+    React.useState<number>();
 
   React.useEffect(() => {
-    initializeSDK();
-    setTimeout(() => {
-      startCDP();
-      setTimeout(() => {
-        const umid = getUmid();
-        console.log('umid: ', umid);
-        setResult(umid);
-      }, 20000);
-    }, 20000);
+    printNativeLog();
+
+    const getStaticStringResult = getStaticString();
+    console.log('getStaticStringResult: ', getStaticStringResult);
+    setStaticString(getStaticStringResult);
+
+    resolveMultiplicationPromise(25, 4).then(setMultiplicationResult);
+
+    callCallback('Test name', 'Test location');
   }, []);
 
   return (
     <View style={styles.container}>
-      <Text>Result: {result}</Text>
+      <Text>Static string: {staticString}</Text>
+      <Text>Multiplication result: {multiplicationResult}</Text>
     </View>
   );
 }

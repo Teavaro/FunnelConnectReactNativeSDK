@@ -17,20 +17,33 @@ const Funnelconnectreactnativesdk = NativeModules.Funnelconnectreactnativesdk
       }
     );
 
-function multiply(a: number, b: number): Promise<number> {
-  return Funnelconnectreactnativesdk.multiply(a, b);
+function printNativeLog(): void {
+  return Funnelconnectreactnativesdk.printNativeLog();
 }
 
-function initializeSDK(): void {
-  return Funnelconnectreactnativesdk.initializeSDK();
+function getStaticString(): string {
+  return Funnelconnectreactnativesdk.getStaticString();
 }
 
-function startCDP(): void {
-  return Funnelconnectreactnativesdk.startCDP();
+function resolveMultiplicationPromise(a: number, b: number): Promise<number> {
+  return Funnelconnectreactnativesdk.resolveMultiplicationPromise(a, b);
 }
 
-function getUmid(): string {
-  return Funnelconnectreactnativesdk.getUmid();
+function callCallback(name: string, location: string): void {
+  Funnelconnectreactnativesdk.callCallback(
+    name,
+    location,
+    (name: string, location: string) => {
+      console.log(
+        `Called a callback with name ${name} and location ${location}`
+      );
+    }
+  );
 }
 
-export { multiply, initializeSDK, startCDP, getUmid };
+export {
+  printNativeLog,
+  getStaticString,
+  resolveMultiplicationPromise,
+  callCallback,
+};
