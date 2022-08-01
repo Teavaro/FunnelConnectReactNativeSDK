@@ -46,6 +46,11 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   }
 
   @ReactMethod
+  fun getTestInterface(): TestInterface {
+    return TestInterfaceImpl()
+  }
+
+  @ReactMethod
   fun callCallback(name: String, location: String, callback: Callback) {
     callback.invoke(name, location)
   }
@@ -63,3 +68,28 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 }
 
 data class UserData(val id: String, val name: String, val address: String)
+
+interface TestInterface {
+  fun getUmid(): String?
+  fun updatePermissions(omPermissionAccepted: Boolean, optPermissionAccepted: Boolean, nbaPermissionAccepted: Boolean)
+  fun logEvent(key: String, value: String)
+}
+
+class TestInterfaceImpl: TestInterface {
+
+  override fun getUmid(): String? {
+    return "Dummy UMID"
+  }
+
+  override fun updatePermissions(
+    omPermissionAccepted: Boolean,
+    optPermissionAccepted: Boolean,
+    nbaPermissionAccepted: Boolean
+  ) {
+    println("React Native: Updated Permissions: OM: $omPermissionAccepted OPT: $optPermissionAccepted NBA: $nbaPermissionAccepted")
+  }
+
+  override fun logEvent(key: String, value: String) {
+    println("React Native: Logged An Event")
+  }
+}
