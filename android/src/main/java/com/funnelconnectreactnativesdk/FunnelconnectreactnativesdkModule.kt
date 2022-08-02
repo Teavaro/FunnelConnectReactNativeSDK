@@ -1,11 +1,6 @@
 package com.funnelconnectreactnativesdk
 
-import android.app.Application
 import com.facebook.react.bridge.*
-
-// import com.teavaro.funnelConnect.core.initializer.FunnelConnectSDK
-// import com.teavaro.funnelConnect.core.services.ErrorCallback
-// import com.teavaro.funnelConnect.core.services.cdp.DataCallback
 
 class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {

@@ -135,7 +135,9 @@ dependencies {
     //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  //  implementation "org.bitbucket.teavaro.fc-sdk:funnelConnectSDK:0.2.5"
+  implementation ("org.bitbucket.teavaro.fc-sdk:funnelConnectSDK:0.2.5")  {
+    exclude group:'com.facebook.fbjni'
+  }
 // From node_modules
 }
 
