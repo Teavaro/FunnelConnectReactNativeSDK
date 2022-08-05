@@ -133,7 +133,9 @@ def kotlin_version = getExtOrDefault('kotlinVersion')
 
 dependencies {
     //noinspection GradleDynamicVersion
-  implementation "com.facebook.react:react-native:+"
+  implementation ("com.facebook.react:react-native:+") {
+    exclude group:'com.facebook.fbjni'
+  }
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
   implementation ("org.bitbucket.teavaro.fc-sdk:funnelConnectSDK:0.2.5")  {
     exclude group:'com.facebook.fbjni'
