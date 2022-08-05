@@ -129,12 +129,18 @@ const isInitialized = (): Promise<boolean> => {
   });
 };
 
+// TODO: Remove after testing
+const getStaticString = (): Promise<string> => {
+  return Funnelconnectreactnativesdk.getStaticString();
+};
+
 const funnelConnectSdk = {
   cdp,
   trustPid,
   initialize,
   onInitialize,
   isInitialized,
+  getStaticString,
 };
 
 export { funnelConnectSdk };

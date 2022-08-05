@@ -15,8 +15,8 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   }
 
   @ReactMethod
-  fun getStaticString(): String {
-    return "Test of static string from native module"
+  fun getStaticString(promise: Promise) {
+    promise.resolve("Test of static string from native module")
   }
 
   @ReactMethod
