@@ -17,53 +17,6 @@ const Funnelconnectreactnativesdk = NativeModules.Funnelconnectreactnativesdk
       }
     );
 
-function printNativeLog(): void {
-  return Funnelconnectreactnativesdk.printNativeLog();
-}
-
-function getStaticString(): string {
-  console.log(
-    'Funnelconnectreactnativesdk.getStaticString(): ',
-    Funnelconnectreactnativesdk.getStaticString()
-  );
-  return Funnelconnectreactnativesdk.getStaticString();
-}
-
-function resolveMultiplicationPromise(a: number, b: number): Promise<number> {
-  return Funnelconnectreactnativesdk.resolveMultiplicationPromise(a, b);
-}
-
-function resolveUserDataPromise(a: number, b: number): Promise<any> {
-  return Funnelconnectreactnativesdk.resolveUserDataPromise(a, b);
-}
-
-function resolveUserMapPromise(a: number, b: number): Promise<any> {
-  return Funnelconnectreactnativesdk.resolveUserMapPromise(a, b);
-}
-
-function callCallback(name: string, location: string): void {
-  Funnelconnectreactnativesdk.callCallback(
-    name,
-    location,
-    (name: string, location: string) => {
-      console.log(
-        `Called a callback with name ${name} and location ${location}`
-      );
-    }
-  );
-}
-
-function callProvidedCallback(parameter: string, callback: Function): void {
-  Funnelconnectreactnativesdk.callProvidedCallback(parameter, callback);
-}
-
-function callUserDataProvidedCallback(
-  parameter: string,
-  callback: Function
-): void {
-  Funnelconnectreactnativesdk.callProvidedCallback(parameter, callback);
-}
-
 type Permissions = {
   permission: {
     'LI-OPT': boolean;
@@ -72,15 +25,17 @@ type Permissions = {
   };
 };
 
+type FCOptions = {
+  enableLogging: boolean;
+};
+
 const cdp = () => {
   return {
     /* Visitor and customer methods */
-    startService: (
-      userId: string | null = null,
-      dataCallBack: Function | null = null,
-      errorCallback: Function | null = null
-    ) => {
-      // TODO: How to shape the callbacks types
+    startService: (userId: string | null = null): Promise<string> => {
+      return new Promise((resolve, reject) => {
+        resolve('JSONstring');
+      });
     },
     getUmid: (): Promise<string> => {
       return new Promise((resolve, reject) => {
@@ -107,24 +62,25 @@ const cdp = () => {
         resolve(true);
       });
     },
+    // TODO: Just call native implementation and see whether it is being logged and if yes - where
+    // If it doesn't show -> return message and console.log in RN
     logEvent: (key: string, value: string) => {
-      // TODO: Need clarification there
+      // As above
     },
     logEvents: (events: Map<string, string>) => {
-      // TODO: Need clarification there
+      // As above
     },
     /* Customer only methods */
-    // TODO: We cannot overload this method in JS, we would need to do:
-    // string | boolean | null and then manually check input type
-    // but then we would need to name the param the same for both cases
-    startService: (
-      isStub: boolean = false,
-      dataCallBack: Function | null = null,
-      errorCallback: Function | null = null
-    ) => {
-      // TODO: How to shape the callbacks types
+    startServiceCHANGETHENAME: (isStub: boolean = false): Promise<string> => {
+      return new Promise((resolve, reject) => {
+        resolve('JSONstring');
+      });
     },
-    setUserId: (userId: string) => {},
+    setUserId: (userId: string): Promise<string> => {
+      return new Promise((resolve, reject) => {
+        resolve('JSONstring');
+      });
+    },
     getUserId: (): Promise<string> => {
       return new Promise((resolve, reject) => {
         resolve('testUserId');
@@ -133,50 +89,52 @@ const cdp = () => {
   };
 };
 
-// TODO: For methods like setUserId - do we want to return promise with
-// no value just to indicate, that the operation has finished?
-// How is it used right now? Seems right to return promise for e.g. startService
-
-// TODO: What about FunnelConnectSDK.initialize(this, R.raw.config) from Getting Started?
-// Do we need to also handle this case?
-
 const trustPid = () => {
   return {
-    acceptConsent: () => {
-      // This method will prompt the user to grant his Consent for the TrustPid service.
-      // TODO: Test if it will work this way
+    acceptConsent: (): void => {
+      return;
     },
-    startService: (
-      isStub: boolean = false,
-      dataCallback: Function | null = null,
-      errorCallback: Function | null = null
-    ) => {
-      // TODO: How to shape the callbacks types
+    startService: (isStub: boolean = false): Promise<string> => {
+      return new Promise((resolve, reject) => {
+        resolve('JSONstring');
+      });
     },
     isConsentAccepted: (): Promise<boolean> => {
       return new Promise((resolve, reject) => {
         resolve(true);
       });
     },
-    rejectConsent: () => {
-      // With this method the developer can update the user consent or set it to true or false:
-      // TODO: How does it work? What it gets as an input, what it does from an output
+    rejectConsent: (): void => {
+      return;
     },
   };
+};
+
+const initialize = (
+  sdkToken: string,
+  { enableLogging = true }: FCOptions
+): void => {
+  return;
+};
+
+const onInitialize = (): Promise<string> => {
+  return new Promise((resolve, reject) => {
+    resolve('JSONstring');
+  });
+};
+
+const isInitialized = (): Promise<boolean> => {
+  return new Promise((resolve, reject) => {
+    resolve(true);
+  });
 };
 
 const funnelConnectSdk = {
   cdp,
   trustPid,
+  initialize,
+  onInitialize,
+  isInitialized,
 };
 
-export {
-  printNativeLog,
-  getStaticString,
-  resolveMultiplicationPromise,
-  resolveUserDataPromise,
-  resolveUserMapPromise,
-  callCallback,
-  callProvidedCallback,
-  callUserDataProvidedCallback,
-};
+export { funnelConnectSdk };
