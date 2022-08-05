@@ -34,12 +34,20 @@ const cdp = () => {
     /* Visitor and customer methods */
     startService: (userId: string | null = null): Promise<string> => {
       return new Promise((resolve, reject) => {
-        resolve('JSONstring');
+        if (userId) {
+          resolve('JSONstring');
+        } else {
+          reject('No userId provided');
+        }
       });
     },
     getUmid: (): Promise<string> => {
       return new Promise((resolve, reject) => {
-        resolve('testUmid');
+        if ('true') {
+          resolve('testUmid');
+        } else {
+          reject('rejected');
+        }
       });
     },
     updatePermissions: (
@@ -48,42 +56,64 @@ const cdp = () => {
       nba: boolean
     ): Promise<Permissions> => {
       return new Promise((resolve, reject) => {
-        resolve({
-          permission: {
-            'LI-OPT': opt,
-            'LI-OM': om,
-            'LI-NBA': nba,
-          },
-        });
+        if ('true') {
+          resolve({
+            permission: {
+              'LI-OPT': opt,
+              'LI-OM': om,
+              'LI-NBA': nba,
+            },
+          });
+        } else {
+          reject('rejected');
+        }
       });
     },
     getPermissions: (): Promise<boolean> => {
       return new Promise((resolve, reject) => {
-        resolve(true);
+        if ('true') {
+          resolve(true);
+        } else {
+          reject(false);
+        }
       });
     },
     // TODO: Just call native implementation and see whether it is being logged and if yes - where
     // If it doesn't show -> return message and console.log in RN
     logEvent: (key: string, value: string) => {
-      // As above
+      console.log('Key:', key, 'and value:', value);
     },
     logEvents: (events: Map<string, string>) => {
-      // As above
+      events.forEach((event) => {
+        console.log('Event value:', event);
+      });
     },
     /* Customer only methods */
-    startServiceCHANGETHENAME: (isStub: boolean = false): Promise<string> => {
+    startServiceCustomer: (isStub: boolean = false): Promise<string> => {
       return new Promise((resolve, reject) => {
-        resolve('JSONstring');
+        if (isStub) {
+          resolve('JSONstring');
+        } else {
+          reject('no stub provided');
+        }
       });
     },
     setUserId: (userId: string): Promise<string> => {
       return new Promise((resolve, reject) => {
-        resolve('JSONstring');
+        if (userId) {
+          resolve('JSONstring');
+        } else {
+          reject('No userId provided');
+        }
       });
     },
     getUserId: (): Promise<string> => {
       return new Promise((resolve, reject) => {
-        resolve('testUserId');
+        if ('true') {
+          resolve('testUserId');
+        } else {
+          reject('no userId');
+        }
       });
     },
   };
@@ -96,12 +126,20 @@ const trustPid = () => {
     },
     startService: (isStub: boolean = false): Promise<string> => {
       return new Promise((resolve, reject) => {
-        resolve('JSONstring');
+        if (isStub) {
+          resolve('JSONstring');
+        } else {
+          reject('no stub provided');
+        }
       });
     },
     isConsentAccepted: (): Promise<boolean> => {
       return new Promise((resolve, reject) => {
-        resolve(true);
+        if ('true') {
+          resolve(true);
+        } else {
+          reject('not accepted');
+        }
       });
     },
     rejectConsent: (): void => {
@@ -114,18 +152,32 @@ const initialize = (
   sdkToken: string,
   { enableLogging = true }: FCOptions
 ): void => {
+  if (!sdkToken) {
+    console.log('no sdkToken provided');
+  }
+  if (enableLogging) {
+    console.log('enableLogging set to true');
+  }
   return;
 };
 
 const onInitialize = (): Promise<string> => {
   return new Promise((resolve, reject) => {
-    resolve('JSONstring');
+    if ('true') {
+      resolve('JSONstring');
+    } else {
+      reject('nothing');
+    }
   });
 };
 
 const isInitialized = (): Promise<boolean> => {
   return new Promise((resolve, reject) => {
-    resolve(true);
+    if ('true') {
+      resolve(true);
+    } else {
+      reject(false);
+    }
   });
 };
 
