@@ -1,5 +1,5 @@
 {
-  "name": "funnelconnect-reactnative-sdk",
+  "name": "@teavaroltd/funnelconnect-reactnative-sdk",
   "version": "0.1.0",
   "description": "test",
   "main": "lib/commonjs/index",
@@ -43,7 +43,8 @@
   },
   "homepage": "https://github.com/Teavaro/FunnelConnectReactNativeSDK#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.7",
