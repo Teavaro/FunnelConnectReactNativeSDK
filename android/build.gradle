@@ -137,9 +137,9 @@ dependencies {
     exclude group:'com.facebook.fbjni'
   }
   implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-  implementation ("org.bitbucket.teavaro.fc-sdk:funnelConnectSDK:0.2.5")  {
-    exclude group:'com.facebook.fbjni'
-  }
+//implementation ("org.bitbucket.teavaro.fc-sdk:funnelConnectSDK:0.2.5")  {
+//  exclude group:'com.facebook.fbjni'
+//}
 // From node_modules
 }
 
