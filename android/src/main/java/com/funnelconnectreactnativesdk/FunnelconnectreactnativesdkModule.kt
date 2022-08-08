@@ -1,117 +1,111 @@
 package com.funnelconnectreactnativesdk
 
 import com.facebook.react.bridge.*
+import com.teavaro.funnelConnect.core.initializer.FunnelConnectSDK
 
 class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
 
   override fun getName(): String {
-    return "Funnelconnectreactnativesdk"
+    return "RNFunnelConnectSDK"
+  }
+
+  // Top level functions
+  @ReactMethod
+  fun clearCookies() {
+    FunnelConnectSDK.clearCookies()
   }
 
   @ReactMethod
-  fun printNativeLog() {
-    println("Native log printed...")
+  fun clearData(promise: Promise) {
+    FunnelConnectSDK.clearData()
+  }
+
+  // CDP service functions
+  @ReactMethod
+  fun startCdpService(userId: String?) {
+    FunnelConnectSDK.cdp().startService(userId)
   }
 
   @ReactMethod
-  fun getStaticString(promise: Promise) {
-    promise.resolve("Test of static string from native module")
+  fun startCdpService(userId: String?, promise: Promise) {
+    FunnelConnectSDK.cdp().startService(userId, dataCallback = {
+      promise.resolve(it)
+    }, errorCallback = {
+      promise.reject(it)
+    })
   }
 
   @ReactMethod
-  fun resolveMultiplicationPromise(a: Int, b: Int, promise: Promise) {
-    promise.resolve(a * b)
+  fun getUmid(promise: Promise) {
+    promise.resolve(FunnelConnectSDK.cdp().getUmid())
   }
 
   @ReactMethod
-  fun resolveUserDataPromise(a: Int, b: Int, promise: Promise) {
-    val newUser = UserData("a@b.com", "FirstName", "myAddress")
-    promise.resolve(newUser)
+  fun getUserId(promise: Promise) {
+    promise.resolve(FunnelConnectSDK.cdp().getUserId())
   }
 
   @ReactMethod
-  fun resolveUserMapPromise(a: Int, b: Int, promise: Promise) {
-    val newUser = UserData("a@b.com", "FirstName", "myAddress")
-    val userMap = WritableNativeMap()
-    userMap.putString("id", newUser.id)
-    userMap.putString("name", newUser.name)
-    userMap.putString("address", newUser.address)
-    promise.resolve(userMap)
+  fun setUserId(userId: String) {
+    FunnelConnectSDK.cdp().setUserId(userId)
   }
 
   @ReactMethod
-  fun getTestInterface(): TestInterface {
-    return TestInterfaceImpl()
+  fun getPermissions(promise: Promise) {
+    val permissions = FunnelConnectSDK.cdp().getPermissions()
+    val permissionsMap = WritableNativeMap()
+    permissionsMap.putString("omAccepted", permissions.omAccepted.toString())
+    permissionsMap.putString("optAccepted", permissions.optAccepted.toString())
+    permissionsMap.putString("nbaAccepted", permissions.nbaAccepted.toString())
+    promise.resolve(permissionsMap)
   }
 
   @ReactMethod
-  fun callCallback(name: String, location: String, callback: Callback) {
-    callback.invoke(name, location)
+  fun updatePermissions(omAccepted: Boolean, optAccepted: Boolean, nbaAccepted: Boolean) {
+    FunnelConnectSDK.cdp().updatePermissions(omAccepted, optAccepted, nbaAccepted)
   }
 
   @ReactMethod
-  fun callProvidedCallback(parameter: String, callback: Callback) {
-    callback.invoke(parameter + "test output string extension")
+  fun logEvent(key: String, value: String) {
+    FunnelConnectSDK.cdp().logEvent(key, value)
   }
 
   @ReactMethod
-  fun callUserDataProvidedCallback(parameter: String, callback: Callback) {
-    val newUser = UserData("a@b.com", "FirstName", "myAddress")
-    callback.invoke(newUser)
+  fun logEvents(events: Map<String, String>) {
+    FunnelConnectSDK.cdp().logEvents(events)
   }
 
-  // const cdp = {
-  //   startService: (
-  //     userId: String? = null,
-  //     dataCallBack: DataCallBack? = null,
-  //     errorCallback: ErroCallBack? = null
-  //   ) => {},
-  //   getUmid: () => {},
-  //   updatePermissions: (om: Boolean, opt: Boolean, nba: Boolean) => {},
-  //   getPermissions: () => {},
-  //   logEvent: (key: String, value: String) => {},
-  //   logEvents: (events: Map<String, String>) => {},
-//   FunnelConnectSDK.cdp().startService(userId: String, dataCallBack: DataCallBack? = null, errorCallback: ErroCallBack? = null)
-// FunnelConnectSDK.cdp().setUserId(userId: String)
-// FunnelConnectSDK.cdp().getUserId()
-  // };
-
-  // const trustPid = {
-  //   acceptConsent: () => {},
-  //   startService: (
-  //     isStub: Boolean = false,
-  //     dataCallback: IdcDataCallback? = null,
-  //     errorCallback: ErrorCallback? = null
-  //   ) => {},
-  //   isConsentAccepted: () => {},
-  //   rejectConsent: () => {},
-  // };
-}
-
-data class UserData(val id: String, val name: String, val address: String)
-
-interface TestInterface {
-  fun getUmid(): String?
-  fun updatePermissions(omPermissionAccepted: Boolean, optPermissionAccepted: Boolean, nbaPermissionAccepted: Boolean)
-  fun logEvent(key: String, value: String)
-}
-
-class TestInterfaceImpl: TestInterface {
-
-  override fun getUmid(): String? {
-    return "Dummy UMID"
+  // TrustPid service functions
+  @ReactMethod
+  fun startTrustPidService(isStub: Boolean) {
+    FunnelConnectSDK.trustPid().startService(isStub)
   }
 
-  override fun updatePermissions(
-    omPermissionAccepted: Boolean,
-    optPermissionAccepted: Boolean,
-    nbaPermissionAccepted: Boolean
-  ) {
-    println("React Native: Updated Permissions: OM: $omPermissionAccepted OPT: $optPermissionAccepted NBA: $nbaPermissionAccepted")
+  @ReactMethod
+  fun startTrustPidService(isStub: Boolean, promise: Promise) {
+    FunnelConnectSDK.trustPid().startService(isStub, dataCallback = {
+      val idcDataMap = WritableNativeMap()
+      idcDataMap.putString("atid", it.atid)
+      idcDataMap.putString("mtid", it.mtid)
+      promise.resolve(idcDataMap)
+    }, errorCallback = {
+      promise.reject(it)
+    })
   }
 
-  override fun logEvent(key: String, value: String) {
-    println("React Native: Logged An Event")
+  @ReactMethod
+  fun acceptConsent() {
+    FunnelConnectSDK.trustPid().acceptConsent()
+  }
+
+  @ReactMethod
+  fun rejectConsent() {
+    FunnelConnectSDK.trustPid().rejectConsent()
+  }
+
+  @ReactMethod
+  fun isConsentAccepted(promise: Promise) {
+    promise.resolve(FunnelConnectSDK.trustPid().isConsentAccepted())
   }
 }
