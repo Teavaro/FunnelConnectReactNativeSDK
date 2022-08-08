@@ -1,5 +1,5 @@
 {
-  "name": "funnelconnectreactnativesdk",
+  "name": "@teavaroltd/funnelconnect-reactnative-sdk",
   "version": "0.1.0",
   "description": "test",
   "main": "lib/commonjs/index",
@@ -37,13 +37,14 @@
   ],
   "repository": "https://github.com/Teavaro/FunnelConnectReactNativeSDK",
   "author": "Teavaro <tomasz@teavaro.com> (https://github.com/Teavaro)",
-  "license": "MIT",
+  "license": "undefined",
   "bugs": {
     "url": "https://github.com/Teavaro/FunnelConnectReactNativeSDK/issues"
   },
   "homepage": "https://github.com/Teavaro/FunnelConnectReactNativeSDK#readme",
   "publishConfig": {
-    "registry": "https://registry.npmjs.org/"
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
   },
   "devDependencies": {
     "@arkweid/lefthook": "^0.7.7",

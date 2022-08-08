@@ -15,8 +15,8 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   }
 
   @ReactMethod
-  fun getStaticString(): String {
-    return "Test of static string from native module"
+  fun getStaticString(promise: Promise) {
+    promise.resolve("Test of static string from native module")
   }
 
   @ReactMethod
@@ -60,6 +60,33 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
     val newUser = UserData("a@b.com", "FirstName", "myAddress")
     callback.invoke(newUser)
   }
+
+  // const cdp = {
+  //   startService: (
+  //     userId: String? = null,
+  //     dataCallBack: DataCallBack? = null,
+  //     errorCallback: ErroCallBack? = null
+  //   ) => {},
+  //   getUmid: () => {},
+  //   updatePermissions: (om: Boolean, opt: Boolean, nba: Boolean) => {},
+  //   getPermissions: () => {},
+  //   logEvent: (key: String, value: String) => {},
+  //   logEvents: (events: Map<String, String>) => {},
+//   FunnelConnectSDK.cdp().startService(userId: String, dataCallBack: DataCallBack? = null, errorCallback: ErroCallBack? = null)
+// FunnelConnectSDK.cdp().setUserId(userId: String)
+// FunnelConnectSDK.cdp().getUserId()
+  // };
+
+  // const trustPid = {
+  //   acceptConsent: () => {},
+  //   startService: (
+  //     isStub: Boolean = false,
+  //     dataCallback: IdcDataCallback? = null,
+  //     errorCallback: ErrorCallback? = null
+  //   ) => {},
+  //   isConsentAccepted: () => {},
+  //   rejectConsent: () => {},
+  // };
 }
 
 data class UserData(val id: String, val name: String, val address: String)
