@@ -24,14 +24,6 @@ type GetPermissionsOutput = {
   nbaAccepted: string;
 };
 
-type Permissions = {
-  permission: {
-    'LI-OPT': boolean;
-    'LI-OM': boolean;
-    'LI-NBA': boolean;
-  };
-};
-
 type FCOptions = {
   enableLogging: boolean;
 };
@@ -41,16 +33,33 @@ type startTrustPidServiceOutput = {
   mtid: string;
 };
 
+type LogEvent = {
+  key: string;
+  value: string;
+};
+
 // Top level functions
-const clearCookies = () => {
+const initializeSDK = (
+  sdkToken: string,
+  { enableLogging = true }: FCOptions
+): void => {
+  Funnelconnectreactnativesdk.initializeSDK(sdkToken, { enableLogging });
+};
+
+const onInitialize = (): Promise<string> => {
+  return Funnelconnectreactnativesdk.onInitialize();
+};
+
+const isInitialized = (): Promise<boolean> => {
+  return Funnelconnectreactnativesdk.isInitialized();
+};
+
+const clearCookies = (): void => {
   Funnelconnectreactnativesdk.clearCookies();
 };
 
-// Kotlin
-// TODO: Verify return type - I can see only Promise in the Module
-// => No return type for this function.
-const clearData = (): Promise<string> => {
-  return Funnelconnectreactnativesdk.clearData();
+const clearData = (): void => {
+  Funnelconnectreactnativesdk.clearData();
 };
 
 // CDP service functions
@@ -69,46 +78,35 @@ const cdp = () => {
     getUserId: (): Promise<string> => {
       return Funnelconnectreactnativesdk.getUserId();
     },
-    setUserId: (userId: string): Promise<string> => {
-      return Funnelconnectreactnativesdk.setUserId(userId);
+    setUserId: (userId: string): void => {
+      Funnelconnectreactnativesdk.setUserId(userId);
     },
     getPermissions: (): Promise<GetPermissionsOutput> => {
       return Funnelconnectreactnativesdk.getPermissions();
     },
-    // Kotlin
-    // TODO: According to docs, this method also returns updated permissions
-    // But it is not returned in Module
-    // => No, This function does not return anything, It only updates the permissions.
     updatePermissions: (
       omAccepted: boolean,
       optAccepted: boolean,
       nbaAccepted: boolean
-    ): Promise<Permissions> => {
-      return Funnelconnectreactnativesdk.updatePermissions(
+    ): void => {
+      Funnelconnectreactnativesdk.updatePermissions(
         omAccepted,
         optAccepted,
         nbaAccepted
       );
     },
-    // TODO: Just call native implementation and see whether it is being logged and if yes - where
-    // If it doesn't show -> return message and console.log in RN
-    logEvent: (key: string, value: string) => {
-      return Funnelconnectreactnativesdk.logEvent(key, value);
+    logEvent: (key: string, value: string): void => {
+      Funnelconnectreactnativesdk.logEvent(key, value);
     },
-    // TODO: This won't work - we have no explicit nor implicit mapping of Map
-    // Either consider remapping or running a foreach loop as in the commented out code below
-    logEvents: (events: Map<string, string>) => {
-      return Funnelconnectreactnativesdk.logEvents(events);
-      // events.forEach((event) => {
-      //   console.log('Event value:', event);
-      // });
+    logEvents: (events: LogEvent[]): void => {
+      Funnelconnectreactnativesdk.logEvents(events);
     },
   };
 };
 
 const trustPid = () => {
   return {
-    startService: (isStub: boolean = false) => {
+    startService: (isStub: boolean = false): void => {
       Funnelconnectreactnativesdk.startTrustPidService(isStub);
     },
     // TODO: Verify if overload works in this bridge
@@ -118,10 +116,10 @@ const trustPid = () => {
       return Funnelconnectreactnativesdk.startTrustPidService(isStub);
     },
     acceptConsent: (): void => {
-      return Funnelconnectreactnativesdk.acceptConsent();
+      Funnelconnectreactnativesdk.acceptConsent();
     },
     rejectConsent: (): void => {
-      return Funnelconnectreactnativesdk.rejectConsent();
+      Funnelconnectreactnativesdk.rejectConsent();
     },
     isConsentAccepted: (): Promise<boolean> => {
       return Funnelconnectreactnativesdk.isConsentAccepted();
@@ -129,50 +127,14 @@ const trustPid = () => {
   };
 };
 
-// Kotlin
-// TODO: What with those 3 functions? I can see no corresponding functiond in the Module
-// => Forgot to add them but they are added now.
-const initialize = (
-  sdkToken: string,
-  { enableLogging = true }: FCOptions
-): void => {
-  if (!sdkToken) {
-    console.log('no sdkToken provided');
-  }
-  if (enableLogging) {
-    console.log('enableLogging set to true');
-  }
-  return;
-};
-
-const onInitialize = (): Promise<string> => {
-  return new Promise((resolve, reject) => {
-    if ('true') {
-      resolve('JSONstring');
-    } else {
-      reject('nothing');
-    }
-  });
-};
-
-const isInitialized = (): Promise<boolean> => {
-  return new Promise((resolve, reject) => {
-    if ('true') {
-      resolve(true);
-    } else {
-      reject(false);
-    }
-  });
-};
-
 const funnelConnectSdk = {
+  initializeSDK,
+  onInitialize,
+  isInitialized,
   clearCookies,
   clearData,
   cdp,
   trustPid,
-  // initialize,
-  // onInitialize,
-  // isInitialized,
 };
 
 export { funnelConnectSdk };
