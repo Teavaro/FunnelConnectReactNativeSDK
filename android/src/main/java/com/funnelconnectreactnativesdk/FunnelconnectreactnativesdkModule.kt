@@ -1,7 +1,9 @@
 package com.funnelconnectreactnativesdk
 
+import android.app.Application
 import com.facebook.react.bridge.*
 import com.teavaro.funnelConnect.core.initializer.FunnelConnectSDK
+import com.teavaro.funnelConnect.data.models.dataClasses.FCOptions
 
 class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
@@ -12,12 +14,31 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   // Top level functions
   @ReactMethod
+  fun initializeSDK(sdkToken: String, fcOptions: FCOptions = FCOptions()) {
+    val application = reactContext.applicationContext as Application
+    FunnelConnectSDK.initialize(application, 123, fcOptions)
+  }
+
+  @ReactMethod
+  fun onInitialize(promise: Promise) {
+    // TODO:- to change to the actual function call when merging this change to the SDK master branch
+    promise.resolve({})
+    // promise.reject()
+  }
+
+  @ReactMethod
+  fun isInitialized(promise: Promise) {
+    // TODO:- to change to the actual function call when merging this change to the SDK master branch
+    promise.resolve(true)
+  }
+
+  @ReactMethod
   fun clearCookies() {
     FunnelConnectSDK.clearCookies()
   }
 
   @ReactMethod
-  fun clearData(promise: Promise) {
+  fun clearData() {
     FunnelConnectSDK.clearData()
   }
 

@@ -48,6 +48,7 @@ const clearCookies = () => {
 
 // Kotlin
 // TODO: Verify return type - I can see only Promise in the Module
+// => No return type for this function.
 const clearData = (): Promise<string> => {
   return Funnelconnectreactnativesdk.clearData();
 };
@@ -77,6 +78,7 @@ const cdp = () => {
     // Kotlin
     // TODO: According to docs, this method also returns updated permissions
     // But it is not returned in Module
+    // => No, This function does not return anything, It only updates the permissions.
     updatePermissions: (
       omAccepted: boolean,
       optAccepted: boolean,
@@ -129,6 +131,7 @@ const trustPid = () => {
 
 // Kotlin
 // TODO: What with those 3 functions? I can see no corresponding functiond in the Module
+// => Forgot to add them but they are added now.
 const initialize = (
   sdkToken: string,
   { enableLogging = true }: FCOptions
