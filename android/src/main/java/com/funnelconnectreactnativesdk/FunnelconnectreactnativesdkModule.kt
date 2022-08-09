@@ -95,7 +95,8 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   }
 
   @ReactMethod
-  fun logEvents(events: Map<String, String>) {
+  fun logEvents(events: ReadableArray) {
+    e
     FunnelConnectSDK.cdp().logEvents(events)
   }
 
