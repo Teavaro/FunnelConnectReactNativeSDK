@@ -14,9 +14,11 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   // Top level functions
   @ReactMethod
-  fun initializeSDK(sdkToken: String, fcOptions: FCOptions = FCOptions()) {
+  fun initializeSDK(sdkToken: String, fcOptions: ReadableMap = WritableNativeMap()) {
     val application = reactContext.applicationContext as Application
-    FunnelConnectSDK.initialize(application, 123, fcOptions)
+    val enableLogging = fcOptions.getBoolean("enableLogging")
+    val fcOptionsObj = FCOptions(enableLogging)
+    FunnelConnectSDK.initialize(application, 123, fcOptionsObj)
   }
 
   @ReactMethod
