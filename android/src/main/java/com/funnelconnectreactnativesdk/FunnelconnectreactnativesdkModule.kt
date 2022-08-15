@@ -102,7 +102,8 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun logEvents(events: ReadableArray, promise: Promise) {
-
+    println("RN Events $events")
+    promise.resolve("true")
   }
 
   // TrustPid service functions
