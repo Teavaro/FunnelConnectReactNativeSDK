@@ -101,6 +101,9 @@ const cdp = () => {
     logEvents: (events: LogEvent[]): void => {
       Funnelconnectreactnativesdk.logEvents(events);
     },
+    logEventsPromise: (events: LogEvent[]): Promise<string> => {
+      return Funnelconnectreactnativesdk.logEvents(events);
+    },
   };
 };
 
