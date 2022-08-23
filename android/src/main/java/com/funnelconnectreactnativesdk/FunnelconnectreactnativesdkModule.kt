@@ -1,6 +1,7 @@
 package com.funnelconnectreactnativesdk
 
 import android.app.Application
+import android.util.Log
 import com.facebook.react.bridge.*
 import com.teavaro.funnelConnect.core.initializer.FunnelConnectSDK
 import com.teavaro.funnelConnect.data.models.dataClasses.FCOptions
@@ -16,9 +17,13 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   @ReactMethod
   fun initializeSDK(sdkToken: String, fcOptions: ReadableMap = WritableNativeMap()) {
     val application = reactContext.applicationContext as Application
+    Log.v("RNTag Application", "application != null")
     val enableLogging = fcOptions.getBoolean("enableLogging")
+    Log.v("RNTag fcOptions", enableLogging.toString())
     val fcOptionsObj = FCOptions(enableLogging)
+    Log.v("RNTag fcOptions obj", fcOptionsObj.toString())
     FunnelConnectSDK.initialize(application, 123, fcOptionsObj)
+    Log.v("RNTag SDK Initialized", "")
   }
 
   @ReactMethod
