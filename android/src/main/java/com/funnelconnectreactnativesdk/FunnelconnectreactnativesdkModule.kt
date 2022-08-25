@@ -49,20 +49,28 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
     FunnelConnectSDK.clearData()
   }
 
+
   // CDP service functions
   @ReactMethod
-  fun startCdpService(userId: String?) {
-    FunnelConnectSDK.cdp().startService(userId)
+  fun startCdpService(fcUser: ReadableMap?) {
+    // TODO: Convert fcUser to nullable FCUser
+    FunnelConnectSDK.cdp().startService(fcUser)
   }
 
   @ReactMethod
-  fun startCdpService(userId: String?, promise: Promise) {
-    FunnelConnectSDK.cdp().startService(userId, dataCallback = {
+  fun startCdpService(fcUser: ReadableMap?, promise: Promise) {
+    // TODO: Convert fcUser to nullable FCUser
+    FunnelConnectSDK.cdp().startService(fcUser, dataCallback = {
       promise.resolve(it)
     }, errorCallback = {
       promise.reject(it)
     })
   }
+  // TODO: Remove on update above and in setUser
+  // type FCUser = {
+  //   userIdType: string;
+  //   userId: string;
+  // };
 
   @ReactMethod
   fun getUmid(promise: Promise) {
@@ -75,14 +83,16 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   }
 
   @ReactMethod
-  fun setUserId(userId: String) {
-    FunnelConnectSDK.cdp().setUserId(userId)
+  fun setUser(fcUser: ReadableMap) {
+    // TODO: Convert fcUser to FCUser
+    FunnelConnectSDK.cdp().setUser(fcUser)
   }
 
   @ReactMethod
   fun getPermissions(promise: Promise) {
     val permissions = FunnelConnectSDK.cdp().getPermissions()
     val permissionsMap = WritableNativeMap()
+    // TODO: Convert permissionsMap to ReadableMap
     permissionsMap.putString("omAccepted", permissions.omAccepted.toString())
     permissionsMap.putString("optAccepted", permissions.optAccepted.toString())
     permissionsMap.putString("nbaAccepted", permissions.nbaAccepted.toString())
@@ -90,8 +100,9 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   }
 
   @ReactMethod
-  fun updatePermissions(omAccepted: Boolean, optAccepted: Boolean, nbaAccepted: Boolean) {
-    FunnelConnectSDK.cdp().updatePermissions(omAccepted, optAccepted, nbaAccepted)
+  fun updatePermissions(permissions: ReadableMap, notificationsVersion: Int) {
+    // TODO: Convert permissions to PermissionsMap
+    FunnelConnectSDK.cdp().updatePermissions(permissions, notificationsVersion)
   }
 
   @ReactMethod

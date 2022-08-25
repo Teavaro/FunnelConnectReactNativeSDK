@@ -18,14 +18,17 @@ const Funnelconnectreactnativesdk = NativeModules.Funnelconnectreactnativesdk
     );
 
 // TODO: Move types to external file when all of the shapes are decided
-type GetPermissionsOutput = {
-  omAccepted: string;
-  optAccepted: string;
-  nbaAccepted: string;
+type PermissionsMap = {
+  [key: string]: boolean;
 };
 
 type FCOptions = {
   enableLogging: boolean;
+};
+
+type FCUser = {
+  userIdType: string;
+  userId: string;
 };
 
 type startTrustPidServiceOutput = {
@@ -65,12 +68,12 @@ const clearData = (): void => {
 // CDP service functions
 const cdp = () => {
   return {
-    startService: (userId: string | null = null) => {
-      Funnelconnectreactnativesdk.startCdpService(userId);
+    startService: (fcUser: FCUser | null = null) => {
+      Funnelconnectreactnativesdk.startCdpService(fcUser);
     },
     // TODO: Verify if overload works in this bridge
-    startServicePromise: (userId: string | null = null): Promise<string> => {
-      return Funnelconnectreactnativesdk.startCdpService(userId);
+    startServicePromise: (fcUser: FCUser | null = null): Promise<string> => {
+      return Funnelconnectreactnativesdk.startCdpService(fcUser);
     },
     getUmid: (): Promise<string> => {
       return Funnelconnectreactnativesdk.getUmid();
@@ -78,21 +81,19 @@ const cdp = () => {
     getUserId: (): Promise<string> => {
       return Funnelconnectreactnativesdk.getUserId();
     },
-    setUserId: (userId: string): void => {
-      Funnelconnectreactnativesdk.setUserId(userId);
+    setUser: (fcUser: FCUser): void => {
+      Funnelconnectreactnativesdk.setUser(fcUser);
     },
-    getPermissions: (): Promise<GetPermissionsOutput> => {
+    getPermissions: (): Promise<PermissionsMap> => {
       return Funnelconnectreactnativesdk.getPermissions();
     },
     updatePermissions: (
-      omAccepted: boolean,
-      optAccepted: boolean,
-      nbaAccepted: boolean
+      permissions: PermissionsMap,
+      notificationsVersion: number
     ): void => {
       Funnelconnectreactnativesdk.updatePermissions(
-        omAccepted,
-        optAccepted,
-        nbaAccepted
+        permissions,
+        notificationsVersion
       );
     },
     logEvent: (key: string, value: string): void => {
