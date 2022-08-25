@@ -22,7 +22,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
     Log.v("RNTag fcOptions", enableLogging.toString())
     val fcOptionsObj = FCOptions(enableLogging)
     Log.v("RNTag fcOptions obj", fcOptionsObj.toString())
-    FunnelConnectSDK.initialize(application, 123, fcOptionsObj)
+    FunnelConnectSDK.initialize(application, "BXDX2QY]37Yo^LH}Y4oDmNo6", fcOptionsObj)
     Log.v("RNTag SDK Initialized", "")
   }
 
