@@ -117,16 +117,21 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   }
 
   @ReactMethod
-  fun logEvents(events: ReadableArray) {
-    // TODO:- To Figure out with Tom
-   // FunnelConnectSDK.cdp().logEvents(events)
+  fun logEvents(events: ReadableMap) {
     println("RN Events $events")
+    val eventsMap = events.toHashMap().toMap().mapValues { it.toString() }
+    FunnelConnectSDK.cdp().logEvents(eventsMap)
   }
 
   @ReactMethod
-  fun logEvents(events: ReadableArray, promise: Promise) {
+  fun logEvents(events: ReadableMap, promise: Promise) {
     println("RN Events $events")
-    promise.resolve("true")
+    val eventsMap = events.toHashMap().toMap().mapValues { it.toString() }
+    FunnelConnectSDK.cdp().logEvents(eventsMap, successCallback = {
+       promise.resolve({})
+    }, errorCallback = {
+       promise.reject(it)
+    })
   }
 
   // TrustPid service functions
