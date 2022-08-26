@@ -68,11 +68,7 @@ const clearData = (): void => {
 // CDP service functions
 const cdp = () => {
   return {
-    startService: (fcUser: FCUser | null = null) => {
-      Funnelconnectreactnativesdk.startCdpService(fcUser);
-    },
-    // TODO: Verify if overload works in this bridge
-    startServicePromise: (fcUser: FCUser | null = null): Promise<string> => {
+    startService: (fcUser: FCUser | null = null): Promise<string> => {
       return Funnelconnectreactnativesdk.startCdpService(fcUser);
     },
     getUmid: (): Promise<string> => {
@@ -81,8 +77,8 @@ const cdp = () => {
     getUserId: (): Promise<string> => {
       return Funnelconnectreactnativesdk.getUserId();
     },
-    setUser: (fcUser: FCUser): void => {
-      Funnelconnectreactnativesdk.setUser(fcUser);
+    setUser: (fcUser: FCUser): Promise<string> => {
+      return Funnelconnectreactnativesdk.setUser(fcUser);
     },
     getPermissions: (): Promise<PermissionsMap> => {
       return Funnelconnectreactnativesdk.getPermissions();
