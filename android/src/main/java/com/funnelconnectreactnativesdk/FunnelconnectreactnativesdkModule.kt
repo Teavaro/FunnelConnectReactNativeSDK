@@ -5,12 +5,14 @@ import android.util.Log
 import com.facebook.react.bridge.*
 import com.teavaro.funnelConnect.core.initializer.FunnelConnectSDK
 import com.teavaro.funnelConnect.data.models.dataClasses.FCOptions
+import com.teavaro.funnelConnect.data.models.dataClasses.FCUser
+import com.teavaro.funnelConnect.utils.PermissionsMap
 
 class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
 
   override fun getName(): String {
-    return "Funnelconnectreactnativesdk"
+    return "FunnelConnectReactNativeSDK"
   }
 
   // Top level functions
@@ -28,15 +30,16 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun onInitialize(promise: Promise) {
-    // TODO:- to change to the actual function call when merging this change to the SDK master branch
-    promise.resolve({})
-    // promise.reject()
+    FunnelConnectSDK.onInitialize(successCallback = {
+      promise.resolve({})
+    }, errorCallback = {
+      promise.reject(it)
+    })
   }
 
   @ReactMethod
   fun isInitialized(promise: Promise) {
-    // TODO:- to change to the actual function call when merging this change to the SDK master branch
-    promise.resolve(true)
+    promise.resolve(FunnelConnectSDK.isInitialized())
   }
 
   @ReactMethod
@@ -49,28 +52,20 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
     FunnelConnectSDK.clearData()
   }
 
-
   // CDP service functions
   @ReactMethod
-  fun startCdpService(fcUser: ReadableMap?) {
-    // TODO: Convert fcUser to nullable FCUser
-    FunnelConnectSDK.cdp().startService(fcUser)
-  }
-
-  @ReactMethod
   fun startCdpService(fcUser: ReadableMap?, promise: Promise) {
-    // TODO: Convert fcUser to nullable FCUser
-    FunnelConnectSDK.cdp().startService(fcUser, dataCallback = {
-      promise.resolve(it)
-    }, errorCallback = {
-      promise.reject(it)
-    })
+    val userIdType = fcUser?.getString("userIdType")
+    val userId = fcUser?.getString("userId")
+    if (userIdType != null && userId != null) {
+      val fcUserObj = FCUser(userIdType, userId)
+      FunnelConnectSDK.cdp().setUser(fcUserObj)
+      promise.resolve({})
+    }
+    else {
+      promise.reject(Throwable("Invalid user object"))
+    }
   }
-  // TODO: Remove on update above and in setUser
-  // type FCUser = {
-  //   userIdType: string;
-  //   userId: string;
-  // };
 
   @ReactMethod
   fun getUmid(promise: Promise) {
@@ -83,26 +78,37 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   }
 
   @ReactMethod
-  fun setUser(fcUser: ReadableMap) {
-    // TODO: Convert fcUser to FCUser
-    FunnelConnectSDK.cdp().setUser(fcUser)
+  fun setUser(fcUser: ReadableMap, promise: Promise) {
+    val userIdType = fcUser.getString("userIdType")
+    val userId = fcUser.getString("userId")
+    if (userIdType != null && userId != null) {
+      val fcUserObj = FCUser(userIdType, userId)
+      FunnelConnectSDK.cdp().setUser(fcUserObj)
+      promise.resolve("Set user complete")
+    }
+    else {
+      promise.reject(Throwable("Invalid user object"))
+    }
   }
 
   @ReactMethod
   fun getPermissions(promise: Promise) {
-    val permissions = FunnelConnectSDK.cdp().getPermissions()
     val permissionsMap = WritableNativeMap()
-    // TODO: Convert permissionsMap to ReadableMap
-    permissionsMap.putString("omAccepted", permissions.omAccepted.toString())
-    permissionsMap.putString("optAccepted", permissions.optAccepted.toString())
-    permissionsMap.putString("nbaAccepted", permissions.nbaAccepted.toString())
+    val permissions = FunnelConnectSDK.cdp().getPermissions()
+    permissions.getAllKeys().forEach {
+      permissionsMap.putBoolean(it, permissions.getPermission(it))
+    }
     promise.resolve(permissionsMap)
   }
 
   @ReactMethod
   fun updatePermissions(permissions: ReadableMap, notificationsVersion: Int) {
-    // TODO: Convert permissions to PermissionsMap
-    FunnelConnectSDK.cdp().updatePermissions(permissions, notificationsVersion)
+    val permissionsMap = PermissionsMap()
+    permissions.toHashMap().mapValues { (it.value).toString().toBoolean() }.forEach {
+      permissionsMap.addPermission(it.key, it.value)
+    }
+    if (!permissionsMap.isEmpty())
+      FunnelConnectSDK.cdp().updatePermissions(permissionsMap, notificationsVersion)
   }
 
   @ReactMethod
@@ -112,6 +118,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun logEvents(events: ReadableArray) {
+    // TODO:- To Figure out with Tom
    // FunnelConnectSDK.cdp().logEvents(events)
     println("RN Events $events")
   }
