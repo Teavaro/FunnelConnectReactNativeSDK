@@ -49,47 +49,49 @@ const initializeSDK = (
   Funnelconnectreactnativesdk.initializeSDK(sdkToken, { enableLogging });
 };
 
-const onInitialize = (): Promise<string> => {
-  return Funnelconnectreactnativesdk.onInitialize();
+const onInitializeWithPromise = (): Promise<string> => {
+  return Funnelconnectreactnativesdk.onInitializeWithPromise();
 };
 
-const isInitialized = (): Promise<boolean> => {
-  return Funnelconnectreactnativesdk.isInitialized();
+const isInitializedWithPromise = (): Promise<boolean> => {
+  return Funnelconnectreactnativesdk.isInitializedWithPromise();
 };
 
 const clearCookies = (): void => {
   Funnelconnectreactnativesdk.clearCookies();
 };
 
-const clearCookiesPromise = (): Promise<string> => {
-  return Funnelconnectreactnativesdk.clearCookies();
+const clearCookiesWithPromise = (): Promise<string> => {
+  return Funnelconnectreactnativesdk.clearCookiesWithPromise();
 };
 
 const clearData = (): void => {
   Funnelconnectreactnativesdk.clearData();
 };
 
-const clearDataPromise = (): Promise<string> => {
-  return Funnelconnectreactnativesdk.clearData();
+const clearDataWithPromise = (): Promise<string> => {
+  return Funnelconnectreactnativesdk.clearDataWithPromise();
 };
 
 // CDP service functions
 const cdp = () => {
   return {
-    startService: (fcUser: FCUser | null = null): Promise<string> => {
-      return Funnelconnectreactnativesdk.startCdpService(fcUser);
+    startCdpServiceWithPromise: (
+      fcUser: FCUser | null = null
+    ): Promise<string> => {
+      return Funnelconnectreactnativesdk.startCdpServiceWithPromise(fcUser);
     },
-    getUmid: (): Promise<string> => {
-      return Funnelconnectreactnativesdk.getUmid();
+    getUmidWithPromise: (): Promise<string> => {
+      return Funnelconnectreactnativesdk.getUmidWithPromise();
     },
-    getUserId: (): Promise<string> => {
-      return Funnelconnectreactnativesdk.getUserId();
+    getUserIdWithPromise: (): Promise<string> => {
+      return Funnelconnectreactnativesdk.getUserIdWithPromise();
     },
-    setUser: (fcUser: FCUser): Promise<string> => {
-      return Funnelconnectreactnativesdk.setUser(fcUser);
+    setUserWithPromise: (fcUser: FCUser): Promise<string> => {
+      return Funnelconnectreactnativesdk.setUserWithPromise(fcUser);
     },
-    getPermissions: (): Promise<PermissionsMap> => {
-      return Funnelconnectreactnativesdk.getPermissions();
+    getPermissionsWithPromise: (): Promise<PermissionsMap> => {
+      return Funnelconnectreactnativesdk.getPermissionsWithPromise();
     },
     updatePermissions: (
       permissions: PermissionsMap,
@@ -100,11 +102,11 @@ const cdp = () => {
         notificationsVersion
       );
     },
-    updatePermissionsPromise: (
+    updatePermissionsWithPromise: (
       permissions: PermissionsMap,
       notificationsVersion: number
     ): Promise<string> => {
-      return Funnelconnectreactnativesdk.updatePermissions(
+      return Funnelconnectreactnativesdk.updatePermissionsWithPromise(
         permissions,
         notificationsVersion
       );
@@ -112,14 +114,14 @@ const cdp = () => {
     logEvent: (key: string, value: string): void => {
       Funnelconnectreactnativesdk.logEvent(key, value);
     },
-    logEventPromise: (key: string, value: string): Promise<string> => {
-      return Funnelconnectreactnativesdk.logEvent(key, value);
+    logEventWithPromise: (key: string, value: string): Promise<string> => {
+      return Funnelconnectreactnativesdk.logEventWithPromise(key, value);
     },
     logEvents: (events: LogEvent[]): void => {
       Funnelconnectreactnativesdk.logEvents(events);
     },
-    logEventsPromise: (events: LogEvent[]): Promise<string> => {
-      return Funnelconnectreactnativesdk.logEvents(events);
+    logEventsWithPromise: (events: LogEvent[]): Promise<string> => {
+      return Funnelconnectreactnativesdk.logEventsWithPromise(events);
     },
   };
 };
@@ -129,37 +131,39 @@ const trustPid = () => {
     startService: (isStub: boolean = false): void => {
       Funnelconnectreactnativesdk.startTrustPidService(isStub);
     },
-    startServicePromise: (
+    startTrustPidServiceWithPromise: (
       isStub: boolean = false
     ): Promise<startTrustPidServiceOutput> => {
-      return Funnelconnectreactnativesdk.startTrustPidService(isStub);
+      return Funnelconnectreactnativesdk.startTrustPidServiceWithPromise(
+        isStub
+      );
     },
     acceptConsent: (): void => {
       Funnelconnectreactnativesdk.acceptConsent();
     },
-    acceptConsentPromise: (): Promise<string> => {
-      return Funnelconnectreactnativesdk.acceptConsent();
+    acceptConsentWithPromise: (): Promise<string> => {
+      return Funnelconnectreactnativesdk.acceptConsentWithPromise();
     },
     rejectConsent: (): void => {
       Funnelconnectreactnativesdk.rejectConsent();
     },
-    rejectConsentPromise: (): Promise<string> => {
-      return Funnelconnectreactnativesdk.rejectConsent();
+    rejectConsentWithPromise: (): Promise<string> => {
+      return Funnelconnectreactnativesdk.rejectConsentWithPromise();
     },
-    isConsentAccepted: (): Promise<boolean> => {
-      return Funnelconnectreactnativesdk.isConsentAccepted();
+    isConsentAcceptedWithPromise: (): Promise<boolean> => {
+      return Funnelconnectreactnativesdk.isConsentAcceptedWithPromise();
     },
   };
 };
 
 const funnelConnectSdk = {
   initializeSDK,
-  onInitialize,
-  isInitialized,
+  onInitializeWithPromise,
+  isInitializedWithPromise,
   clearCookies,
-  clearCookiesPromise,
+  clearCookiesWithPromise,
   clearData,
-  clearDataPromise,
+  clearDataWithPromise,
   cdp,
   trustPid,
 };
