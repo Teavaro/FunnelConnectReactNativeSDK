@@ -48,8 +48,20 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   }
 
   @ReactMethod
+  fun clearCookies(promise: Promise) {
+    FunnelConnectSDK.clearCookies()
+    promise.resolve({})
+  }
+
+  @ReactMethod
   fun clearData() {
     FunnelConnectSDK.clearData()
+  }
+
+  @ReactMethod
+  fun clearData(promise: Promise) {
+    FunnelConnectSDK.clearData()
+    promise.resolve({})
   }
 
   // CDP service functions
@@ -112,8 +124,28 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   }
 
   @ReactMethod
+  fun updatePermissions(permissions: ReadableMap, notificationsVersion: Int, promise: Promise) {
+    val permissionsMap = PermissionsMap()
+    permissions.toHashMap().mapValues { (it.value).toString().toBoolean() }.forEach {
+      permissionsMap.addPermission(it.key, it.value)
+    }
+    if (!permissionsMap.isEmpty())
+      FunnelConnectSDK.cdp().updatePermissions(permissionsMap, notificationsVersion)
+    promise.resolve({})
+  }
+
+  @ReactMethod
   fun logEvent(key: String, value: String) {
     FunnelConnectSDK.cdp().logEvent(key, value)
+  }
+
+  @ReactMethod
+  fun logEvent(key: String, value: String, promise: Promise) {
+    FunnelConnectSDK.cdp().logEvent(key, value, successCallback = {
+       promise.resolve({})
+    }, errorCallback = {
+       promise.reject(it)
+    })
   }
 
   @ReactMethod
@@ -156,10 +188,22 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   fun acceptConsent() {
     FunnelConnectSDK.trustPid().acceptConsent()
   }
+  
+  @ReactMethod
+  fun acceptConsent(promise: Promise) {
+    FunnelConnectSDK.trustPid().acceptConsent()
+    promise.resolve({})
+  }
 
   @ReactMethod
   fun rejectConsent() {
     FunnelConnectSDK.trustPid().rejectConsent()
+  }
+
+  @ReactMethod
+  fun rejectConsent(promise: Promise) {
+    FunnelConnectSDK.trustPid().rejectConsent()
+    promise.resolve({})
   }
 
   @ReactMethod
