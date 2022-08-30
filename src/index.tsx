@@ -61,8 +61,16 @@ const clearCookies = (): void => {
   Funnelconnectreactnativesdk.clearCookies();
 };
 
+const clearCookiesPromise = (): Promise<string> => {
+  return Funnelconnectreactnativesdk.clearCookies();
+};
+
 const clearData = (): void => {
   Funnelconnectreactnativesdk.clearData();
+};
+
+const clearDataPromise = (): Promise<string> => {
+  return Funnelconnectreactnativesdk.clearData();
 };
 
 // CDP service functions
@@ -92,8 +100,20 @@ const cdp = () => {
         notificationsVersion
       );
     },
+    updatePermissionsPromise: (
+      permissions: PermissionsMap,
+      notificationsVersion: number
+    ): Promise<string> => {
+      return Funnelconnectreactnativesdk.updatePermissions(
+        permissions,
+        notificationsVersion
+      );
+    },
     logEvent: (key: string, value: string): void => {
       Funnelconnectreactnativesdk.logEvent(key, value);
+    },
+    logEventPromise: (key: string, value: string): Promise<string> => {
+      return Funnelconnectreactnativesdk.logEvent(key, value);
     },
     logEvents: (events: LogEvent[]): void => {
       Funnelconnectreactnativesdk.logEvents(events);
@@ -109,7 +129,6 @@ const trustPid = () => {
     startService: (isStub: boolean = false): void => {
       Funnelconnectreactnativesdk.startTrustPidService(isStub);
     },
-    // TODO: Verify if overload works in this bridge
     startServicePromise: (
       isStub: boolean = false
     ): Promise<startTrustPidServiceOutput> => {
@@ -118,8 +137,14 @@ const trustPid = () => {
     acceptConsent: (): void => {
       Funnelconnectreactnativesdk.acceptConsent();
     },
+    acceptConsentPromise: (): Promise<string> => {
+      return Funnelconnectreactnativesdk.acceptConsent();
+    },
     rejectConsent: (): void => {
       Funnelconnectreactnativesdk.rejectConsent();
+    },
+    rejectConsentPromise: (): Promise<string> => {
+      return Funnelconnectreactnativesdk.rejectConsent();
     },
     isConsentAccepted: (): Promise<boolean> => {
       return Funnelconnectreactnativesdk.isConsentAccepted();
@@ -132,7 +157,9 @@ const funnelConnectSdk = {
   onInitialize,
   isInitialized,
   clearCookies,
+  clearCookiesPromise,
   clearData,
+  clearDataPromise,
   cdp,
   trustPid,
 };

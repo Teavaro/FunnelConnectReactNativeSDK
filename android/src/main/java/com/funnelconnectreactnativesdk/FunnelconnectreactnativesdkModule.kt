@@ -31,7 +31,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   @ReactMethod
   fun onInitialize(promise: Promise) {
     FunnelConnectSDK.onInitialize(successCallback = {
-      promise.resolve({})
+      promise.resolve("onInitialize called")
     }, errorCallback = {
       promise.reject(it)
     })
@@ -50,7 +50,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   @ReactMethod
   fun clearCookies(promise: Promise) {
     FunnelConnectSDK.clearCookies()
-    promise.resolve({})
+    promise.resolve("clearCookies called")
   }
 
   @ReactMethod
@@ -61,7 +61,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   @ReactMethod
   fun clearData(promise: Promise) {
     FunnelConnectSDK.clearData()
-    promise.resolve({})
+    promise.resolve("clearData called")
   }
 
   // CDP service functions
@@ -72,7 +72,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
     if (userIdType != null && userId != null) {
       val fcUserObj = FCUser(userIdType, userId)
       FunnelConnectSDK.cdp().setUser(fcUserObj)
-      promise.resolve({})
+      promise.resolve("startCdpService called")
     }
     else {
       promise.reject(Throwable("Invalid user object"))
@@ -131,7 +131,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
     }
     if (!permissionsMap.isEmpty())
       FunnelConnectSDK.cdp().updatePermissions(permissionsMap, notificationsVersion)
-    promise.resolve({})
+    promise.resolve("updatePermissions called")
   }
 
   @ReactMethod
@@ -142,7 +142,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   @ReactMethod
   fun logEvent(key: String, value: String, promise: Promise) {
     FunnelConnectSDK.cdp().logEvent(key, value, successCallback = {
-       promise.resolve({})
+       promise.resolve("logEvent called")
     }, errorCallback = {
        promise.reject(it)
     })
@@ -150,17 +150,17 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun logEvents(events: ReadableMap) {
-    println("RN Events $events")
+    println("RN Events with NO promise $events")
     val eventsMap = events.toHashMap().toMap().mapValues { it.toString() }
     FunnelConnectSDK.cdp().logEvents(eventsMap)
   }
 
   @ReactMethod
   fun logEvents(events: ReadableMap, promise: Promise) {
-    println("RN Events $events")
+    println("RN Events with promise $events")
     val eventsMap = events.toHashMap().toMap().mapValues { it.toString() }
     FunnelConnectSDK.cdp().logEvents(eventsMap, successCallback = {
-       promise.resolve({})
+       promise.resolve("logEvents called")
     }, errorCallback = {
        promise.reject(it)
     })
@@ -192,7 +192,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   @ReactMethod
   fun acceptConsent(promise: Promise) {
     FunnelConnectSDK.trustPid().acceptConsent()
-    promise.resolve({})
+    promise.resolve("acceptConsent called")
   }
 
   @ReactMethod
@@ -203,7 +203,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   @ReactMethod
   fun rejectConsent(promise: Promise) {
     FunnelConnectSDK.trustPid().rejectConsent()
-    promise.resolve({})
+    promise.resolve("rejectConsent called")
   }
 
   @ReactMethod
