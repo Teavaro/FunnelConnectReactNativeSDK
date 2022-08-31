@@ -11,7 +11,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   ReactContextBaseJavaModule(reactContext) {
 
   override fun getName(): String {
-    return "FunnelConnectReactNativeSDK"
+    return "FunnelConnectSDK"
   }
 
   // Top level functions
