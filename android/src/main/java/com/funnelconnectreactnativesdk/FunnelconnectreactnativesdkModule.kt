@@ -151,7 +151,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun logEventsAsync(events: ReadableMap, promise: Promise) {
-    val eventsMap = events.toHashMap().toMap().mapValues { it.toString() }
+    val eventsMap = events.toHashMap().toMap().mapValues { it.value.toString() }
     FunnelConnectSDK.cdp().logEvents(eventsMap, successCallback = {
        promise.resolve("logEvents called")
     }, errorCallback = {
