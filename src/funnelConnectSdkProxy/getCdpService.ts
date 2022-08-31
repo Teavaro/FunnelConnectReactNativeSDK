@@ -41,9 +41,11 @@ export const getCdpService = (Funnelconnectreactnativesdk: any) => {
         return Funnelconnectreactnativesdk.logEventAsync(key, value);
       },
       logEvents: (events: LogEventsMap): void => {
+        console.log(`events for logEvents: ${events}`);
         Funnelconnectreactnativesdk.logEvents(events);
       },
       logEventsAsync: (events: LogEventsMap): Promise<string> => {
+        console.log(`events for logEventsAsync: ${events}`);
         return Funnelconnectreactnativesdk.logEventsAsync(events);
       },
     };
