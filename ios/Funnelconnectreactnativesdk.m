@@ -11,4 +11,8 @@ RCT_EXTERN_METHOD(multiply:(float)a withB:(float)b
   return NO;
 }
 
+// Export functions for React Native.
+
+RCT_EXTERN_METHOD(initializeSDK:(NSString *)sdkToken :(NSDictionary *)fcOptions)
+
 @end
