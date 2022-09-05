@@ -6,154 +6,70 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		F757DD5E3F864700930B9B96DB07B5AA /* FunnelConnectSDK */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = F6610EAD65FD2EF2C77EF88D7EDB9D45 /* Build configuration list for PBXAggregateTarget "FunnelConnectSDK" */;
-			buildPhases = (
-				12EE44C285D3E4E98E69ED84DF82EDF2 /* [CP] Copy XCFrameworks */,
-			);
-			dependencies = (
-			);
-			name = FunnelConnectSDK;
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
-		12F84D75173B7B847B57D7DBCC4AAE9D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		6CD5EFE0771CE8BC31E910342C5B6D44 /* Pods-Funnelconnectreactnativesdk-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CCFEECEC00A4D18B1DB548159EE07285 /* Pods-Funnelconnectreactnativesdk-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		FB95484C890D8AD54A81C923B6250553 /* Pods-Funnelconnectreactnativesdk-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B93909BA1BE42B62D2663673060F440 /* Pods-Funnelconnectreactnativesdk-dummy.m */; };
+		4F7185EC03DBC915DD164A0B6694F6EB /* Pods-Funnelconnectreactnativesdk-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E8D4EAEA88E7D0A2C776AA74C29B3AAC /* Pods-Funnelconnectreactnativesdk-dummy.m */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		2DFF9D843D687128394515CC3ABBE525 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F757DD5E3F864700930B9B96DB07B5AA;
-			remoteInfo = FunnelConnectSDK;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		3CBBB72EFE110AD24431E00582E4E6D1 /* FunnelConnectSDK.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FunnelConnectSDK.debug.xcconfig; sourceTree = "<group>"; };
-		49B3C5A87D19D7E4F7EB27A5DF73FF99 /* Pods-Funnelconnectreactnativesdk-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Funnelconnectreactnativesdk-acknowledgements.plist"; sourceTree = "<group>"; };
-		4D48DB59EBBAB2AECB0E439EC8195516 /* Pods-Funnelconnectreactnativesdk.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-Funnelconnectreactnativesdk.modulemap"; sourceTree = "<group>"; };
-		511D8303BD348D6C8CED0A1412898403 /* Pods-Funnelconnectreactnativesdk-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Funnelconnectreactnativesdk-acknowledgements.markdown"; sourceTree = "<group>"; };
-		6494DAB97DB0FA6E1DDA2855E41DDDD5 /* FunnelConnectSDK.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; path = FunnelConnectSDK.xcframework; sourceTree = "<group>"; };
-		68B969A3C9F11280A00CF2535F901E75 /* FunnelConnectSDK.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FunnelConnectSDK.release.xcconfig; sourceTree = "<group>"; };
-		698B5786237B72B5FF180493C70B6105 /* Pods-Funnelconnectreactnativesdk */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-Funnelconnectreactnativesdk"; path = Pods_Funnelconnectreactnativesdk.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		69E240C32AC60C01F61B3D69360B9064 /* Pods-Funnelconnectreactnativesdk-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Funnelconnectreactnativesdk-Info.plist"; sourceTree = "<group>"; };
-		6B93909BA1BE42B62D2663673060F440 /* Pods-Funnelconnectreactnativesdk-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Funnelconnectreactnativesdk-dummy.m"; sourceTree = "<group>"; };
-		6E0BC0EE7016B5B693AD345AFBFDF954 /* Pods-Funnelconnectreactnativesdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Funnelconnectreactnativesdk.debug.xcconfig"; sourceTree = "<group>"; };
-		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		99165BDECE85493BF5DAD0E7482FA65B /* FunnelConnectSDK-xcframeworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "FunnelConnectSDK-xcframeworks.sh"; sourceTree = "<group>"; };
+		18A3AE3B686837AB61119D510D842CE0 /* Pods-Funnelconnectreactnativesdk-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Funnelconnectreactnativesdk-acknowledgements.plist"; sourceTree = "<group>"; };
+		698B5786237B72B5FF180493C70B6105 /* Pods-Funnelconnectreactnativesdk */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "Pods-Funnelconnectreactnativesdk"; path = "libPods-Funnelconnectreactnativesdk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F73696B62526D1F0FBE5D5834D6CC96 /* Pods-Funnelconnectreactnativesdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Funnelconnectreactnativesdk.release.xcconfig"; sourceTree = "<group>"; };
+		72A0C353B2427DE8C743EC758FCFB764 /* Pods-Funnelconnectreactnativesdk-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Funnelconnectreactnativesdk-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A988C42FC14182E093758A4C52708071 /* Pods-Funnelconnectreactnativesdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Funnelconnectreactnativesdk.release.xcconfig"; sourceTree = "<group>"; };
-		CCFEECEC00A4D18B1DB548159EE07285 /* Pods-Funnelconnectreactnativesdk-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-Funnelconnectreactnativesdk-umbrella.h"; sourceTree = "<group>"; };
+		B354714620A30E482407261DE29B9A08 /* Pods-Funnelconnectreactnativesdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Funnelconnectreactnativesdk.debug.xcconfig"; sourceTree = "<group>"; };
+		E8D4EAEA88E7D0A2C776AA74C29B3AAC /* Pods-Funnelconnectreactnativesdk-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Funnelconnectreactnativesdk-dummy.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		843B92499C2F578E6B220803588C2956 /* Frameworks */ = {
+		4F3A37A889CC0AE26C65BB09723099CC /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				12F84D75173B7B847B57D7DBCC4AAE9D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1C847087A8E01B528F0187C2BD5828C6 /* Support Files */ = {
+		27D692F4F9C4E4876BD579D04871790D /* Pods-Funnelconnectreactnativesdk */ = {
 			isa = PBXGroup;
 			children = (
-				99165BDECE85493BF5DAD0E7482FA65B /* FunnelConnectSDK-xcframeworks.sh */,
-				3CBBB72EFE110AD24431E00582E4E6D1 /* FunnelConnectSDK.debug.xcconfig */,
-				68B969A3C9F11280A00CF2535F901E75 /* FunnelConnectSDK.release.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/FunnelConnectSDK";
-			sourceTree = "<group>";
-		};
-		269EB3E545BC72658B5DA3DD525DD506 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				EFA497121339D73A57591732790ECD68 /* FunnelConnectSDK */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		4118C77F854D8777221B6F211BDF3B4F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6494DAB97DB0FA6E1DDA2855E41DDDD5 /* FunnelConnectSDK.xcframework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		A8658A0EB91CCB1B852F24614528F4A2 /* Targets Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				BDC6BD7E8C7AC4751122ACEAB6DACBED /* Pods-Funnelconnectreactnativesdk */,
-			);
-			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		BDC6BD7E8C7AC4751122ACEAB6DACBED /* Pods-Funnelconnectreactnativesdk */ = {
-			isa = PBXGroup;
-			children = (
-				4D48DB59EBBAB2AECB0E439EC8195516 /* Pods-Funnelconnectreactnativesdk.modulemap */,
-				511D8303BD348D6C8CED0A1412898403 /* Pods-Funnelconnectreactnativesdk-acknowledgements.markdown */,
-				49B3C5A87D19D7E4F7EB27A5DF73FF99 /* Pods-Funnelconnectreactnativesdk-acknowledgements.plist */,
-				6B93909BA1BE42B62D2663673060F440 /* Pods-Funnelconnectreactnativesdk-dummy.m */,
-				69E240C32AC60C01F61B3D69360B9064 /* Pods-Funnelconnectreactnativesdk-Info.plist */,
-				CCFEECEC00A4D18B1DB548159EE07285 /* Pods-Funnelconnectreactnativesdk-umbrella.h */,
-				6E0BC0EE7016B5B693AD345AFBFDF954 /* Pods-Funnelconnectreactnativesdk.debug.xcconfig */,
-				A988C42FC14182E093758A4C52708071 /* Pods-Funnelconnectreactnativesdk.release.xcconfig */,
+				72A0C353B2427DE8C743EC758FCFB764 /* Pods-Funnelconnectreactnativesdk-acknowledgements.markdown */,
+				18A3AE3B686837AB61119D510D842CE0 /* Pods-Funnelconnectreactnativesdk-acknowledgements.plist */,
+				E8D4EAEA88E7D0A2C776AA74C29B3AAC /* Pods-Funnelconnectreactnativesdk-dummy.m */,
+				B354714620A30E482407261DE29B9A08 /* Pods-Funnelconnectreactnativesdk.debug.xcconfig */,
+				6F73696B62526D1F0FBE5D5834D6CC96 /* Pods-Funnelconnectreactnativesdk.release.xcconfig */,
 			);
 			name = "Pods-Funnelconnectreactnativesdk";
 			path = "Target Support Files/Pods-Funnelconnectreactnativesdk";
+			sourceTree = "<group>";
+		};
+		C487189F8B7F84443F134FFB59C430AD /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				27D692F4F9C4E4876BD579D04871790D /* Pods-Funnelconnectreactnativesdk */,
+			);
+			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
-				269EB3E545BC72658B5DA3DD525DD506 /* Pods */,
-				FF47F3E110E64990DF42CD691CA000BE /* Products */,
-				A8658A0EB91CCB1B852F24614528F4A2 /* Targets Support Files */,
+				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
+				E75DDA53D1B4BF3967AAC005DF548530 /* Products */,
+				C487189F8B7F84443F134FFB59C430AD /* Targets Support Files */,
 			);
 			sourceTree = "<group>";
 		};
-		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				578452D2E740E91742655AC8F1636D1F /* iOS */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		EFA497121339D73A57591732790ECD68 /* FunnelConnectSDK */ = {
-			isa = PBXGroup;
-			children = (
-				4118C77F854D8777221B6F211BDF3B4F /* Frameworks */,
-				1C847087A8E01B528F0187C2BD5828C6 /* Support Files */,
-			);
-			name = FunnelConnectSDK;
-			path = FunnelConnectSDK;
-			sourceTree = "<group>";
-		};
-		FF47F3E110E64990DF42CD691CA000BE /* Products */ = {
+		E75DDA53D1B4BF3967AAC005DF548530 /* Products */ = {
 			isa = PBXGroup;
 			children = (
 				698B5786237B72B5FF180493C70B6105 /* Pods-Funnelconnectreactnativesdk */,
@@ -164,11 +80,10 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		9726A40ADD95737842FB7AE0F88DEE26 /* Headers */ = {
+		ED090F8B6B594A07EC25A6C1941FECFE /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CD5EFE0771CE8BC31E910342C5B6D44 /* Pods-Funnelconnectreactnativesdk-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,22 +92,20 @@
 /* Begin PBXNativeTarget section */
 		87DDF5200AEFE8603CF1931449809933 /* Pods-Funnelconnectreactnativesdk */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 51A252C226CF0D07EE239D557AF8A664 /* Build configuration list for PBXNativeTarget "Pods-Funnelconnectreactnativesdk" */;
+			buildConfigurationList = 2E0E9B09701AA162A74C5BD94605B967 /* Build configuration list for PBXNativeTarget "Pods-Funnelconnectreactnativesdk" */;
 			buildPhases = (
-				9726A40ADD95737842FB7AE0F88DEE26 /* Headers */,
-				55DFE2D2EFDA1D1112D1AD3B91ADCED4 /* Sources */,
-				843B92499C2F578E6B220803588C2956 /* Frameworks */,
-				206AA2B68949AF7C822AAA6FD0917EDD /* Resources */,
+				ED090F8B6B594A07EC25A6C1941FECFE /* Headers */,
+				87E7133395134D3AE68125C20020CCDD /* Sources */,
+				4F3A37A889CC0AE26C65BB09723099CC /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				88E8E5348AAF01151E5EA5D35F36802D /* PBXTargetDependency */,
 			);
 			name = "Pods-Funnelconnectreactnativesdk";
-			productName = Pods_Funnelconnectreactnativesdk;
+			productName = "Pods-Funnelconnectreactnativesdk";
 			productReference = 698B5786237B72B5FF180493C70B6105 /* Pods-Funnelconnectreactnativesdk */;
-			productType = "com.apple.product-type.framework";
+			productType = "com.apple.product-type.library.static";
 		};
 /* End PBXNativeTarget section */
 
@@ -212,68 +125,49 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = FF47F3E110E64990DF42CD691CA000BE /* Products */;
+			productRefGroup = E75DDA53D1B4BF3967AAC005DF548530 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				F757DD5E3F864700930B9B96DB07B5AA /* FunnelConnectSDK */,
 				87DDF5200AEFE8603CF1931449809933 /* Pods-Funnelconnectreactnativesdk */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		206AA2B68949AF7C822AAA6FD0917EDD /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		12EE44C285D3E4E98E69ED84DF82EDF2 /* [CP] Copy XCFrameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/FunnelConnectSDK/FunnelConnectSDK-xcframeworks.sh",
-				"${PODS_ROOT}/FunnelConnectSDK/FunnelConnectSDK.xcframework",
-			);
-			name = "[CP] Copy XCFrameworks";
-			outputPaths = (
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/FunnelConnectSDK/FunnelConnectSDK.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/FunnelConnectSDK/FunnelConnectSDK-xcframeworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		55DFE2D2EFDA1D1112D1AD3B91ADCED4 /* Sources */ = {
+		87E7133395134D3AE68125C20020CCDD /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FB95484C890D8AD54A81C923B6250553 /* Pods-Funnelconnectreactnativesdk-dummy.m in Sources */,
+				4F7185EC03DBC915DD164A0B6694F6EB /* Pods-Funnelconnectreactnativesdk-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		88E8E5348AAF01151E5EA5D35F36802D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = FunnelConnectSDK;
-			target = F757DD5E3F864700930B9B96DB07B5AA /* FunnelConnectSDK */;
-			targetProxy = 2DFF9D843D687128394515CC3ABBE525 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
+		112736425481A860818428A6BC68D2BD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B354714620A30E482407261DE29B9A08 /* Pods-Funnelconnectreactnativesdk.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				MACH_O_TYPE = staticlib;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		2B9E26EAE2CD392AD762421F663075A1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -340,40 +234,9 @@
 			};
 			name = Debug;
 		};
-		41A1F46120CC2C865453E83F8F33D8A6 /* Release */ = {
+		5B4970FA0D8291612BC651BF9DFBAE37 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 68B969A3C9F11280A00CF2535F901E75 /* FunnelConnectSDK.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 12;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		510CF5CCC387F1E3F79D0E41F94E9FCD /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3CBBB72EFE110AD24431E00582E4E6D1 /* FunnelConnectSDK.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				IPHONEOS_DEPLOYMENT_TARGET = 12;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				SDKROOT = iphoneos;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		5CABF37D1D12A0462FDE288B355528B6 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A988C42FC14182E093758A4C52708071 /* Pods-Funnelconnectreactnativesdk.release.xcconfig */;
+			baseConfigurationReference = 6F73696B62526D1F0FBE5D5834D6CC96 /* Pods-Funnelconnectreactnativesdk.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
@@ -381,28 +244,16 @@
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Funnelconnectreactnativesdk/Pods-Funnelconnectreactnativesdk-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Funnelconnectreactnativesdk/Pods-Funnelconnectreactnativesdk.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
 		};
@@ -468,66 +319,23 @@
 			};
 			name = Release;
 		};
-		D577B6DA28F7756F0E143D2D0DFC4912 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6E0BC0EE7016B5B693AD345AFBFDF954 /* Pods-Funnelconnectreactnativesdk.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-Funnelconnectreactnativesdk/Pods-Funnelconnectreactnativesdk-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-Funnelconnectreactnativesdk/Pods-Funnelconnectreactnativesdk.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2E0E9B09701AA162A74C5BD94605B967 /* Build configuration list for PBXNativeTarget "Pods-Funnelconnectreactnativesdk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				112736425481A860818428A6BC68D2BD /* Debug */,
+				5B4970FA0D8291612BC651BF9DFBAE37 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2B9E26EAE2CD392AD762421F663075A1 /* Debug */,
 				63FAF33E1C55B71A5F5A8B3CC8749F99 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		51A252C226CF0D07EE239D557AF8A664 /* Build configuration list for PBXNativeTarget "Pods-Funnelconnectreactnativesdk" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D577B6DA28F7756F0E143D2D0DFC4912 /* Debug */,
-				5CABF37D1D12A0462FDE288B355528B6 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F6610EAD65FD2EF2C77EF88D7EDB9D45 /* Build configuration list for PBXAggregateTarget "FunnelConnectSDK" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				510CF5CCC387F1E3F79D0E41F94E9FCD /* Debug */,
-				41A1F46120CC2C865453E83F8F33D8A6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

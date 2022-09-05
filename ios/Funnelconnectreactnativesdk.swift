@@ -1,7 +1,7 @@
 
-import FunnelConnectSDK
+// import FunnelConnectSDK
 
-@objc(Funnelconnectreactnativesdk)
+@objc(FunnelConnectSDK)
 class Funnelconnectreactnativesdk: NSObject {
 
   @objc(multiply:withB:withResolver:withRejecter:)
@@ -12,12 +12,12 @@ class Funnelconnectreactnativesdk: NSObject {
     // Top level functions
     @objc func initializeSDK(sdkToken: String, fcOptions: NSDictionary = NSDictionary()) {
         let enableLogging: Bool = fcOptions["enableLogging"] as? Bool ?? false
-        let fcOptionsObj = FCOptions(enableLogging: enableLogging)
-        FunnelConnectSDK.shared.initialize(sdkToken: sdkToken, options: fcOptionsObj)
+       // let fcOptionsObj = FCOptions(enableLogging: enableLogging)
+       // FunnelConnectSDK.shared.initialize(sdkToken: sdkToken, options: fcOptionsObj)
     }
     
-   @objc(multiply:withB:withResolver:withRejecter:)
+   @objc
     func multiply() {
-        FunnelConnectSDK.shared.cdp()
+       // FunnelConnectSDK.shared.cdp()
    }
 }
