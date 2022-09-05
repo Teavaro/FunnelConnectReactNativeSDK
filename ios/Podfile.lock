@@ -1,16 +1,3 @@
-PODS:
-  - FunnelConnectSDK (0.1.15)
-
-DEPENDENCIES:
-  - FunnelConnectSDK
-
-SPEC REPOS:
-  trunk:
-    - FunnelConnectSDK
-
-SPEC CHECKSUMS:
-  FunnelConnectSDK: a022e0efd3daa8ed2bd12f3beaf1591c2deb3168
-
-PODFILE CHECKSUM: 8d718a4f055c34a39a5034eef0d87d77eacc6482
+PODFILE CHECKSUM: 277430f24e3b9158e502cf03e0bf330ae3238953
 
 COCOAPODS: 1.11.3

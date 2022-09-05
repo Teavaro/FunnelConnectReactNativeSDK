@@ -13,7 +13,9 @@ RCT_EXTERN_METHOD(multiply:(float)a withB:(float)b
 
 // Export functions for React Native.
 
-RCT_EXTERN_METHOD(initializeSDK:(NSString *)sdkToken :(NSDictionary *)fcOptions) {
-    RCTLogInfo(@"Pretending to create an event");
-}
+RCT_EXTERN_METHOD(initializeSDK:(NSString *)sdkToken :(NSDictionary *)fcOptions)
+
+//{
+//    RCTLogInfo(@"Pretending to create an event");
+//}
 @end
