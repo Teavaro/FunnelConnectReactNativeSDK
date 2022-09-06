@@ -6,7 +6,7 @@ export const initializeNativeModules = () => {
     Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
     '- You rebuilt the app after installing the package\n' +
     '- You are not using Expo managed workflow\n';
-
+  console.log(JSON.stringify(NativeModules));
   const FunnelConnectSdkModule = NativeModules.FunnelConnectSDK
     ? NativeModules.FunnelConnectSDK
     : new Proxy(
