@@ -184,7 +184,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun acceptConsentAsync(promise: Promise) {
-    FunnelConnectSDK.trustPid().acceptConsent()
+    this.acceptConsent()
     promise.resolve("acceptConsent called")
   }
 
@@ -195,7 +195,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun rejectConsentAsync(promise: Promise) {
-    FunnelConnectSDK.trustPid().rejectConsent()
+    this.rejectConsent()
     promise.resolve("rejectConsent called")
   }
 
