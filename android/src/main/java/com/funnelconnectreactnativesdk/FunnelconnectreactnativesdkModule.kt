@@ -6,6 +6,7 @@ import com.teavaro.funnelConnect.core.initializer.FunnelConnectSDK
 import com.teavaro.funnelConnect.data.models.dataClasses.FCOptions
 import com.teavaro.funnelConnect.data.models.dataClasses.FCUser
 import com.teavaro.funnelConnect.utils.PermissionsMap
+import java.lang.Exception
 
 class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
@@ -44,8 +45,13 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun clearCookiesAsync(promise: Promise) {
-    FunnelConnectSDK.clearCookies()
-    promise.resolve("clearCookies called")
+    try {
+      FunnelConnectSDK.clearCookies()
+      promise.resolve("clearCookies called")
+    }
+    catch (e: Exception) {
+      promise.reject(e)
+    }
   }
 
   @ReactMethod
@@ -55,8 +61,13 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun clearDataAsync(promise: Promise) {
-    FunnelConnectSDK.clearData()
-    promise.resolve("clearData called")
+    try {
+      FunnelConnectSDK.clearData()
+      promise.resolve("clearData called")
+    }
+    catch (e: Exception) {
+      promise.reject(e)
+    }
   }
 
   // CDP service functions
@@ -66,11 +77,16 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
     val userId = fcUser?.getString("userId")
     if (userIdType != null && userId != null) {
       val fcUserObj = FCUser(userIdType, userId)
-      FunnelConnectSDK.cdp().setUser(fcUserObj)
-      promise.resolve("startCdpService called")
+      try {
+        FunnelConnectSDK.cdp().setUser(fcUserObj)
+        promise.resolve("startCdpService called")
+      }
+      catch (e: Exception) {
+        promise.reject(e)
+      }
     }
     else {
-      promise.reject(Throwable("Invalid user object"))
+      promise.reject(Throwable("Invalid user info"))
     }
   }
 
@@ -81,7 +97,12 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun getUserIdAsync(promise: Promise) {
-    promise.resolve(FunnelConnectSDK.cdp().getUserId())
+    try {
+      promise.resolve(FunnelConnectSDK.cdp().getUserId())
+    }
+    catch (e: Exception) {
+      promise.reject(e)
+    }
   }
 
   @ReactMethod
@@ -90,8 +111,16 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
     val userId = fcUser.getString("userId")
     if (userIdType != null && userId != null) {
       val fcUserObj = FCUser(userIdType, userId)
-      FunnelConnectSDK.cdp().setUser(fcUserObj)
-      promise.resolve("Set user complete")
+      try {
+        FunnelConnectSDK.cdp().setUser(fcUserObj, dataCallback = {
+          promise.resolve(it)
+        }, errorCallback = {
+          promise.reject(it)
+        })
+      }
+      catch (e: Exception) {
+        promise.reject(e)
+      }
     }
     else {
       promise.reject(Throwable("Invalid user object"))
@@ -101,11 +130,16 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   @ReactMethod
   fun getPermissionsAsync(promise: Promise) {
     val permissionsMap = WritableNativeMap()
-    val permissions = FunnelConnectSDK.cdp().getPermissions()
-    permissions.getAllKeys().forEach {
-      permissionsMap.putBoolean(it, permissions.getPermission(it))
+    try {
+      val permissions = FunnelConnectSDK.cdp().getPermissions()
+      permissions.getAllKeys().forEach {
+        permissionsMap.putBoolean(it, permissions.getPermission(it))
+      }
+      promise.resolve(permissionsMap)
     }
-    promise.resolve(permissionsMap)
+    catch (e: Exception) {
+      promise.reject(e)
+    }
   }
 
   @ReactMethod
@@ -125,8 +159,13 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       permissionsMap.addPermission(it.key, it.value)
     }
     if (!permissionsMap.isEmpty())
-      FunnelConnectSDK.cdp().updatePermissions(permissionsMap, notificationsVersion)
-    promise.resolve("updatePermissions called")
+      try {
+        FunnelConnectSDK.cdp().updatePermissions(permissionsMap, notificationsVersion)
+        promise.resolve("updatePermissions called")
+      }
+      catch (e: Exception) {
+        promise.reject(e)
+      }
   }
 
   @ReactMethod
@@ -136,11 +175,16 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun logEventAsync(key: String, value: String, promise: Promise) {
-    FunnelConnectSDK.cdp().logEvent(key, value, successCallback = {
-       promise.resolve("logEvent called")
-    }, errorCallback = {
-       promise.reject(it)
-    })
+    try {
+      FunnelConnectSDK.cdp().logEvent(key, value, successCallback = {
+        promise.resolve("logEvent called")
+      }, errorCallback = {
+        promise.reject(it)
+      })
+    }
+    catch (e: Exception) {
+      promise.reject(e)
+    }
   }
 
   @ReactMethod
@@ -152,11 +196,16 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   @ReactMethod
   fun logEventsAsync(events: ReadableMap, promise: Promise) {
     val eventsMap = events.toHashMap().toMap().mapValues { it.value.toString() }
-    FunnelConnectSDK.cdp().logEvents(eventsMap, successCallback = {
-       promise.resolve("logEvents called")
-    }, errorCallback = {
-       promise.reject(it)
-    })
+    try {
+      FunnelConnectSDK.cdp().logEvents(eventsMap, successCallback = {
+        promise.resolve("logEvents called")
+      }, errorCallback = {
+        promise.reject(it)
+      })
+    }
+    catch (e: Exception) {
+      promise.reject(e)
+    }
   }
 
   // TrustPid service functions
@@ -167,14 +216,19 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun startTrustPidServiceAsync(isStub: Boolean, promise: Promise) {
-    FunnelConnectSDK.trustPid().startService(isStub, dataCallback = {
-      val idcDataMap = WritableNativeMap()
-      idcDataMap.putString("atid", it.atid)
-      idcDataMap.putString("mtid", it.mtid)
-      promise.resolve(idcDataMap)
-    }, errorCallback = {
-      promise.reject(it)
-    })
+    try {
+      FunnelConnectSDK.trustPid().startService(isStub, dataCallback = {
+        val idcDataMap = WritableNativeMap()
+        idcDataMap.putString("atid", it.atid)
+        idcDataMap.putString("mtid", it.mtid)
+        promise.resolve(idcDataMap)
+      }, errorCallback = {
+        promise.reject(it)
+      })
+    }
+    catch (e: Exception) {
+      promise.reject(e)
+    }
   }
 
   @ReactMethod
@@ -184,8 +238,13 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun acceptConsentAsync(promise: Promise) {
-    this.acceptConsent()
-    promise.resolve("acceptConsent called")
+    try {
+      FunnelConnectSDK.trustPid().acceptConsent()
+      promise.resolve("acceptConsent called")
+    }
+    catch (e: Exception) {
+      promise.reject(e)
+    }
   }
 
   @ReactMethod
@@ -195,12 +254,23 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun rejectConsentAsync(promise: Promise) {
-    this.rejectConsent()
-    promise.resolve("rejectConsent called")
+    try {
+      FunnelConnectSDK.trustPid().rejectConsent()
+      promise.resolve("rejectConsent called")
+    }
+    catch (e: Exception) {
+      promise.reject(e)
+    }
   }
 
   @ReactMethod
   fun isConsentAcceptedAsync(promise: Promise) {
-    promise.resolve(FunnelConnectSDK.trustPid().isConsentAccepted())
+    try {
+      val trustPid = FunnelConnectSDK.trustPid()
+      promise.resolve(trustPid.isConsentAccepted())
+    }
+    catch (e: Exception) {
+      promise.reject(e)
+    }
   }
 }

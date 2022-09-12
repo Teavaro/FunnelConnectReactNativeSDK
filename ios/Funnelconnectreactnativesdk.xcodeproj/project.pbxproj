@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3F7CC50262F4733FA2D7F0B0 /* libPods-Funnelconnectreactnativesdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2039133A150318CCDD39E28B /* libPods-Funnelconnectreactnativesdk.a */; };
+		1A30087C6AF7980A2766F538 /* libPods-Funnelconnectreactnativesdk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 094FDEA713B813161DC6137E /* libPods-Funnelconnectreactnativesdk.a */; };
+		C950B4FD28CA24B1007DDCB1 /* FunnelConnectSDK in Frameworks */ = {isa = PBXBuildFile; productRef = C950B4FC28CA24B1007DDCB1 /* FunnelConnectSDK */; };
 		F4FF95D7245B92E800C19C63 /* Funnelconnectreactnativesdk.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FF95D6245B92E800C19C63 /* Funnelconnectreactnativesdk.swift */; };
 /* End PBXBuildFile section */
 
@@ -24,11 +25,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		094FDEA713B813161DC6137E /* libPods-Funnelconnectreactnativesdk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Funnelconnectreactnativesdk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		134814201AA4EA6300B7C361 /* libFunnelconnectreactnativesdk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libFunnelconnectreactnativesdk.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		2039133A150318CCDD39E28B /* libPods-Funnelconnectreactnativesdk.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Funnelconnectreactnativesdk.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		868742CE6571E54CC43BC80E /* Pods-Funnelconnectreactnativesdk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Funnelconnectreactnativesdk.release.xcconfig"; path = "Target Support Files/Pods-Funnelconnectreactnativesdk/Pods-Funnelconnectreactnativesdk.release.xcconfig"; sourceTree = "<group>"; };
 		B3E7B5891CC2AC0600A0062D /* Funnelconnectreactnativesdk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Funnelconnectreactnativesdk.m; sourceTree = "<group>"; };
-		C0925A7904D7A6525B0F8561 /* Pods-Funnelconnectreactnativesdk.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Funnelconnectreactnativesdk.debug.xcconfig"; path = "Target Support Files/Pods-Funnelconnectreactnativesdk/Pods-Funnelconnectreactnativesdk.debug.xcconfig"; sourceTree = "<group>"; };
 		F4FF95D5245B92E700C19C63 /* Funnelconnectreactnativesdk-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Funnelconnectreactnativesdk-Bridging-Header.h"; sourceTree = "<group>"; };
 		F4FF95D6245B92E800C19C63 /* Funnelconnectreactnativesdk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Funnelconnectreactnativesdk.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -38,7 +37,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3F7CC50262F4733FA2D7F0B0 /* libPods-Funnelconnectreactnativesdk.a in Frameworks */,
+				C950B4FD28CA24B1007DDCB1 /* FunnelConnectSDK in Frameworks */,
+				1A30087C6AF7980A2766F538 /* libPods-Funnelconnectreactnativesdk.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,24 +60,14 @@
 				B3E7B5891CC2AC0600A0062D /* Funnelconnectreactnativesdk.m */,
 				F4FF95D5245B92E700C19C63 /* Funnelconnectreactnativesdk-Bridging-Header.h */,
 				134814211AA4EA7D00B7C361 /* Products */,
-				72622C7086DA08535A18235A /* Pods */,
 				EDD7BB3A3389BE456D644E69 /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		72622C7086DA08535A18235A /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C0925A7904D7A6525B0F8561 /* Pods-Funnelconnectreactnativesdk.debug.xcconfig */,
-				868742CE6571E54CC43BC80E /* Pods-Funnelconnectreactnativesdk.release.xcconfig */,
-			);
-			path = Pods;
 			sourceTree = "<group>";
 		};
 		EDD7BB3A3389BE456D644E69 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				2039133A150318CCDD39E28B /* libPods-Funnelconnectreactnativesdk.a */,
+				094FDEA713B813161DC6137E /* libPods-Funnelconnectreactnativesdk.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -99,6 +89,9 @@
 			dependencies = (
 			);
 			name = Funnelconnectreactnativesdk;
+			packageProductDependencies = (
+				C950B4FC28CA24B1007DDCB1 /* FunnelConnectSDK */,
+			);
 			productName = RCTDataManager;
 			productReference = 134814201AA4EA6300B7C361 /* libFunnelconnectreactnativesdk.a */;
 			productType = "com.apple.product-type.library.static";
@@ -126,6 +119,9 @@
 				en,
 			);
 			mainGroup = 58B511D21A9E6C8500147676;
+			packageReferences = (
+				C950B4FB28CA24B1007DDCB1 /* XCRemoteSwiftPackageReference "FunnelConnect-iOS-SDK" */,
+			);
 			productRefGroup = 58B511D21A9E6C8500147676;
 			projectDirPath = "";
 			projectRoot = "";
@@ -269,8 +265,8 @@
 		};
 		58B511F01A9E6C8500147676 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C0925A7904D7A6525B0F8561 /* Pods-Funnelconnectreactnativesdk.debug.xcconfig */;
 			buildSettings = {
+				"EXCLUDED_ARCHS[sdk=*]" = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -289,8 +285,8 @@
 		};
 		58B511F11A9E6C8500147676 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 868742CE6571E54CC43BC80E /* Pods-Funnelconnectreactnativesdk.release.xcconfig */;
 			buildSettings = {
+				"EXCLUDED_ARCHS[sdk=*]" = "";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
@@ -328,6 +324,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C950B4FB28CA24B1007DDCB1 /* XCRemoteSwiftPackageReference "FunnelConnect-iOS-SDK" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Teavaro/FunnelConnect-iOS-SDK";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C950B4FC28CA24B1007DDCB1 /* FunnelConnectSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C950B4FB28CA24B1007DDCB1 /* XCRemoteSwiftPackageReference "FunnelConnect-iOS-SDK" */;
+			productName = FunnelConnectSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 58B511D31A9E6C8500147676 /* Project object */;
 }

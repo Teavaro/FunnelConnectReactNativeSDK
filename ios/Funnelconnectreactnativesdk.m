@@ -20,10 +20,8 @@ RCT_EXTERN_METHOD(onInitializeAsync:(RCTPromiseResolveBlock)resolve
 RCT_EXTERN_METHOD(isInitializedAsync:(RCTPromiseResolveBlock) resolve
                   rejecter:(RCTPromiseRejectBlock)rejecter)
 
-
 RCT_EXTERN_METHOD(isInitializedAsync:(RCTPromiseResolveBlock) resolve
                   rejecter:(RCTPromiseRejectBlock)rejecter)
-
 
 RCT_EXTERN_METHOD(clearCookies)
 
@@ -54,7 +52,6 @@ RCT_EXTERN_METHOD(setUserAsync:(NSDictionary *)fcUser
 RCT_EXTERN_METHOD(getPermissionsAsync:(RCTPromiseResolveBlock) resolve
                   rejecter:(RCTPromiseRejectBlock)rejecter)
 
-
 RCT_EXTERN_METHOD(updatePermissions:(NSDictionary *)permissions
                   notificationsVersion: (int)notificationsVersion)
 
@@ -63,18 +60,14 @@ RCT_EXTERN_METHOD(updatePermissionsAsync:(NSDictionary *)permissions
                   resolve:(RCTPromiseResolveBlock) resolve
                   rejecter:(RCTPromiseRejectBlock)rejecter)
 
-
 RCT_EXTERN_METHOD(logEvent:(NSString *)key value: (NSString *)value)
-
 
 RCT_EXTERN_METHOD(logEventAsync:(NSString *)key
                   value: (NSString *)value
                   resolve:(RCTPromiseResolveBlock) resolve
                   rejecter:(RCTPromiseRejectBlock)rejecter)
 
-
 RCT_EXTERN_METHOD(logEvents:(NSDictionary *)events)
-
 
 RCT_EXTERN_METHOD(logEventsAsync:(NSDictionary *)events
                   resolve:(RCTPromiseResolveBlock) resolve
@@ -82,28 +75,24 @@ RCT_EXTERN_METHOD(logEventsAsync:(NSDictionary *)events
 
 // TrustPid service functions
 
-RCT_EXTERN_METHOD(startTrustPidService:(BOOL)isStub)
+RCT_EXTERN_METHOD(startTrustPidService)
 
+RCT_EXTERN_METHOD(startTrustPidService:(BOOL)isStub)
 
 RCT_EXTERN_METHOD(startTrustPidServiceAsync:(BOOL)isStub
                   resolve:(RCTPromiseResolveBlock) resolve
                   rejecter:(RCTPromiseRejectBlock)rejecter)
 
-
 RCT_EXTERN_METHOD(acceptConsent)
-
 
 RCT_EXTERN_METHOD(acceptConsentAsync:(RCTPromiseResolveBlock) resolve
                   rejecter:(RCTPromiseRejectBlock)rejecter)
 
 RCT_EXTERN_METHOD(rejectConsent)
 
-
 RCT_EXTERN_METHOD(rejectConsentAsync:(RCTPromiseResolveBlock) resolve
                   rejecter:(RCTPromiseRejectBlock)rejecter)
 
-
 RCT_EXTERN_METHOD(isConsentAcceptedAsync:(RCTPromiseResolveBlock) resolve
                   rejecter:(RCTPromiseRejectBlock)rejecter)
-
 @end
