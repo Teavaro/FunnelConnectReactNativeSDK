@@ -13,22 +13,29 @@ class Funnelconnectreactnativesdk: NSObject {
         FunnelConnectSDK.shared.initialize(sdkToken: sdkToken, options: fcOptionsObj)
     }
     
-    @objc func onInitializeAsync(_ resolve: @escaping RCTPromiseResolveBlock, rejecter: @escaping RCTPromiseRejectBlock) {
-        FunnelConnectSDK.shared.didInitializeWithResult { resolve("onInitialize called") } failure: { rejecter(nil, nil, $0) }
+    @objc func onInitializeAsync(_ resolver: @escaping RCTPromiseResolveBlock,
+                                 rejecter: @escaping RCTPromiseRejectBlock) {
+        FunnelConnectSDK.shared.didInitializeWithResult {
+            resolver("onInitialize called")
+        } failure: {
+            rejecter(nil, nil, $0)
+        }
     }
     
-    @objc func isInitializedAsync(_ resolve: @escaping RCTPromiseResolveBlock, rejecter: @escaping RCTPromiseRejectBlock) {
-        resolve(FunnelConnectSDK.shared.isInitialize())
+    @objc func isInitializedAsync(_ resolver: @escaping RCTPromiseResolveBlock,
+                                  rejecter: @escaping RCTPromiseRejectBlock) {
+        resolver(FunnelConnectSDK.shared.isInitialize())
     }
     
     @objc func clearCookies() {
         try? FunnelConnectSDK.shared.clearData()
     }
 
-    @objc func clearCookiesAsync(_ resolve: @escaping RCTPromiseResolveBlock, rejecter: @escaping RCTPromiseRejectBlock) {
+    @objc func clearCookiesAsync(_ resolver: @escaping RCTPromiseResolveBlock,
+                                 rejecter: @escaping RCTPromiseRejectBlock) {
         do {
             try FunnelConnectSDK.shared.clearCookies()
-            resolve("clearCookies called")
+            resolver("clearCookies called")
         }
         catch let error {
             rejecter(nil, nil, error)
@@ -39,10 +46,11 @@ class Funnelconnectreactnativesdk: NSObject {
         try? FunnelConnectSDK.shared.clearData()
     }
     
-    @objc func clearDataAsync(_ resolve: @escaping RCTPromiseResolveBlock, rejecter: @escaping RCTPromiseRejectBlock) {
+    @objc func clearDataAsync(_ resolver: @escaping RCTPromiseResolveBlock,
+                              rejecter: @escaping RCTPromiseRejectBlock) {
         do {
             try FunnelConnectSDK.shared.clearData()
-            resolve("clearData called")
+            resolver("clearData called")
         }
         catch let error {
             rejecter(nil, nil, error)
@@ -52,7 +60,7 @@ class Funnelconnectreactnativesdk: NSObject {
     // CDP service functions
     
     @objc func startCdpServiceAsync(_ fcUser: NSDictionary = NSDictionary(),
-                                    resolve: @escaping RCTPromiseResolveBlock,
+                                    resolver: @escaping RCTPromiseResolveBlock,
                                     rejecter: @escaping RCTPromiseRejectBlock) {
        
         let userIdType = fcUser["userIdType"] as? String
@@ -61,11 +69,11 @@ class Funnelconnectreactnativesdk: NSObject {
             let fcUserObj = FCUser(userIdType: userIdType!, userId: userId!)
             do {
                 try FunnelConnectSDK.shared.cdp().setUser(fcUser: fcUserObj, dataCallback: {
-                    resolve($0)
+                    resolver($0)
                 }, errorCallback: {
                     rejecter(nil, nil, $0)
                 })
-                resolve("clearData called")
+                resolver("clearData called")
             }
             catch let error {
                 rejecter(nil, nil, error)
@@ -76,21 +84,22 @@ class Funnelconnectreactnativesdk: NSObject {
         }
     }
     
-    @objc func getUmidAsync(_ resolve: @escaping RCTPromiseResolveBlock, rejecter: @escaping RCTPromiseRejectBlock) {
+    @objc func getUmidAsync(_ resolver: @escaping RCTPromiseResolveBlock,
+                            rejecter: @escaping RCTPromiseRejectBlock) {
         do {
             let cdp = try FunnelConnectSDK.shared.cdp()
-            resolve(cdp.getUmid())
+            resolver(cdp.getUmid())
         }
         catch let error {
             rejecter(nil, nil, error)
         }
     }
 
-    @objc func getUserIdAsync(_ resolve: @escaping RCTPromiseResolveBlock,
+    @objc func getUserIdAsync(_ resolver: @escaping RCTPromiseResolveBlock,
                               rejecter: @escaping RCTPromiseRejectBlock) {
         do {
             let cdp = try FunnelConnectSDK.shared.cdp()
-            resolve(cdp.getUserId())
+            resolver(cdp.getUserId())
         }
         catch let error {
             rejecter(nil, nil, error)
@@ -98,7 +107,7 @@ class Funnelconnectreactnativesdk: NSObject {
     }
 
     @objc func setUserAsync(_ fcUser: NSDictionary,
-                            resolve: @escaping RCTPromiseResolveBlock,
+                            resolver: @escaping RCTPromiseResolveBlock,
                             rejecter: @escaping RCTPromiseRejectBlock) {
         let userIdType = fcUser["userIdType"] as? String
         let userId = fcUser["userId"] as? String
@@ -106,7 +115,7 @@ class Funnelconnectreactnativesdk: NSObject {
             let fcUserObj = FCUser(userIdType: userIdType!, userId: userId!)
             do {
                 try FunnelConnectSDK.shared.cdp().setUser(fcUser: fcUserObj, dataCallback: {
-                    resolve($0)
+                    resolver($0)
                 }, errorCallback: {
                     rejecter(nil, nil, $0)
                 })
@@ -120,7 +129,7 @@ class Funnelconnectreactnativesdk: NSObject {
         }
     }
 
-    @objc func getPermissionsAsync(_ resolve: @escaping RCTPromiseResolveBlock,
+    @objc func getPermissionsAsync(_ resolver: @escaping RCTPromiseResolveBlock,
                                    rejecter: @escaping RCTPromiseRejectBlock) {
         var permissionsDictionary = [String: String]()
         do {
@@ -133,7 +142,7 @@ class Funnelconnectreactnativesdk: NSObject {
                     rejecter("Invalid permission keys", nil, nil)
                 }
             }
-            resolve(permissionsDictionary)
+            resolver(permissionsDictionary)
         }
         catch let error {
             rejecter(nil, nil, error)
@@ -175,11 +184,11 @@ class Funnelconnectreactnativesdk: NSObject {
     }
 
     @objc func logEventAsync(_ key: String, value: String,
-                             resolve: @escaping RCTPromiseResolveBlock,
+                             resolver: @escaping RCTPromiseResolveBlock,
                              rejecter: @escaping RCTPromiseRejectBlock) {
         do {
             try FunnelConnectSDK.shared.cdp().logEvent(key: key, value: value, successCallback: {
-                resolve("logEvent called")
+                resolver("logEvent called")
             }, errorCallback: {
                 rejecter(nil, nil, $0)
             })
@@ -194,13 +203,14 @@ class Funnelconnectreactnativesdk: NSObject {
         try? FunnelConnectSDK.shared.cdp().logEvents(events: eventsDictionary)
     }
 
+    
     @objc func logEventsAsync(_ events: NSDictionary,
-                              resolve: @escaping RCTPromiseResolveBlock,
+                              resolver: @escaping RCTPromiseResolveBlock,
                               rejecter: @escaping RCTPromiseRejectBlock) {
         do {
             let eventsDictionary = Dictionary(uniqueKeysWithValues: events.map { ($0 as! String, $1 as! String) })
             try FunnelConnectSDK.shared.cdp().logEvents(events: eventsDictionary, successCallback: {
-                resolve("logEventsAsync called")
+                resolver("logEventsAsync called")
             }, errorCallback: {
                 rejecter(nil, nil, $0)
             })
@@ -221,11 +231,14 @@ class Funnelconnectreactnativesdk: NSObject {
     }
 
     @objc func startTrustPidServiceAsync(_ isStub: DarwinBoolean,
-                                         resolve: @escaping RCTPromiseResolveBlock,
+                                         resolver: @escaping RCTPromiseResolveBlock,
                                          rejecter: @escaping RCTPromiseRejectBlock) {
         do {
             try FunnelConnectSDK.shared.trustPid().startService(isStub: isStub.boolValue, dataCallback: {
-                resolve($0)
+                var idcDataDictionary = NSMutableDictionary()
+                idcDataDictionary["mtid"] = $0.mtid
+                idcDataDictionary["atid"] = $0.atid
+                resolver(idcDataDictionary)
             }, errorCallback: {
                 rejecter(nil, nil, $0)
             })
@@ -239,11 +252,11 @@ class Funnelconnectreactnativesdk: NSObject {
         try? FunnelConnectSDK.shared.trustPid().acceptConsent()
     }
 
-    @objc func acceptConsentAsync(_ resolve: @escaping RCTPromiseResolveBlock,
+    @objc func acceptConsentAsync(_ resolver: @escaping RCTPromiseResolveBlock,
                                   rejecter: @escaping RCTPromiseRejectBlock) {
         do {
             try FunnelConnectSDK.shared.trustPid().acceptConsent()
-            resolve("acceptConsentAsync called")
+            resolver("acceptConsentAsync called")
         }
         catch let error {
             rejecter(nil, nil, error)
@@ -254,22 +267,22 @@ class Funnelconnectreactnativesdk: NSObject {
         try? FunnelConnectSDK.shared.trustPid().rejectConsent()
     }
     
-    @objc func rejectConsentAsync(_ resolve: @escaping RCTPromiseResolveBlock,
+    @objc func rejectConsentAsync(_ resolver: @escaping RCTPromiseResolveBlock,
                                   rejecter: @escaping RCTPromiseRejectBlock) {
         do {
             try FunnelConnectSDK.shared.trustPid().rejectConsent()
-            resolve("rejectConsentAsync called")
+            resolver("rejectConsentAsync called")
         }
         catch let error {
             rejecter(nil, nil, error)
         }
     }
 
-    @objc func isConsentAcceptedAsync(_ resolve: @escaping RCTPromiseResolveBlock,
+    @objc func isConsentAcceptedAsync(_ resolver: @escaping RCTPromiseResolveBlock,
                                       rejecter: @escaping RCTPromiseRejectBlock) {
         do {
             try FunnelConnectSDK.shared.trustPid().isConsentAccepted()
-            resolve("isConsentAcceptedAsync called")
+            resolver("isConsentAcceptedAsync called")
         }
         catch let error {
             rejecter(nil, nil, error)
