@@ -4,16 +4,10 @@ export const getTrustPidService = (Funnelconnectreactnativesdk: any) => {
       startService: (isStub: boolean = false): void => {
         Funnelconnectreactnativesdk.startTrustPidService(isStub);
       },
-      startTrustPidServiceAsync: async (
+      startTrustPidServiceAsync: (
         isStub: boolean = false
       ): Promise<IdcData> => {
-        try {
-          const result =
-            await Funnelconnectreactnativesdk.startTrustPidServiceAsync(isStub);
-          return Promise.resolve(result);
-        } catch (error: any) {
-          throw new Error(error.message);
-        }
+        return Funnelconnectreactnativesdk.startTrustPidServiceAsync(isStub);
       },
       acceptConsent: (): void => {
         Funnelconnectreactnativesdk.acceptConsent();
