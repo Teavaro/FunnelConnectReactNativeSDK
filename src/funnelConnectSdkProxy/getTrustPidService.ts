@@ -7,7 +7,13 @@ export const getTrustPidService = (Funnelconnectreactnativesdk: any) => {
       startTrustPidServiceAsync: (
         isStub: boolean = false
       ): Promise<IdcData> => {
-        return Funnelconnectreactnativesdk.startTrustPidServiceAsync(isStub);
+        try {
+          const result =
+            Funnelconnectreactnativesdk.startTrustPidServiceAsync(isStub);
+          return Promise.resolve(result);
+        } catch (error: any) {
+          throw new Error(error.message);
+        }
       },
       acceptConsent: (): void => {
         Funnelconnectreactnativesdk.acceptConsent();
