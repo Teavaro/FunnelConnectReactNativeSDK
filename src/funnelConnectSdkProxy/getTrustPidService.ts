@@ -1,3 +1,11 @@
+const functionsWrapper = async (originalFunction: Function, ...args: any[]) => {
+  try {
+    return await originalFunction(...args);
+  } catch (error: any) {
+    throw new Error(error.message);
+  }
+};
+
 export const getTrustPidService = (Funnelconnectreactnativesdk: any) => {
   const trustPid = () => {
     return {
@@ -7,7 +15,10 @@ export const getTrustPidService = (Funnelconnectreactnativesdk: any) => {
       startTrustPidServiceAsync: (
         isStub: boolean = false
       ): Promise<IdcData> => {
-        return Funnelconnectreactnativesdk.startTrustPidServiceAsync(isStub);
+        return functionsWrapper(
+          Funnelconnectreactnativesdk.startTrustPidServiceAsync,
+          isStub
+        );
       },
       acceptConsent: (): void => {
         Funnelconnectreactnativesdk.acceptConsent();
