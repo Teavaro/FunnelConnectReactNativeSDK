@@ -155,13 +155,14 @@ class Funnelconnectreactnativesdk: NSObject {
             permissionsMap.addPermission(key: $0, accepted: $1)
           }
         if (!permissionsMap.isEmpty()) {
-            try? FunnelConnectSDK.shared.cdp().updatePermissions(permissions: permissionsMap, notificationsVersion: Int32(notificationsVersion))
+            try? FunnelConnectSDK.shared.cdp().updatePermissions(permissions: permissionsMap, notificationsVersion: Int32(notificationsVersion), dataCallback: { _ in
+            }, errorCallback: { _ in })
         }
     }
 
     @objc func updatePermissionsAsync(_ permissions: NSDictionary,
                                       notificationsVersion: Int,
-                                      resolve: @escaping RCTPromiseResolveBlock,
+                                      resolver: @escaping RCTPromiseResolveBlock,
                                       rejecter: @escaping RCTPromiseRejectBlock) {
         
         let permissionsMap = PermissionsMap()
@@ -170,15 +171,18 @@ class Funnelconnectreactnativesdk: NSObject {
         }
         if (!permissionsMap.isEmpty()) {
             do {
-                try FunnelConnectSDK.shared.cdp().updatePermissions(permissions: permissionsMap, notificationsVersion: Int32(notificationsVersion))
-                resolve("updatePermissionsAsync called")
+                try FunnelConnectSDK.shared.cdp().updatePermissions(permissions: permissionsMap, notificationsVersion: Int32(notificationsVersion), dataCallback: {
+                    resolver($0)
+                }, errorCallback: {
+                    rejecter(nil, nil, $0)
+                })
             }
             catch let error {
                 rejecter(nil, nil, error)
             }
         }
     }
-
+    
     @objc func logEvent(_ key: String, value: String) {
         try? FunnelConnectSDK.shared.cdp().logEvent(key: key, value: value)
     }
