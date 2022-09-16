@@ -2,14 +2,11 @@ import { wrapWithExceptionHandler } from './helpers/wrapWithExceptionHandler';
 import { wrapWithExceptionHandlerAsync } from './helpers/wrapWithExceptionHandlerAsync';
 
 export const getSdkFunctions = (Funnelconnectreactnativesdk: any) => {
-  const initializeSDK = (
-    sdkToken: string,
-    { enableLogging = true }: FCOptions
-  ): void => {
+  const initializeSDK = (sdkToken: string, fcOptions?: FCOptions): void => {
     wrapWithExceptionHandler(
       Funnelconnectreactnativesdk.initializeSDK,
       sdkToken,
-      { enableLogging }
+      { enableLogging: false, ...fcOptions }
     );
   };
 
