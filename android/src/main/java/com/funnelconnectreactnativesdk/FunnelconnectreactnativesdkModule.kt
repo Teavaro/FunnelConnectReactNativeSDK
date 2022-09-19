@@ -8,6 +8,7 @@ import com.teavaro.funnelConnect.data.models.dataClasses.FCUser
 import com.teavaro.funnelConnect.utils.PermissionsMap
 import java.lang.Exception
 
+@Suppress("unused")
 class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
 
