@@ -11,7 +11,7 @@ export const getSdkFunctions = (Funnelconnectreactnativesdk: any) => {
     );
   };
 
-  const onInitializeAsync = (): Promise<string> => {
+  const onInitializeAsync = (): Promise<void> => {
     return wrapWithExceptionHandlerAsync(
       Funnelconnectreactnativesdk.onInitializeAsync
     );
@@ -27,7 +27,7 @@ export const getSdkFunctions = (Funnelconnectreactnativesdk: any) => {
     wrapWithExceptionHandler(Funnelconnectreactnativesdk.clearCookies);
   };
 
-  const clearCookiesAsync = (): Promise<string> => {
+  const clearCookiesAsync = (): Promise<void> => {
     return wrapWithExceptionHandlerAsync(
       Funnelconnectreactnativesdk.clearCookiesAsync
     );
@@ -37,7 +37,7 @@ export const getSdkFunctions = (Funnelconnectreactnativesdk: any) => {
     wrapWithExceptionHandler(Funnelconnectreactnativesdk.clearData);
   };
 
-  const clearDataAsync = (): Promise<string> => {
+  const clearDataAsync = (): Promise<void> => {
     return wrapWithExceptionHandlerAsync(
       Funnelconnectreactnativesdk.clearDataAsync
     );
