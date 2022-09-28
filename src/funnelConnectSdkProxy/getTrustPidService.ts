@@ -18,7 +18,7 @@ export const getTrustPidService = (Funnelconnectreactnativesdk: any) => {
       acceptConsent: (): void => {
         wrapWithExceptionHandler(Funnelconnectreactnativesdk.acceptConsent);
       },
-      acceptConsentAsync: (): Promise<string> => {
+      acceptConsentAsync: (): Promise<void> => {
         return wrapWithExceptionHandlerAsync(
           Funnelconnectreactnativesdk.acceptConsentAsync
         );
@@ -26,7 +26,7 @@ export const getTrustPidService = (Funnelconnectreactnativesdk: any) => {
       rejectConsent: (): void => {
         wrapWithExceptionHandler(Funnelconnectreactnativesdk.rejectConsent);
       },
-      rejectConsentAsync: (): Promise<string> => {
+      rejectConsentAsync: (): Promise<void> => {
         return wrapWithExceptionHandlerAsync(
           Funnelconnectreactnativesdk.rejectConsentAsync
         );

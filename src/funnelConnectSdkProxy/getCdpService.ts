@@ -4,7 +4,7 @@ import { wrapWithExceptionHandlerAsync } from './helpers/wrapWithExceptionHandle
 export const getCdpService = (Funnelconnectreactnativesdk: any) => {
   const cdp = () => {
     return {
-      startCdpServiceAsync: (fcUser: FCUser | null = null): Promise<string> => {
+      startCdpServiceAsync: (fcUser: FCUser | null = null): Promise<void> => {
         return wrapWithExceptionHandlerAsync(
           Funnelconnectreactnativesdk.startCdpServiceAsync,
           fcUser
@@ -44,7 +44,7 @@ export const getCdpService = (Funnelconnectreactnativesdk: any) => {
       updatePermissionsAsync: (
         permissions: PermissionsMap,
         notificationsVersion: number
-      ): Promise<string> => {
+      ): Promise<void> => {
         return wrapWithExceptionHandlerAsync(
           Funnelconnectreactnativesdk.updatePermissionsAsync,
           permissions,
@@ -58,7 +58,7 @@ export const getCdpService = (Funnelconnectreactnativesdk: any) => {
           value
         );
       },
-      logEventAsync: (key: string, value: string): Promise<string> => {
+      logEventAsync: (key: string, value: string): Promise<void> => {
         return wrapWithExceptionHandlerAsync(
           Funnelconnectreactnativesdk.logEventAsync,
           key,
@@ -68,7 +68,7 @@ export const getCdpService = (Funnelconnectreactnativesdk: any) => {
       logEvents: (events: LogEventsMap): void => {
         wrapWithExceptionHandler(Funnelconnectreactnativesdk.logEvents, events);
       },
-      logEventsAsync: (events: LogEventsMap): Promise<string> => {
+      logEventsAsync: (events: LogEventsMap): Promise<void> => {
         return wrapWithExceptionHandlerAsync(
           Funnelconnectreactnativesdk.logEventsAsync,
           events
