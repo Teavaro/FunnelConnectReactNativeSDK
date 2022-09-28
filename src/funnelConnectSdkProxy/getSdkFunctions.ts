@@ -1,6 +1,10 @@
 import { wrapWithExceptionHandler } from './helpers/wrapWithExceptionHandler';
 import { wrapWithExceptionHandlerAsync } from './helpers/wrapWithExceptionHandlerAsync';
 
+export type FCOptions = {
+  enableLogging: boolean;
+};
+
 export const getSdkFunctions = (Funnelconnectreactnativesdk: any) => {
   const initializeSDK = (sdkToken: string, fcOptions?: FCOptions): void => {
     const enableLogging = fcOptions ? fcOptions.enableLogging : false;
