@@ -1,6 +1,6 @@
 {
   "name": "@teavaroltd/funnelconnect-reactnative-sdk",
-  "version": "0.2.10-ios",
+  "version": "0.2.7",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
