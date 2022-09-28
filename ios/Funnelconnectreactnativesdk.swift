@@ -16,7 +16,7 @@ class Funnelconnectreactnativesdk: NSObject {
     @objc func onInitializeAsync(_ resolver: @escaping RCTPromiseResolveBlock,
                                  rejecter: @escaping RCTPromiseRejectBlock) {
         FunnelConnectSDK.shared.didInitializeWithResult {
-            resolver("onInitialize called")
+            resolver({})
         } failure: {
             rejecter(nil, nil, $0)
         }
@@ -35,7 +35,7 @@ class Funnelconnectreactnativesdk: NSObject {
                                  rejecter: @escaping RCTPromiseRejectBlock) {
         do {
             try FunnelConnectSDK.shared.clearCookies()
-            resolver("clearCookies called")
+            resolver({})
         }
         catch let error {
             rejecter(nil, nil, error)
@@ -50,7 +50,7 @@ class Funnelconnectreactnativesdk: NSObject {
                               rejecter: @escaping RCTPromiseRejectBlock) {
         do {
             try FunnelConnectSDK.shared.clearData()
-            resolver("clearData called")
+            resolver({})
         }
         catch let error {
             rejecter(nil, nil, error)
@@ -214,7 +214,7 @@ class Funnelconnectreactnativesdk: NSObject {
         do {
             let eventsDictionary = Dictionary(uniqueKeysWithValues: events.map { ($0 as! String, $1 as! String) })
             try FunnelConnectSDK.shared.cdp().logEvents(events: eventsDictionary, successCallback: {
-                resolver("logEventsAsync called")
+                resolver({})
             }, errorCallback: {
                 rejecter(nil, nil, $0)
             })
@@ -260,7 +260,7 @@ class Funnelconnectreactnativesdk: NSObject {
                                   rejecter: @escaping RCTPromiseRejectBlock) {
         do {
             try FunnelConnectSDK.shared.trustPid().acceptConsent()
-            resolver("acceptConsentAsync called")
+            resolver({})
         }
         catch let error {
             rejecter(nil, nil, error)
@@ -275,7 +275,7 @@ class Funnelconnectreactnativesdk: NSObject {
                                   rejecter: @escaping RCTPromiseRejectBlock) {
         do {
             try FunnelConnectSDK.shared.trustPid().rejectConsent()
-            resolver("rejectConsentAsync called")
+            resolver({})
         }
         catch let error {
             rejecter(nil, nil, error)
@@ -286,7 +286,7 @@ class Funnelconnectreactnativesdk: NSObject {
                                       rejecter: @escaping RCTPromiseRejectBlock) {
         do {
             try FunnelConnectSDK.shared.trustPid().isConsentAccepted()
-            resolver("isConsentAcceptedAsync called")
+            resolver({})
         }
         catch let error {
             rejecter(nil, nil, error)
