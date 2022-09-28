@@ -1,12 +1,12 @@
 import { wrapWithExceptionHandler } from './helpers/wrapWithExceptionHandler';
 import { wrapWithExceptionHandlerAsync } from './helpers/wrapWithExceptionHandlerAsync';
 
-export type IdcData = {
+type IdcData = {
   atid: string;
   mtid: string;
 };
 
-export const getTrustPidService = (Funnelconnectreactnativesdk: any) => {
+const getTrustPidService = (Funnelconnectreactnativesdk: any) => {
   const trustPid = () => {
     return {
       startService: (isStub: boolean = false): void => {
@@ -46,3 +46,5 @@ export const getTrustPidService = (Funnelconnectreactnativesdk: any) => {
 
   return trustPid;
 };
+
+export { IdcData, getTrustPidService };

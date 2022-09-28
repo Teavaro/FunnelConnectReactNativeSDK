@@ -1,20 +1,20 @@
 import { wrapWithExceptionHandler } from './helpers/wrapWithExceptionHandler';
 import { wrapWithExceptionHandlerAsync } from './helpers/wrapWithExceptionHandlerAsync';
 
-export type FCUser = {
+type FCUser = {
   userIdType: string;
   userId: string;
 };
 
-export type PermissionsMap = {
+type PermissionsMap = {
   [key: string]: boolean;
 };
 
-export type LogEventsMap = {
+type LogEventsMap = {
   [key: string]: string;
 };
 
-export const getCdpService = (Funnelconnectreactnativesdk: any) => {
+const getCdpService = (Funnelconnectreactnativesdk: any) => {
   const cdp = () => {
     return {
       startCdpServiceAsync: (fcUser: FCUser | null = null): Promise<void> => {
@@ -92,3 +92,5 @@ export const getCdpService = (Funnelconnectreactnativesdk: any) => {
 
   return cdp;
 };
+
+export { FCUser, PermissionsMap, LogEventsMap, getCdpService };
