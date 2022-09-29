@@ -1,6 +1,6 @@
 {
   "name": "@teavaroltd/funnelconnect-reactnative-sdk",
-  "version": "0.2.10",
+  "version": "0.2.11",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -37,7 +37,7 @@
   ],
   "repository": "https://github.com/Teavaro/FunnelConnectReactNativeSDK",
   "author": "Teavaro <tomasz@teavaro.com> (https://github.com/Teavaro)",
-  "license": "undefined",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/Teavaro/FunnelConnectReactNativeSDK/issues"
   },
