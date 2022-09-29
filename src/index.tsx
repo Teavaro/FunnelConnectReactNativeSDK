@@ -1,17 +1,6 @@
-import {
-  getCdpService,
-  FCUser,
-  PermissionsMap,
-  LogEventsMap,
-} from './funnelConnectSdkProxy/getCdpService';
-import {
-  getSdkFunctions,
-  FCOptions,
-} from './funnelConnectSdkProxy/getSdkFunctions';
-import {
-  getTrustPidService,
-  IdcData,
-} from './funnelConnectSdkProxy/getTrustPidService';
+import { getCdpService } from './funnelConnectSdkProxy/getCdpService';
+import { getSdkFunctions } from './funnelConnectSdkProxy/getSdkFunctions';
+import { getTrustPidService } from './funnelConnectSdkProxy/getTrustPidService';
 import { initializeNativeModules } from './initializeNativeModules';
 
 const { FunnelConnectSdkModule } = initializeNativeModules();
@@ -26,11 +15,6 @@ const funnelConnectSdk = {
   trustPid,
 };
 
-export {
-  funnelConnectSdk,
-  FCUser,
-  PermissionsMap,
-  LogEventsMap,
-  FCOptions,
-  IdcData,
-};
+export { funnelConnectSdk };
+
+export * from './funnelConnectSdkProxy/types/sdkTypes';

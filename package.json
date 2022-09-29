@@ -1,6 +1,6 @@
 {
   "name": "@teavaroltd/funnelconnect-reactnative-sdk",
-  "version": "0.2.9",
+  "version": "0.2.10",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -112,6 +112,8 @@
       "prettier"
     ],
     "rules": {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "warn",
       "prettier/prettier": [
         "error",
         {
