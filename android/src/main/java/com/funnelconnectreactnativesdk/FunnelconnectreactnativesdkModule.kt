@@ -5,7 +5,7 @@ import com.facebook.react.bridge.*
 import com.teavaro.funnelConnect.core.initializer.FunnelConnectSDK
 import com.teavaro.funnelConnect.data.models.dataClasses.FCOptions
 import com.teavaro.funnelConnect.data.models.dataClasses.FCUser
-import com.teavaro.funnelConnect.utils.PermissionsMap
+import com.teavaro.funnelConnect.utils.platformTypes.permissionsMap.PermissionsMap
 
 class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicationContext) :
   ReactContextBaseJavaModule(reactContext) {
@@ -26,7 +26,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   @ReactMethod
   fun onInitializeAsync(promise: Promise) {
     FunnelConnectSDK.onInitialize(successCallback = {
-      promise.resolve({})
+      promise.resolve(null)
     }, errorCallback = {
       promise.reject(it)
     })
@@ -46,7 +46,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   fun clearCookiesAsync(promise: Promise) {
     try {
       FunnelConnectSDK.clearCookies()
-      promise.resolve({})
+      promise.resolve(null)
     }
     catch (e: Exception) {
       promise.reject(e)
@@ -62,7 +62,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   fun clearDataAsync(promise: Promise) {
     try {
       FunnelConnectSDK.clearData()
-      promise.resolve({})
+      promise.resolve(null)
     }
     catch (e: Exception) {
       promise.reject(e)
@@ -78,7 +78,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       val fcUserObj = FCUser(userIdType, userId)
       try {
         FunnelConnectSDK.cdp().setUser(fcUserObj)
-        promise.resolve({})
+        promise.resolve(null)
       }
       catch (e: Exception) {
         promise.reject(e)
@@ -160,7 +160,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
     if (!permissionsMap.isEmpty())
       try {
         FunnelConnectSDK.cdp().updatePermissions(permissionsMap, notificationsVersion)
-        promise.resolve({})
+        promise.resolve(null)
       }
       catch (e: Exception) {
         promise.reject(e)
@@ -176,7 +176,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   fun logEventAsync(key: String, value: String, promise: Promise) {
     try {
       FunnelConnectSDK.cdp().logEvent(key, value, successCallback = {
-        promise.resolve({})
+        promise.resolve(null)
       }, errorCallback = {
         promise.reject(it)
       })
@@ -197,7 +197,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
     val eventsMap = events.toHashMap().toMap().mapValues { it.value.toString() }
     try {
       FunnelConnectSDK.cdp().logEvents(eventsMap, successCallback = {
-        promise.resolve({})
+        promise.resolve(null)
       }, errorCallback = {
         promise.reject(it)
       })
@@ -239,7 +239,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   fun acceptConsentAsync(promise: Promise) {
     try {
       FunnelConnectSDK.trustPid().acceptConsent()
-      promise.resolve({})
+      promise.resolve(null)
     }
     catch (e: Exception) {
       promise.reject(e)
@@ -255,7 +255,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   fun rejectConsentAsync(promise: Promise) {
     try {
       FunnelConnectSDK.trustPid().rejectConsent()
-      promise.resolve({})
+      promise.resolve(null)
     }
     catch (e: Exception) {
       promise.reject(e)
