@@ -16,3 +16,5 @@ const funnelConnectSdk = {
 };
 
 export { funnelConnectSdk };
+
+export * from './funnelConnectSdkProxy/types/sdkTypes';

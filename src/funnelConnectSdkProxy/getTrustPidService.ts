@@ -1,3 +1,7 @@
+import { wrapWithExceptionHandler } from './helpers/wrapWithExceptionHandler';
+import { wrapWithExceptionHandlerAsync } from './helpers/wrapWithExceptionHandlerAsync';
+import type { IdcData } from './types/sdkTypes';
+
 export const getTrustPidService = (Funnelconnectreactnativesdk: any) => {
   const trustPid = () => {
     return {
@@ -7,22 +11,31 @@ export const getTrustPidService = (Funnelconnectreactnativesdk: any) => {
       startTrustPidServiceAsync: (
         isStub: boolean = false
       ): Promise<IdcData> => {
-        return Funnelconnectreactnativesdk.startTrustPidServiceAsync(isStub);
+        return wrapWithExceptionHandlerAsync(
+          Funnelconnectreactnativesdk.startTrustPidServiceAsync,
+          isStub
+        );
       },
       acceptConsent: (): void => {
-        Funnelconnectreactnativesdk.acceptConsent();
+        wrapWithExceptionHandler(Funnelconnectreactnativesdk.acceptConsent);
       },
-      acceptConsentAsync: (): Promise<string> => {
-        return Funnelconnectreactnativesdk.acceptConsentAsync();
+      acceptConsentAsync: (): Promise<void> => {
+        return wrapWithExceptionHandlerAsync(
+          Funnelconnectreactnativesdk.acceptConsentAsync
+        );
       },
       rejectConsent: (): void => {
-        Funnelconnectreactnativesdk.rejectConsent();
+        wrapWithExceptionHandler(Funnelconnectreactnativesdk.rejectConsent);
       },
-      rejectConsentAsync: (): Promise<string> => {
-        return Funnelconnectreactnativesdk.rejectConsentAsync();
+      rejectConsentAsync: (): Promise<void> => {
+        return wrapWithExceptionHandlerAsync(
+          Funnelconnectreactnativesdk.rejectConsentAsync
+        );
       },
       isConsentAcceptedAsync: (): Promise<boolean> => {
-        return Funnelconnectreactnativesdk.isConsentAcceptedAsync();
+        return wrapWithExceptionHandlerAsync(
+          Funnelconnectreactnativesdk.isConsentAcceptedAsync
+        );
       },
     };
   };

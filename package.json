@@ -1,6 +1,6 @@
 {
   "name": "@teavaroltd/funnelconnect-reactnative-sdk",
-  "version": "0.2.6",
+  "version": "0.2.11",
   "description": "test",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
@@ -37,7 +37,7 @@
   ],
   "repository": "https://github.com/Teavaro/FunnelConnectReactNativeSDK",
   "author": "Teavaro <tomasz@teavaro.com> (https://github.com/Teavaro)",
-  "license": "undefined",
+  "license": "UNLICENSED",
   "bugs": {
     "url": "https://github.com/Teavaro/FunnelConnectReactNativeSDK/issues"
   },
@@ -62,8 +62,8 @@
     "jest": "^28.1.1",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
-    "react": "17.0.2",
-    "react-native": "0.68.2",
+    "react": "18.1.0",
+    "react-native": "0.70.0",
     "react-native-builder-bob": "^0.18.3",
     "release-it": "^15.0.0",
     "typescript": "^4.5.2"
@@ -112,6 +112,8 @@
       "prettier"
     ],
     "rules": {
+      "no-unused-vars": "off",
+      "@typescript-eslint/no-unused-vars": "warn",
       "prettier/prettier": [
         "error",
         {

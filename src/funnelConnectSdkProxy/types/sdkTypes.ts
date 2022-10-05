@@ -19,3 +19,5 @@ type IdcData = {
 type LogEventsMap = {
   [key: string]: string;
 };
+
+export { PermissionsMap, FCOptions, FCUser, IdcData, LogEventsMap };
