@@ -26,7 +26,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   @ReactMethod
   fun onInitializeAsync(promise: Promise) {
     FunnelConnectSDK.onInitialize(successCallback = {
-      promise.resolve(null)
+      promise.resolve('')
     }, errorCallback = {
       promise.reject(it)
     })
@@ -78,7 +78,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       val fcUserObj = FCUser(userIdType, userId)
       try {
         FunnelConnectSDK.cdp().setUser(fcUserObj)
-        promise.resolve(null)
+        promise.resolve('')
       }
       catch (e: Exception) {
         promise.reject(e)

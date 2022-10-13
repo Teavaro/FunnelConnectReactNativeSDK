@@ -5,7 +5,7 @@ import type { FCUser, LogEventsMap, PermissionsMap } from './types/sdkTypes';
 export const getCdpService = (Funnelconnectreactnativesdk: any) => {
   const cdp = () => {
     return {
-      startCdpServiceAsync: (fcUser: FCUser | null = null): Promise<void> => {
+      startCdpServiceAsync: (fcUser: FCUser | null = null): Promise<string> => {
         return wrapWithExceptionHandlerAsync(
           Funnelconnectreactnativesdk.startCdpServiceAsync,
           fcUser
