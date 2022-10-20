@@ -28,7 +28,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
     FunnelConnectSDK.onInitialize(successCallback = {
       promise.resolve("")
     }, errorCallback = {
-      promise.reject(it)
+      promise.reject("onInitializeAsync", it)
     })
   }
 
@@ -49,7 +49,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       promise.resolve(null)
     }
     catch (e: Exception) {
-      promise.reject(e)
+      promise.reject("clearCookiesAsync", e)
     }
   }
 
@@ -65,7 +65,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       promise.resolve(null)
     }
     catch (e: Exception) {
-      promise.reject(e)
+      promise.reject("clearDataAsync", e)
     }
   }
 
@@ -81,11 +81,11 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
         promise.resolve("")
       }
       catch (e: Exception) {
-        promise.reject(e)
+        promise.reject("startCdpServiceAsync", e)
       }
     }
     else {
-      promise.reject(Throwable("Invalid user info"))
+      promise.reject("startCdpServiceAsync", Throwable("Invalid user info"))
     }
   }
 
@@ -100,7 +100,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       promise.resolve(FunnelConnectSDK.cdp().getUserId())
     }
     catch (e: Exception) {
-      promise.reject(e)
+      promise.reject("getUserIdAsync", e)
     }
   }
 
@@ -114,15 +114,15 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
         FunnelConnectSDK.cdp().setUser(fcUserObj, dataCallback = {
           promise.resolve(it)
         }, errorCallback = {
-          promise.reject(it)
+          promise.reject("setUserAsync", it)
         })
       }
       catch (e: Exception) {
-        promise.reject(e)
+        promise.reject("setUserAsync", e)
       }
     }
     else {
-      promise.reject(Throwable("Invalid user object"))
+      promise.reject("setUserAsync", Throwable("Invalid user object"))
     }
   }
 
@@ -137,7 +137,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       promise.resolve(permissionsMap)
     }
     catch (e: Exception) {
-      promise.reject(e)
+      promise.reject("getPermissionsAsync", e)
     }
   }
 
@@ -163,7 +163,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
         promise.resolve(null)
       }
       catch (e: Exception) {
-        promise.reject(e)
+        promise.reject("updatePermissionsAsync", e)
       }
   }
 
@@ -178,11 +178,11 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       FunnelConnectSDK.cdp().logEvent(key, value, successCallback = {
         promise.resolve(null)
       }, errorCallback = {
-        promise.reject(it)
+        promise.reject("logEventAsync", it)
       })
     }
     catch (e: Exception) {
-      promise.reject(e)
+      promise.reject("logEventAsync", e)
     }
   }
 
@@ -199,11 +199,11 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       FunnelConnectSDK.cdp().logEvents(eventsMap, successCallback = {
         promise.resolve(null)
       }, errorCallback = {
-        promise.reject(it)
+        promise.reject("logEventsAsync", it)
       })
     }
     catch (e: Exception) {
-      promise.reject(e)
+      promise.reject("logEventsAsync", e)
     }
   }
 
@@ -222,11 +222,11 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
         idcDataMap.putString("mtid", it.mtid)
         promise.resolve(idcDataMap)
       }, errorCallback = {
-        promise.reject(it)
+        promise.reject("startTrustPidServiceAsync", it)
       })
     }
     catch (e: Exception) {
-      promise.reject(e)
+      promise.reject("startTrustPidServiceAsync", e)
     }
   }
 
@@ -242,7 +242,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       promise.resolve(null)
     }
     catch (e: Exception) {
-      promise.reject(e)
+      promise.reject("acceptConsentAsync", e)
     }
   }
 
@@ -258,7 +258,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       promise.resolve(null)
     }
     catch (e: Exception) {
-      promise.reject(e)
+      promise.reject("rejectConsentAsync", e)
     }
   }
 
@@ -269,7 +269,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       promise.resolve(trustPid.isConsentAccepted())
     }
     catch (e: Exception) {
-      promise.reject(e)
+      promise.reject("isConsentAcceptedAsync", e)
     }
   }
 }
