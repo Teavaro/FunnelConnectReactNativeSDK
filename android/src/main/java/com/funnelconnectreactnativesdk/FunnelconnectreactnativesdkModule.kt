@@ -26,9 +26,9 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   @ReactMethod
   fun onInitializeAsync(promise: Promise) {
     FunnelConnectSDK.onInitialize(successCallback = {
-      promise.resolve("")
+      promise.resolve(null)
     }, errorCallback = {
-      promise.reject("onInitializeAsync", it)
+      promise.reject("onInitializeAsync", it.returnOrExtractExceptionIfTeavaroRestClientException())
     })
   }
 
@@ -49,7 +49,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       promise.resolve(null)
     }
     catch (e: Exception) {
-      promise.reject("clearCookiesAsync", e)
+      promise.reject("clearCookiesAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
     }
   }
 
@@ -65,7 +65,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       promise.resolve(null)
     }
     catch (e: Exception) {
-      promise.reject("clearDataAsync", e)
+      promise.reject("clearDataAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
     }
   }
 
@@ -78,10 +78,10 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       val fcUserObj = FCUser(userIdType, userId)
       try {
         FunnelConnectSDK.cdp().setUser(fcUserObj)
-        promise.resolve("")
+        promise.resolve(null)
       }
       catch (e: Exception) {
-        promise.reject("startCdpServiceAsync", e)
+        promise.reject("startCdpServiceAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
       }
     }
     else {
@@ -100,7 +100,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       promise.resolve(FunnelConnectSDK.cdp().getUserId())
     }
     catch (e: Exception) {
-      promise.reject("getUserIdAsync", e)
+      promise.reject("getUserIdAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
     }
   }
 
@@ -114,11 +114,11 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
         FunnelConnectSDK.cdp().setUser(fcUserObj, dataCallback = {
           promise.resolve(it)
         }, errorCallback = {
-          promise.reject("setUserAsync", it)
+          promise.reject("setUserAsync", it.returnOrExtractExceptionIfTeavaroRestClientException())
         })
       }
       catch (e: Exception) {
-        promise.reject("setUserAsync", e)
+        promise.reject("setUserAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
       }
     }
     else {
@@ -137,7 +137,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       promise.resolve(permissionsMap)
     }
     catch (e: Exception) {
-      promise.reject("getPermissionsAsync", e)
+      promise.reject("getPermissionsAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
     }
   }
 
@@ -163,7 +163,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
         promise.resolve(null)
       }
       catch (e: Exception) {
-        promise.reject("updatePermissionsAsync", e)
+        promise.reject("updatePermissionsAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
       }
   }
 
@@ -178,11 +178,11 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       FunnelConnectSDK.cdp().logEvent(key, value, successCallback = {
         promise.resolve(null)
       }, errorCallback = {
-        promise.reject("logEventAsync", it)
+        promise.reject("logEventAsync", it.returnOrExtractExceptionIfTeavaroRestClientException())
       })
     }
     catch (e: Exception) {
-      promise.reject("logEventAsync", e)
+      promise.reject("logEventAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
     }
   }
 
@@ -199,11 +199,11 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       FunnelConnectSDK.cdp().logEvents(eventsMap, successCallback = {
         promise.resolve(null)
       }, errorCallback = {
-        promise.reject("logEventsAsync", it)
+        promise.reject("logEventsAsync", it.returnOrExtractExceptionIfTeavaroRestClientException())
       })
     }
     catch (e: Exception) {
-      promise.reject("logEventsAsync", e)
+      promise.reject("logEventsAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
     }
   }
 
@@ -222,11 +222,11 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
         idcDataMap.putString("mtid", it.mtid)
         promise.resolve(idcDataMap)
       }, errorCallback = {
-        promise.reject("startTrustPidServiceAsync", it)
+        promise.reject("startTrustPidServiceAsync", it.returnOrExtractExceptionIfTeavaroRestClientException())
       })
     }
     catch (e: Exception) {
-      promise.reject("startTrustPidServiceAsync", e)
+      promise.reject("startTrustPidServiceAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
     }
   }
 
@@ -242,7 +242,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       promise.resolve(null)
     }
     catch (e: Exception) {
-      promise.reject("acceptConsentAsync", e)
+      promise.reject("acceptConsentAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
     }
   }
 
@@ -258,7 +258,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       promise.resolve(null)
     }
     catch (e: Exception) {
-      promise.reject("rejectConsentAsync", e)
+      promise.reject("rejectConsentAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
     }
   }
 
@@ -269,7 +269,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       promise.resolve(trustPid.isConsentAccepted())
     }
     catch (e: Exception) {
-      promise.reject("isConsentAcceptedAsync", e)
+      promise.reject("isConsentAcceptedAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
     }
   }
 }
