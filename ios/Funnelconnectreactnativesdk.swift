@@ -17,7 +17,7 @@ class Funnelconnectreactnativesdk: NSObject {
         FunnelConnectSDK.shared.didInitializeWithResult {
             resolver(nil)
         } failure: {
-            rejecter(nil, nil, $0)
+            rejecter("onInitializeAsync", "onInitializeAsync \($0.localizedDescription)", $0)
         }
     }
     
@@ -37,7 +37,7 @@ class Funnelconnectreactnativesdk: NSObject {
             resolver(nil)
         }
         catch let error {
-            rejecter(nil, nil, error)
+            rejecter("clearCookiesAsync", "clearCookiesAsync \(error.localizedDescription)", error)
         }
     }
     
@@ -52,7 +52,7 @@ class Funnelconnectreactnativesdk: NSObject {
             resolver(nil)
         }
         catch let error {
-            rejecter(nil, nil, error)
+            rejecter("clearDataAsync", "clearDataAsync \(error.localizedDescription)", error)
         }
     }
     
@@ -70,16 +70,16 @@ class Funnelconnectreactnativesdk: NSObject {
                 try FunnelConnectSDK.shared.cdp().setUser(fcUser: fcUserObj, dataCallback: {
                     resolver($0)
                 }, errorCallback: {
-                    rejecter(nil, nil, $0)
+                    rejecter("startCdpServiceAsync", "startCdpServiceAsync \($0.localizedDescription)", $0)
                 })
                 resolver("clearData called")
             }
             catch let error {
-                rejecter(nil, nil, error)
+                rejecter("startCdpServiceAsync", "startCdpServiceAsync \(error.localizedDescription)", error)
             }
         }
         else {
-            rejecter("Invalid user object", nil, nil)
+            rejecter("startCdpServiceAsync", "Invalid user object", nil)
         }
     }
     
@@ -90,7 +90,7 @@ class Funnelconnectreactnativesdk: NSObject {
             resolver(cdp.getUmid())
         }
         catch let error {
-            rejecter(nil, nil, error)
+            rejecter("getUmidAsync", "getUmidAsync \(error.localizedDescription)", error)
         }
     }
 
@@ -101,7 +101,7 @@ class Funnelconnectreactnativesdk: NSObject {
             resolver(cdp.getUserId())
         }
         catch let error {
-            rejecter(nil, nil, error)
+            rejecter("getUserIdAsync", "getUserIdAsync \(error.localizedDescription)", error)
         }
     }
 
@@ -120,11 +120,11 @@ class Funnelconnectreactnativesdk: NSObject {
                 })
             }
             catch let error {
-                rejecter(nil, nil, error)
+                rejecter("setUserAsync", "setUserAsync \(error.localizedDescription)", error)
             }
         }
         else {
-            rejecter("Invalid user info", nil, nil)
+            rejecter("setUserAsync", "Invalid user info", nil)
         }
     }
 
@@ -138,12 +138,13 @@ class Funnelconnectreactnativesdk: NSObject {
                     permissionsDictionary[key] = permissions.getPermission(key: key).description
                 }
                 else {
-                    rejecter("Invalid permission keys", nil, nil)
+                    rejecter("getPermissionsAsync", "Invalid permission keys", nil)
                 }
             }
             resolver(permissionsDictionary)
         }
         catch let error {
+            rejecter("getPermissionsAsync", "getPermissionsAsync \(error.localizedDescription)", error)
             rejecter(nil, nil, error)
         }
     }
@@ -173,11 +174,11 @@ class Funnelconnectreactnativesdk: NSObject {
                 try FunnelConnectSDK.shared.cdp().updatePermissions(permissions: permissionsMap, notificationsVersion: Int32(notificationsVersion), dataCallback: {
                     resolver($0)
                 }, errorCallback: {
-                    rejecter(nil, nil, $0)
+                    rejecter("updatePermissionsAsync", "updatePermissionsAsync \($0.localizedDescription)", $0)
                 })
             }
             catch let error {
-                rejecter(nil, nil, error)
+                rejecter("updatePermissionsAsync", "updatePermissionsAsync \(error.localizedDescription)", error)
             }
         }
     }
@@ -191,13 +192,13 @@ class Funnelconnectreactnativesdk: NSObject {
                              rejecter: @escaping RCTPromiseRejectBlock) {
         do {
             try FunnelConnectSDK.shared.cdp().logEvent(key: key, value: value, successCallback: {
-                resolver("logEvent called")
+                resolver(nil)
             }, errorCallback: {
-                rejecter(nil, nil, $0)
+                rejecter("logEventAsync", "logEventAsync \($0.localizedDescription)", $0)
             })
         }
         catch let error {
-            rejecter(nil, nil, error)
+            rejecter("logEventAsync", "logEventAsync \(error.localizedDescription)", error)
         }
     }
 
@@ -215,11 +216,11 @@ class Funnelconnectreactnativesdk: NSObject {
             try FunnelConnectSDK.shared.cdp().logEvents(events: eventsDictionary, successCallback: {
                 resolver(nil)
             }, errorCallback: {
-                rejecter(nil, nil, $0)
+                rejecter("logEventsAsync", "logEventsAsync \($0.localizedDescription)", $0)
             })
         }
         catch let error {
-            rejecter(nil, nil, error)
+            rejecter("logEventsAsync", "logEventsAsync \(error.localizedDescription)", error)
         }
     }
     
@@ -243,11 +244,11 @@ class Funnelconnectreactnativesdk: NSObject {
                 idcDataDictionary["atid"] = $0.atid
                 resolver(idcDataDictionary)
             }, errorCallback: {
-                rejecter(nil, nil, $0)
+                rejecter("startTrustPidServiceAsync", "startTrustPidServiceAsync \($0.localizedDescription)", $0)
             })
         }
         catch let error {
-            rejecter(nil, nil, error)
+            rejecter("clearCookiesAsync", "clearCookiesAsync \(error.localizedDescription)", error)
         }
     }
 
@@ -262,7 +263,7 @@ class Funnelconnectreactnativesdk: NSObject {
             resolver(nil)
         }
         catch let error {
-            rejecter(nil, nil, error)
+            rejecter("acceptConsentAsync", "acceptConsentAsync \(error.localizedDescription)", error)
         }
     }
 
@@ -277,7 +278,7 @@ class Funnelconnectreactnativesdk: NSObject {
             resolver(nil)
         }
         catch let error {
-            rejecter(nil, nil, error)
+            rejecter("rejectConsentAsync", "rejectConsentAsync \(error.localizedDescription)", error)
         }
     }
 
@@ -288,7 +289,7 @@ class Funnelconnectreactnativesdk: NSObject {
             resolver(nil)
         }
         catch let error {
-            rejecter(nil, nil, error)
+            rejecter("isConsentAcceptedAsync", "isConsentAcceptedAsync \(error.localizedDescription)", error)
         }
     }
 }
