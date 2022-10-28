@@ -6,7 +6,10 @@ export const getTrustPidService = (Funnelconnectreactnativesdk: any) => {
   const trustPid = () => {
     return {
       startService: (isStub: boolean = false): void => {
-        Funnelconnectreactnativesdk.startTrustPidService(isStub);
+        wrapWithExceptionHandler(
+          Funnelconnectreactnativesdk.startTrustPidService,
+          isStub
+        );
       },
       startTrustPidServiceAsync: (
         isStub: boolean = false

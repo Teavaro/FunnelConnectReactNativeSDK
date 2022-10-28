@@ -3,6 +3,10 @@ export const wrapWithExceptionHandler = (
   ...args: any[]
 ) => {
   try {
+    console.log(
+      `Arguments provided to the ${wrappedFunction.name} function:`,
+      ...args
+    );
     wrappedFunction(...args);
   } catch (error: any) {
     console.log('Sync operation error handler');
