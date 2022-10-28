@@ -92,7 +92,7 @@ class Funnelconnectreactnativesdk: NSObject {
         if (userIdType != nil && userId != nil) {
             let fcUserObj = FCUser(userIdType: userIdType!, userId: userId!)
             do {
-                try FunnelConnectSDK.shared.cdp().startService(fcUser: fcUser, notificationsVersion: notificationsVersion, dataCallback: {
+                try FunnelConnectSDK.shared.cdp().startService(fcUser: fcUserObj, notificationsVersion: Int32(notificationsVersion), dataCallback: {
                     resolver($0)
                 }, errorCallback: {
                     rejecter("startCdpServiceWithNotificationVersionAsync", "startCdpServiceWithNotificationVersionAsync \($0.localizedDescription)", $0)
