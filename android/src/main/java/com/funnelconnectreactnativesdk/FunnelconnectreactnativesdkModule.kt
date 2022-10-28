@@ -102,15 +102,15 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
         FunnelConnectSDK.cdp().startService(fcUserObj, notificationsVersion, dataCallback = {
           promise.resolve(it)
         }, errorCallback = {
-          promise.reject("startCdpServiceAsync", it.returnOrExtractExceptionIfTeavaroRestClientException())
+          promise.reject("startCdpServiceWithNotificationVersionAsync", it.returnOrExtractExceptionIfTeavaroRestClientException())
         })
       }
       catch (e: Exception) {
-        promise.reject("startCdpServiceAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
+        promise.reject("startCdpServiceWithNotificationVersionAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
       }
     }
     else {
-      promise.reject("startCdpServiceAsync", Throwable("Invalid user info"))
+      promise.reject("startCdpServiceWithNotificationVersionAsync", Throwable("Invalid user info"))
     }
   }
 
