@@ -72,7 +72,6 @@ class Funnelconnectreactnativesdk: NSObject {
                 }, errorCallback: {
                     rejecter("startCdpServiceAsync", "startCdpServiceAsync \($0.localizedDescription)", $0)
                 })
-                resolver("clearData called")
             }
             catch let error {
                 rejecter("startCdpServiceAsync", "startCdpServiceAsync \(error.localizedDescription)", error)
@@ -80,6 +79,31 @@ class Funnelconnectreactnativesdk: NSObject {
         }
         else {
             rejecter("startCdpServiceAsync", "Invalid user object", nil)
+        }
+    }
+    
+    @objc func startCdpServiceWithNotificationVersionAsync(_ fcUser: NSDictionary = NSDictionary(),
+                                    notificationsVersion: Int,
+                                    resolver: @escaping RCTPromiseResolveBlock,
+                                    rejecter: @escaping RCTPromiseRejectBlock) {
+       
+        let userIdType = fcUser["userIdType"] as? String
+        let userId = fcUser["userId"] as? String
+        if (userIdType != nil && userId != nil) {
+            let fcUserObj = FCUser(userIdType: userIdType!, userId: userId!)
+            do {
+                try FunnelConnectSDK.shared.cdp().startService(fcUser: fcUser, notificationsVersion: notificationsVersion, dataCallback: {
+                    resolver($0)
+                }, errorCallback: {
+                    rejecter("startCdpServiceWithNotificationVersionAsync", "startCdpServiceWithNotificationVersionAsync \($0.localizedDescription)", $0)
+                })
+            }
+            catch let error {
+                rejecter("startCdpServiceWithNotificationVersionAsync", "startCdpServiceWithNotificationVersionAsync \(error.localizedDescription)", error)
+            }
+        }
+        else {
+            rejecter("startCdpServiceWithNotificationVersionAsync", "Invalid user object", nil)
         }
     }
     

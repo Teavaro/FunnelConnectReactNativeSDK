@@ -77,8 +77,33 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
     if (userIdType != null && userId != null) {
       val fcUserObj = FCUser(userIdType, userId)
       try {
-        FunnelConnectSDK.cdp().setUser(fcUserObj)
-        promise.resolve(null)
+        FunnelConnectSDK.cdp().startService(fcUserObj, dataCallback = {
+          promise.resolve(it)
+        }, errorCallback = {
+          promise.reject("startCdpServiceAsync", it.returnOrExtractExceptionIfTeavaroRestClientException())
+        })
+      }
+      catch (e: Exception) {
+        promise.reject("startCdpServiceAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
+      }
+    }
+    else {
+      promise.reject("startCdpServiceAsync", Throwable("Invalid user info"))
+    }
+  }
+
+  @ReactMethod
+  fun startCdpServiceWithNotificationVersionAsync(fcUser: ReadableMap?, notificationsVersion: Int, promise: Promise) {
+    val userIdType = fcUser?.getString("userIdType")
+    val userId = fcUser?.getString("userId")
+    if (userIdType != null && userId != null) {
+      val fcUserObj = FCUser(userIdType, userId)
+      try {
+        FunnelConnectSDK.cdp().startService(fcUserObj, notificationsVersion, dataCallback = {
+          promise.resolve(it)
+        }, errorCallback = {
+          promise.reject("startCdpServiceAsync", it.returnOrExtractExceptionIfTeavaroRestClientException())
+        })
       }
       catch (e: Exception) {
         promise.reject("startCdpServiceAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
