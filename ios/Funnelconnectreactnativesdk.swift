@@ -175,9 +175,9 @@ class Funnelconnectreactnativesdk: NSObject {
 
     @objc func updatePermissions(_ permissions: NSDictionary, notificationsVersion: Int) {
         let permissionsMap = PermissionsMap()
-        permissions.map { (($0 as! String), Bool($1 as! String) ?? false) }.forEach {
+        permissions.map { (($0 as! String), $1 as! Bool ?? false) }.forEach {
             permissionsMap.addPermission(key: $0, accepted: $1)
-          }
+        }
         if (!permissionsMap.isEmpty()) {
             try? FunnelConnectSDK.shared.cdp().updatePermissions(permissions: permissionsMap, notificationsVersion: Int32(notificationsVersion), dataCallback: { _ in
             }, errorCallback: { _ in })
@@ -190,7 +190,7 @@ class Funnelconnectreactnativesdk: NSObject {
                                       rejecter: @escaping RCTPromiseRejectBlock) {
         
         let permissionsMap = PermissionsMap()
-        Dictionary(uniqueKeysWithValues: permissions.map { ($0 as! String, Bool($1 as! String) ?? false) }).forEach {
+        Dictionary(uniqueKeysWithValues: permissions.map { (($0 as! String), $1 as! Bool ?? false) }).forEach {
             permissionsMap.addPermission(key: $0, accepted: $1)
         }
         if (!permissionsMap.isEmpty()) {
