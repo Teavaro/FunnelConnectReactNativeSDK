@@ -11,12 +11,12 @@ export const getCdpService = (Funnelconnectreactnativesdk: any) => {
           fcUser
         );
       },
-      startCdpServiceWithNotificationVersionAsync: (
+      startCdpServiceWithNotificationsVersionAsync: (
         fcUser: FCUser | null = null,
         notificationsVersion: number
       ): Promise<string> => {
         return wrapWithExceptionHandlerAsync(
-          Funnelconnectreactnativesdk.startCdpServiceWithNotificationVersionAsync,
+          Funnelconnectreactnativesdk.startCdpServiceWithNotificationsVersionAsync,
           fcUser,
           notificationsVersion
         );

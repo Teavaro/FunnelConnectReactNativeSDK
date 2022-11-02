@@ -72,10 +72,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   // CDP service functions
   @ReactMethod
   fun startCdpServiceAsync(fcUser: ReadableMap?, promise: Promise) {
-    val userIdType = fcUser?.getString("userIdType")
-    val userId = fcUser?.getString("userId")
-    if (userIdType != null && userId != null) {
-      val fcUserObj = FCUser(userIdType, userId)
+    this.doIfValidUserInfoOrFail("startCdpServiceAsync", fcUser, promise) { fcUserObj ->
       try {
         FunnelConnectSDK.cdp().startService(fcUserObj, dataCallback = {
           promise.resolve(it)
@@ -87,17 +84,11 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
         promise.reject("startCdpServiceAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
       }
     }
-    else {
-      promise.reject("startCdpServiceAsync", Throwable("Invalid user info"))
-    }
   }
 
   @ReactMethod
-  fun startCdpServiceWithNotificationVersionAsync(fcUser: ReadableMap?, notificationsVersion: Int, promise: Promise) {
-    val userIdType = fcUser?.getString("userIdType")
-    val userId = fcUser?.getString("userId")
-    if (userIdType != null && userId != null) {
-      val fcUserObj = FCUser(userIdType, userId)
+  fun startCdpServiceWithNotificationsVersionAsync(fcUser: ReadableMap?, notificationsVersion: Int, promise: Promise) {
+    this.doIfValidUserInfoOrFail("startCdpServiceWithNotificationVersionAsync", fcUser, promise) { fcUserObj ->
       try {
         FunnelConnectSDK.cdp().startService(fcUserObj, notificationsVersion, dataCallback = {
           promise.resolve(it)
@@ -108,9 +99,6 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       catch (e: Exception) {
         promise.reject("startCdpServiceWithNotificationVersionAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
       }
-    }
-    else {
-      promise.reject("startCdpServiceWithNotificationVersionAsync", Throwable("Invalid user info"))
     }
   }
 
@@ -131,10 +119,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun setUserAsync(fcUser: ReadableMap, promise: Promise) {
-    val userIdType = fcUser.getString("userIdType")
-    val userId = fcUser.getString("userId")
-    if (userIdType != null && userId != null) {
-      val fcUserObj = FCUser(userIdType, userId)
+    this.doIfValidUserInfoOrFail("setUserAsync", fcUser, promise) { fcUserObj ->
       try {
         FunnelConnectSDK.cdp().setUser(fcUserObj, dataCallback = {
           promise.resolve(it)
@@ -145,9 +130,6 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
       catch (e: Exception) {
         promise.reject("setUserAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
       }
-    }
-    else {
-      promise.reject("setUserAsync", Throwable("Invalid user object"))
     }
   }
 
@@ -168,28 +150,24 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
 
   @ReactMethod
   fun updatePermissions(permissions: ReadableMap, notificationsVersion: Int) {
-    val permissionsMap = PermissionsMap()
-    permissions.toHashMap().mapValues { it.value.toString().toBoolean() }.forEach {
-      permissionsMap.addPermission(it.key, it.value)
-    }
-    if (!permissionsMap.isEmpty())
-      FunnelConnectSDK.cdp().updatePermissions(permissionsMap, notificationsVersion)
+    this.doIfEmptyPermissionsOrNot(permissions, permissionsAction = {
+      FunnelConnectSDK.cdp().updatePermissions(it, notificationsVersion)
+    })
   }
 
   @ReactMethod
   fun updatePermissionsAsync(permissions: ReadableMap, notificationsVersion: Int, promise: Promise) {
-    val permissionsMap = PermissionsMap()
-    permissions.toHashMap().mapValues { (it.value).toString().toBoolean() }.forEach {
-      permissionsMap.addPermission(it.key, it.value)
-    }
-    if (!permissionsMap.isEmpty())
+    this.doIfEmptyPermissionsOrNot(permissions, permissionsAction = {
       try {
-        FunnelConnectSDK.cdp().updatePermissions(permissionsMap, notificationsVersion)
+        FunnelConnectSDK.cdp().updatePermissions(it, notificationsVersion)
         promise.resolve(null)
       }
       catch (e: Exception) {
         promise.reject("updatePermissionsAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
       }
+    }, emptyPermissionsAction = {
+      promise.reject("updatePermissionsAsync", Throwable("Empty Permissions!"))
+    })
   }
 
   @ReactMethod
@@ -296,5 +274,29 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
     catch (e: Exception) {
       promise.reject("isConsentAcceptedAsync", e.returnOrExtractExceptionIfTeavaroRestClientException())
     }
+  }
+
+  private fun doIfValidUserInfoOrFail(functionName: String, fcUser: ReadableMap?, promise: Promise, action: (FCUser) -> Unit) {
+    val userIdType = fcUser?.getString("userIdType")
+    val userId = fcUser?.getString("userId")
+    if (userIdType != null && userId != null) {
+      action(FCUser(userIdType, userId))
+    }
+    else {
+      promise.reject(functionName, Throwable("Invalid user info"))
+    }
+  }
+
+  private fun permissionsMapFromReadableMap(permissions: ReadableMap): PermissionsMap {
+    val permissionsMap = PermissionsMap()
+    permissions.toHashMap().mapValues { it.value.toString().toBoolean() }.forEach {
+      permissionsMap.addPermission(it.key, it.value)
+    }
+    return permissionsMap
+  }
+
+  private fun doIfEmptyPermissionsOrNot(permissions: ReadableMap, permissionsAction: (PermissionsMap) -> Unit, emptyPermissionsAction: () -> Unit = {}) {
+    val permissionsMap = this.permissionsMapFromReadableMap(permissions)
+    if (permissionsMap.isEmpty()) emptyPermissionsAction() else permissionsAction(permissionsMap)
   }
 }

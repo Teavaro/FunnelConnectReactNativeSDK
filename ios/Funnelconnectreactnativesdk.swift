@@ -27,7 +27,7 @@ class Funnelconnectreactnativesdk: NSObject {
     }
     
     @objc func clearCookies() {
-        try? FunnelConnectSDK.shared.clearData()
+        try? FunnelConnectSDK.shared.clearCookies()
     }
 
     @objc func clearCookiesAsync(_ resolver: @escaping RCTPromiseResolveBlock,
@@ -57,17 +57,12 @@ class Funnelconnectreactnativesdk: NSObject {
     }
     
     // CDP service functions
-    
     @objc func startCdpServiceAsync(_ fcUser: NSDictionary = NSDictionary(),
                                     resolver: @escaping RCTPromiseResolveBlock,
                                     rejecter: @escaping RCTPromiseRejectBlock) {
-       
-        let userIdType = fcUser["userIdType"] as? String
-        let userId = fcUser["userId"] as? String
-        if (userIdType != nil && userId != nil) {
-            let fcUserObj = FCUser(userIdType: userIdType!, userId: userId!)
+        self.doIfValidUserInfoOrFail(functionName: "startCdpServiceAsync", fcUser: fcUser, rejecter: rejecter) {
             do {
-                try FunnelConnectSDK.shared.cdp().setUser(fcUser: fcUserObj, dataCallback: {
+                try FunnelConnectSDK.shared.cdp().setUser(fcUser: $0, dataCallback: {
                     resolver($0)
                 }, errorCallback: {
                     rejecter("startCdpServiceAsync", "startCdpServiceAsync \($0.localizedDescription)", $0)
@@ -77,20 +72,15 @@ class Funnelconnectreactnativesdk: NSObject {
                 rejecter("startCdpServiceAsync", "startCdpServiceAsync \(error.localizedDescription)", error)
             }
         }
-        else {
-            rejecter("startCdpServiceAsync", "Invalid user object", nil)
-        }
     }
     
-    @objc func startCdpServiceWithNotificationVersionAsync(_ fcUser: NSDictionary = NSDictionary(),
-                                    notificationsVersion: Int,
-                                    resolver: @escaping RCTPromiseResolveBlock,
-                                    rejecter: @escaping RCTPromiseRejectBlock) {
-       
-        let userIdType = fcUser["userIdType"] as? String
-        let userId = fcUser["userId"] as? String
-        if (userIdType != nil && userId != nil) {
-            let fcUserObj = FCUser(userIdType: userIdType!, userId: userId!)
+    @objc func startCdpServiceWithNotificationsVersionAsync(_ fcUser: NSDictionary = NSDictionary(),
+                                                           notificationsVersion: Int,
+                                                           resolver: @escaping RCTPromiseResolveBlock,
+                                                           rejecter: @escaping RCTPromiseRejectBlock) {
+        self.doIfValidUserInfoOrFail(functionName: "startCdpServiceWithNotificationVersionAsync",
+                                     fcUser: fcUser,
+                                     rejecter: rejecter) { fcUserObj in
             do {
                 try FunnelConnectSDK.shared.cdp().startService(fcUser: fcUserObj, notificationsVersion: Int32(notificationsVersion), dataCallback: {
                     resolver($0)
@@ -101,9 +91,6 @@ class Funnelconnectreactnativesdk: NSObject {
             catch let error {
                 rejecter("startCdpServiceWithNotificationVersionAsync", "startCdpServiceWithNotificationVersionAsync \(error.localizedDescription)", error)
             }
-        }
-        else {
-            rejecter("startCdpServiceWithNotificationVersionAsync", "Invalid user object", nil)
         }
     }
     
@@ -132,12 +119,9 @@ class Funnelconnectreactnativesdk: NSObject {
     @objc func setUserAsync(_ fcUser: NSDictionary,
                             resolver: @escaping RCTPromiseResolveBlock,
                             rejecter: @escaping RCTPromiseRejectBlock) {
-        let userIdType = fcUser["userIdType"] as? String
-        let userId = fcUser["userId"] as? String
-        if (userIdType != nil && userId != nil) {
-            let fcUserObj = FCUser(userIdType: userIdType!, userId: userId!)
+        self.doIfValidUserInfoOrFail(functionName: "setUserAsync", fcUser: fcUser, rejecter: rejecter) {
             do {
-                try FunnelConnectSDK.shared.cdp().setUser(fcUser: fcUserObj, dataCallback: {
+                try FunnelConnectSDK.shared.cdp().setUser(fcUser: $0, dataCallback: {
                     resolver($0)
                 }, errorCallback: {
                     rejecter(nil, nil, $0)
@@ -146,9 +130,6 @@ class Funnelconnectreactnativesdk: NSObject {
             catch let error {
                 rejecter("setUserAsync", "setUserAsync \(error.localizedDescription)", error)
             }
-        }
-        else {
-            rejecter("setUserAsync", "Invalid user info", nil)
         }
     }
 
@@ -174,13 +155,11 @@ class Funnelconnectreactnativesdk: NSObject {
     }
 
     @objc func updatePermissions(_ permissions: NSDictionary, notificationsVersion: Int) {
-        let permissionsMap = PermissionsMap()
-        permissions.map { (($0 as! String), $1 as! Bool ?? false) }.forEach {
-            permissionsMap.addPermission(key: $0, accepted: $1)
-        }
-        if (!permissionsMap.isEmpty()) {
-            try? FunnelConnectSDK.shared.cdp().updatePermissions(permissions: permissionsMap, notificationsVersion: Int32(notificationsVersion), dataCallback: { _ in
-            }, errorCallback: { _ in })
+        self.doIfEmptyPermissionsOrNot(permissions: permissions) { permissionsMap in
+            try? FunnelConnectSDK.shared.cdp().updatePermissions(permissions: permissionsMap,
+                                                                 notificationsVersion: Int32(notificationsVersion),
+                                                                 dataCallback: { _ in },
+                                                                 errorCallback: { _ in })
         }
     }
 
@@ -188,12 +167,7 @@ class Funnelconnectreactnativesdk: NSObject {
                                       notificationsVersion: Int,
                                       resolver: @escaping RCTPromiseResolveBlock,
                                       rejecter: @escaping RCTPromiseRejectBlock) {
-        
-        let permissionsMap = PermissionsMap()
-        Dictionary(uniqueKeysWithValues: permissions.map { (($0 as! String), $1 as! Bool ?? false) }).forEach {
-            permissionsMap.addPermission(key: $0, accepted: $1)
-        }
-        if (!permissionsMap.isEmpty()) {
+        self.doIfEmptyPermissionsOrNot(permissions: permissions) { permissionsMap in
             do {
                 try FunnelConnectSDK.shared.cdp().updatePermissions(permissions: permissionsMap, notificationsVersion: Int32(notificationsVersion), dataCallback: {
                     resolver($0)
@@ -204,6 +178,9 @@ class Funnelconnectreactnativesdk: NSObject {
             catch let error {
                 rejecter("updatePermissionsAsync", "updatePermissionsAsync \(error.localizedDescription)", error)
             }
+        } emptyPermissionsAction: {
+            let error = NSError(domain: "Empty Permissions!", code: -1991)
+            rejecter("updatePermissionsAsync", "updatePermissionsAsync \(error.localizedDescription)", error)
         }
     }
     
@@ -227,7 +204,7 @@ class Funnelconnectreactnativesdk: NSObject {
     }
 
     @objc func logEvents(_ events: NSDictionary) {
-        let eventsDictionary = Dictionary(uniqueKeysWithValues: events.map { ($0 as! String, $1 as! String) })
+        let eventsDictionary = self.nsDictionaryToSwiftDictionary(events: events)
         try? FunnelConnectSDK.shared.cdp().logEvents(events: eventsDictionary)
     }
 
@@ -236,7 +213,7 @@ class Funnelconnectreactnativesdk: NSObject {
                               resolver: @escaping RCTPromiseResolveBlock,
                               rejecter: @escaping RCTPromiseRejectBlock) {
         do {
-            let eventsDictionary = Dictionary(uniqueKeysWithValues: events.map { ($0 as! String, $1 as! String) })
+            let eventsDictionary = self.nsDictionaryToSwiftDictionary(events: events)
             try FunnelConnectSDK.shared.cdp().logEvents(events: eventsDictionary, successCallback: {
                 resolver(nil)
             }, errorCallback: {
@@ -315,5 +292,33 @@ class Funnelconnectreactnativesdk: NSObject {
         catch let error {
             rejecter("isConsentAcceptedAsync", "isConsentAcceptedAsync \(error.localizedDescription)", error)
         }
+    }
+    
+    private func doIfValidUserInfoOrFail(functionName: String, fcUser: NSDictionary?, rejecter: @escaping RCTPromiseRejectBlock, action: (FCUser) -> Void) {
+        let userIdType = fcUser?["userIdType"] as? String
+        let userId = fcUser?["userId"] as? String
+        if (userIdType != nil && userId != nil) {
+            action(FCUser(userIdType: userIdType!, userId: userId!))
+        }
+        else {
+            rejecter(functionName, "Invalid user info", nil)
+        }
+     }
+    
+    private func permissionsMapFromReadableMap(permissions: NSDictionary) -> PermissionsMap {
+        let permissionsMap = PermissionsMap()
+        Dictionary(uniqueKeysWithValues: permissions.map { (($0 as! String), $1 as? Bool ?? false) }).forEach {
+            permissionsMap.addPermission(key: $0, accepted: $1)
+        }
+        return permissionsMap
+    }
+
+     private func doIfEmptyPermissionsOrNot(permissions: NSDictionary, permissionsAction: (PermissionsMap) -> Void, emptyPermissionsAction: () -> Void = {}) {
+         let permissionsMap = self.permissionsMapFromReadableMap(permissions: permissions)
+         if (permissionsMap.isEmpty()) { emptyPermissionsAction() } else { permissionsAction(permissionsMap) }
+     }
+    
+    private func nsDictionaryToSwiftDictionary(events: NSDictionary) -> [String : String] {
+        return Dictionary(uniqueKeysWithValues: events.map { ($0 as! String, $1 as! String) })
     }
 }

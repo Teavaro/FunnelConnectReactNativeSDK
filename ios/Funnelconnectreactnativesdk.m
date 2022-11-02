@@ -39,7 +39,7 @@ RCT_EXTERN_METHOD(startCdpServiceAsync:(NSDictionary *)fcUser
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(startCdpServiceWithNotificationVersionAsync:(NSDictionary *)fcUser
+RCT_EXTERN_METHOD(startCdpServiceWithNotificationsVersionAsync:(NSDictionary *)fcUser
                   notificationsVersion: (int)notificationsVersion
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
