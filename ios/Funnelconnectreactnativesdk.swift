@@ -62,7 +62,7 @@ class Funnelconnectreactnativesdk: NSObject {
                                     rejecter: @escaping RCTPromiseRejectBlock) {
         self.doIfValidUserInfoOrFail(functionName: "startCdpServiceAsync", fcUser: fcUser, rejecter: rejecter) {
             do {
-                try FunnelConnectSDK.shared.cdp().setUser(fcUser: $0, dataCallback: {
+                try FunnelConnectSDK.shared.cdp().startService(fcUser: $0, dataCallback: {
                     resolver($0)
                 }, errorCallback: {
                     rejecter("startCdpServiceAsync", "startCdpServiceAsync \($0.localizedDescription)", $0)
