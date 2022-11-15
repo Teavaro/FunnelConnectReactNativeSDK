@@ -1,0 +1,14 @@
+{
+  "pins" : [
+    {
+      "identity" : "funnelconnect-ios-sdk",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Teavaro/FunnelConnect-iOS-SDK",
+      "state" : {
+        "branch" : "main",
+        "revision" : "c6189c38e6acee0e0794afc7ac2fb66063ef23db"
+      }
+    }
+  ],
+  "version" : 2
+}
