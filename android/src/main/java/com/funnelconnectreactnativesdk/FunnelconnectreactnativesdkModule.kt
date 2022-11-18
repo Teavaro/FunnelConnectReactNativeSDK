@@ -87,7 +87,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   }
 
   @ReactMethod
-  fun startCdpServiceWithNotificationsVersionAsync(fcUser: ReadableMap?, notificationsVersion: Int, promise: Promise) {
+  fun startCdpServiceWithNotificationsVersionAsync(fcUser: ReadableMap?, notificationsName: String, notificationsVersion: Int, promise: Promise) {
     this.doIfValidUserInfoOrFail("startCdpServiceWithNotificationVersionAsync", fcUser, promise) { fcUserObj ->
       try {
         FunnelConnectSDK.cdp().startService(fcUserObj, notificationsVersion, dataCallback = {
@@ -149,14 +149,14 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   }
 
   @ReactMethod
-  fun updatePermissions(permissions: ReadableMap, notificationsVersion: Int) {
+  fun updatePermissions(permissions: ReadableMap, notificationsName: String, notificationsVersion: Int) {
     this.doIfEmptyPermissionsOrNot(permissions, permissionsAction = {
       FunnelConnectSDK.cdp().updatePermissions(it, notificationsVersion)
     })
   }
 
   @ReactMethod
-  fun updatePermissionsAsync(permissions: ReadableMap, notificationsVersion: Int, promise: Promise) {
+  fun updatePermissionsAsync(permissions: ReadableMap, notificationsName: String, notificationsVersion: Int, promise: Promise) {
     this.doIfEmptyPermissionsOrNot(permissions, permissionsAction = {
       try {
         FunnelConnectSDK.cdp().updatePermissions(it, notificationsVersion)

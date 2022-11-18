@@ -40,6 +40,7 @@ RCT_EXTERN_METHOD(startCdpServiceAsync:(NSDictionary *)fcUser
                   rejecter:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(startCdpServiceWithNotificationsVersionAsync:(NSDictionary *)fcUser
+                  notificationsName: (NSString *) notificationsName
                   notificationsVersion: (int)notificationsVersion
                   resolver:(RCTPromiseResolveBlock)resolve
                   rejecter:(RCTPromiseRejectBlock)reject)
@@ -58,9 +59,11 @@ RCT_EXTERN_METHOD(getPermissionsAsync:(RCTPromiseResolveBlock)resolver
                   rejecter:(RCTPromiseRejectBlock)reject)
 
 RCT_EXTERN_METHOD(updatePermissions:(NSDictionary *)permissions
+                  notificationsName: (NSString *) notificationsName
                   notificationsVersion: (int)notificationsVersion)
 
 RCT_EXTERN_METHOD(updatePermissionsAsync:(NSDictionary *)permissions
+                  notificationsName: (NSString *) notificationsName
                   notificationsVersion: (int)notificationsVersion
                   resolver:(RCTPromiseResolveBlock)resolver
                   rejecter:(RCTPromiseRejectBlock)reject)
