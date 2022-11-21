@@ -12,7 +12,7 @@ export const getSdkFunctions = (Funnelconnectreactnativesdk: any) => {
     );
   };
 
-  const onInitializeAsync = (): Promise<string> => {
+  const onInitializeAsync = (): Promise<void> => {
     return wrapWithExceptionHandlerAsync(
       Funnelconnectreactnativesdk.onInitializeAsync
     );
