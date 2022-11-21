@@ -74,7 +74,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   fun startCdpServiceAsync(fcUser: ReadableMap?, promise: Promise) {
     this.doIfValidUserInfoOrFail("startCdpServiceAsync", fcUser, promise) { fcUserObj ->
       try {
-        FunnelConnectSDK.cdp().startService(fcUserObj, dataCallback = {
+        FunnelConnectSDK.cdp().startService(fcUserObj, "", dataCallback = {
           promise.resolve(it)
         }, errorCallback = {
           promise.reject("startCdpServiceAsync", it.returnOrExtractExceptionIfTeavaroRestClientException())
@@ -90,7 +90,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   fun startCdpServiceWithNotificationsVersionAsync(fcUser: ReadableMap?, notificationsName: String, notificationsVersion: Int, promise: Promise) {
     this.doIfValidUserInfoOrFail("startCdpServiceWithNotificationVersionAsync", fcUser, promise) { fcUserObj ->
       try {
-        FunnelConnectSDK.cdp().startService(fcUserObj, notificationsVersion, dataCallback = {
+        FunnelConnectSDK.cdp().startService(fcUserObj, notificationsName, notificationsVersion, dataCallback = {
           promise.resolve(it)
         }, errorCallback = {
           promise.reject("startCdpServiceWithNotificationVersionAsync", it.returnOrExtractExceptionIfTeavaroRestClientException())
@@ -151,7 +151,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   @ReactMethod
   fun updatePermissions(permissions: ReadableMap, notificationsName: String, notificationsVersion: Int) {
     this.doIfEmptyPermissionsOrNot(permissions, permissionsAction = {
-      FunnelConnectSDK.cdp().updatePermissions(it, notificationsVersion)
+      FunnelConnectSDK.cdp().updatePermissions(it, notificationsName, notificationsVersion)
     })
   }
 
@@ -159,7 +159,7 @@ class FunnelconnectreactnativesdkModule(private val reactContext: ReactApplicati
   fun updatePermissionsAsync(permissions: ReadableMap, notificationsName: String, notificationsVersion: Int, promise: Promise) {
     this.doIfEmptyPermissionsOrNot(permissions, permissionsAction = {
       try {
-        FunnelConnectSDK.cdp().updatePermissions(it, notificationsVersion)
+        FunnelConnectSDK.cdp().updatePermissions(it, notificationsName, notificationsVersion)
         promise.resolve(null)
       }
       catch (e: Exception) {

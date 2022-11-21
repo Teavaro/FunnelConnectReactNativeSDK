@@ -83,7 +83,7 @@ class Funnelconnectreactnativesdk: NSObject {
                                      fcUser: fcUser,
                                      rejecter: rejecter) { fcUserObj in
             do {
-                try FunnelConnectSDK.shared.cdp().startService(fcUser: fcUserObj, notificationsVersion: Int32(notificationsVersion), dataCallback: {
+                try FunnelConnectSDK.shared.cdp().startService(fcUser: fcUserObj, notificationsName: notificationsName, notificationsVersion: Int32(notificationsVersion), dataCallback: {
                     resolver($0)
                 }, errorCallback: {
                     rejecter("startCdpServiceWithNotificationVersionAsync", "startCdpServiceWithNotificationVersionAsync \($0.localizedDescription)", $0)
@@ -158,6 +158,7 @@ class Funnelconnectreactnativesdk: NSObject {
     @objc func updatePermissions(_ permissions: NSDictionary, notificationsName: String, notificationsVersion: Int) {
         self.doIfEmptyPermissionsOrNot(permissions: permissions) { permissionsMap in
             try? FunnelConnectSDK.shared.cdp().updatePermissions(permissions: permissionsMap,
+                                                                 notificationsName: notificationsName,
                                                                  notificationsVersion: Int32(notificationsVersion),
                                                                  dataCallback: { _ in },
                                                                  errorCallback: { _ in })
@@ -171,7 +172,7 @@ class Funnelconnectreactnativesdk: NSObject {
                                       rejecter: @escaping RCTPromiseRejectBlock) {
         self.doIfEmptyPermissionsOrNot(permissions: permissions) { permissionsMap in
             do {
-                try FunnelConnectSDK.shared.cdp().updatePermissions(permissions: permissionsMap, notificationsVersion: Int32(notificationsVersion), dataCallback: {
+                try FunnelConnectSDK.shared.cdp().updatePermissions(permissions: permissionsMap, notificationsName: notificationsName, notificationsVersion: Int32(notificationsVersion), dataCallback: {
                     resolver($0)
                 }, errorCallback: {
                     rejecter("updatePermissionsAsync", "updatePermissionsAsync \($0.localizedDescription)", $0)
