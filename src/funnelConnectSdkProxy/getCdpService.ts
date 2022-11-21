@@ -46,21 +46,25 @@ export const getCdpService = (Funnelconnectreactnativesdk: any) => {
       },
       updatePermissions: (
         permissions: PermissionsMap,
+        notificationsName: string,
         notificationsVersion: number
       ): void => {
         wrapWithExceptionHandler(
           Funnelconnectreactnativesdk.updatePermissions,
           permissions,
+          notificationsName,
           notificationsVersion
         );
       },
       updatePermissionsAsync: (
         permissions: PermissionsMap,
+        notificationsName: string,
         notificationsVersion: number
       ): Promise<void> => {
         return wrapWithExceptionHandlerAsync(
           Funnelconnectreactnativesdk.updatePermissionsAsync,
           permissions,
+          notificationsName,
           notificationsVersion
         );
       },
