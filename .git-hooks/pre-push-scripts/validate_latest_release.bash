@@ -12,9 +12,9 @@ else
 	#
 	if [ -z "$GITHUB_TOKEN" ]
 	then
-		echo -e "\033[0;31m🚫 Invalid or empty GITHUB_TOKEN, pleasae make sure GITHUB_TOKEN exists in secrets.properties file in this path 👉 $SECRETS_FILE"
+		echo -e "\033[0;31m🚫 Invalid or empty GITHUB_TOKEN, please make sure GITHUB_TOKEN exists in secrets.properties file in this path 👉 $SECRETS_FILE"
 	else
-		URL="https://api.github.com/repos/ahmadmssm/Test/releases"
+		URL="https://github.com/Teavaro/FunnelConnectReactNativeSDK/releases"
 		#		
 		RESPONSE=$(curl -s -w %{http_code} -H Accept: application/vnd.github+json -H Authorization: Bearer $GITHUB_TOKEN $URL/latest)
 		HTTP_STATUS_CODE=$(tail -n1 <<< "$RESPONSE")  # get the last line.
@@ -26,21 +26,21 @@ else
 		if [[ "$HTTP_STATUS_CODE" -ne 200 ]] ; then 
 			echo -e "\033[0;31m🚫 Error, Could not fetch the latest GitHub release!"
 		else
-			LATEST_RELEASE=$(echo $HTTP_BODY | jq -r '.tag_name')
-			echo "➡️ Latest GitHub Release: $LATEST_RELEASE"
+			LATEST_GITHUB_RELEASE=$(echo $HTTP_BODY | jq -r '.tag_name')
+			echo "➡️ Latest GitHub Release: $LATEST_GITHUB_RELEASE"
 			#
 			CURRENT_GIT_TAG=$(git describe --abbrev=0 --tags)
 			echo "➡️ Current GIT Tag: $CURRENT_GIT_TAG"
 			#
 			LOCAL_NPM_VERSION=$(cat "${PWD%/*/*}/package.json" | jq -r ".version")
 			echo "➡️ package.json version: $LOCAL_NPM_VERSION"
-			if [[ "$LATEST_RELEASE" != "$LOCAL_NPM_VERSION" ]] ; then
+			if [[ "$LATEST_GITHUB_RELEASE" != "$LOCAL_NPM_VERSION" ]] ; then
 				echo "⚠️ package.json npm version does not match the latest version on GitHub!"
 				echo "📢 please make sure that the you have the latest changes on your local."
 				echo "⚠️ Terminating GIT push.."
 				exit 1
 			else
-				if [[ "$LATEST_RELEASE" == "$CURRENT_GIT_TAG" ]] ; then
+				if [[ "$LATEST_GITHUB_RELEASE" == "$CURRENT_GIT_TAG" ]] ; then
 					echo "⚠️ Release already exists."
 					echo "📢 please create a new tag and push it to the master branch to create a new release."
 					echo "⚠️ Terminating GIT push.."

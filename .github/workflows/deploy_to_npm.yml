@@ -21,7 +21,7 @@ jobs:
     - name: Install dependencies and build 🔧
       run: npm ci && npm run build
     - name: Publish package on NPM 📦
-      run: npm publish --allow-warnings --verbos
+      run: npm Publish --allow-warnings --verbos
       env:
         NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}   # You need to set this in your repo settings
         
