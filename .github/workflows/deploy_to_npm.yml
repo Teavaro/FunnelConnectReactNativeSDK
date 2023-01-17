@@ -1,0 +1,29 @@
+# Ref: https://dev.to/astagi/publish-to-npm-using-github-actions-23fn
+name: deploy_to_npm
+on:
+  # This action should run only when you create a new release on GitHub
+  release:
+    types: [created]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    # Checkout code
+    - name: Checkout
+      uses: actions/checkout@v2
+    # Setup Node.js environment
+    - name: Setup Node
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.12.1'
+        registry-url: 'https://registry.npmjs.org'
+    # Install dependencies and build your package (if needed).
+    - name: Install dependencies and build 🔧
+      run: npm ci && npm run build
+    - name: Publish package on NPM 📦
+      run: npm publish --allow-warnings --verbos
+      env:
+        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}   # You need to set this in your repo settings
+        
+        
+# We can also use this one => https://github.com/marketplace/actions/publish-to-npm
