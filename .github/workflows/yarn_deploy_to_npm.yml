@@ -23,6 +23,6 @@ jobs:
     - name: Publish package on NPM 📦
       run: yarn publish --allow-warnings --verbose
       env:
-        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}   # You need to set this in your repo settings
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}   # You need to set this in your repo settings
         
 # We can also use this one => https://github.com/marketplace/actions/publish-to-npm
