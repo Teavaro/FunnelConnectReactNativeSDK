@@ -20,8 +20,8 @@ else
 		HTTP_STATUS_CODE=$(tail -n1 <<< "$RESPONSE")  # get the last line.
 		HTTP_BODY=$(sed '$ d' <<< "$RESPONSE" )   # get all but the last line which contains the status code.
 		HTTP_BODY=$(echo $HTTP_BODY | sed -r 's/000000000//g')  # Remove leading zeros.
-		echo "➡️ Status Code: $HTTP_STATUS_CODE"
-		echo "➡️ Response: $HTTP_BODY"
+		#echo "➡️ Status Code: $HTTP_STATUS_CODE"
+		#echo "➡️ Response: $HTTP_BODY"
 		#
 		if [[ "$HTTP_STATUS_CODE" -ne 200 ]] ; then 
 			echo -e "\033[0;31m🚫 Error, Could not fetch the latest GitHub release!"
