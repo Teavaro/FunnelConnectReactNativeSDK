@@ -21,7 +21,6 @@ then
 			echo "➡️ Writing GitHub Token to $SECRETS_FILE_NAME file..."
 			if echo -e "GITHUB_TOKEN=$GITHUB_TOKEN" >> $SECRETS_FILE_NAME; then
 				echo "✅ GitHub token saved successfully."
-				read -n1 -s -r -p $'➡️ Press any key to exit \n' key
 				echo "Thank you."
 				exit 0
 			else
@@ -41,7 +40,6 @@ then
 			echo "➡️ Writing GitHub Token to $SECRETS_FILE_NAME file..."
 			if echo -e "GITHUB_TOKEN=$GITHUB_TOKEN" >> $SECRETS_FILE_NAME; then
 				echo "✅ GitHub token saved successfully."
-				read -n1 -s -r -p $'➡️ Press any key to exit \n' key
 				echo "Thank you."
 				exit 0
 			else
@@ -64,7 +62,6 @@ else
 			echo "➡️ Writing GitHub Token to $SECRETS_FILE_NAME file..."
 			if echo -e "GITHUB_TOKEN=$GITHUB_TOKEN" >> $SECRETS_FILE_NAME; then
 				echo "✅ GitHub token saved successfully."
-				read -n1 -s -r -p $'➡️ Press any key to exit \n' key
 				echo "Thank you."
 				exit 0
 			else

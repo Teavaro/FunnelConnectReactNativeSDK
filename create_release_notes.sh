@@ -13,7 +13,6 @@ then
 		echo "➡️ Writing DESCRIPTION key to $FILE_NAME file..."
 		if echo -e "DESCRIPTION=$DESCRIPTION" >> $FILE_NAME; then 
 			echo "✅ DESCRIPTION key written successfully, please remember to update the DESCRIPTION value."
-			read -n1 -s -r -p $'➡️ Press any key to exit \n' key
 			echo "Thank you."
 		else
 			echo -e "\033[0;31m🚫 Failed to write DESCRIPTION key to $FILE_NAME!"
@@ -32,7 +31,6 @@ else
 		echo "➡️ Writing DESCRIPTION key to $FILE_NAME file..."
 		if echo -e "DESCRIPTION=$DESCRIPTION" >> $FILE_NAME; then 
 			echo "✅ DESCRIPTION key written successfully, please remember to update the DESCRIPTION value."
-			read -n1 -s -r -p $'➡️ Press any key to exit \n' key
 			echo "Thank you."
 		else
 			echo -e "\033[0;31m🚫 Failed to write DESCRIPTION key to $FILE_NAME!"
