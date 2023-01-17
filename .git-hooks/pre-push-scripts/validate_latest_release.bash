@@ -14,14 +14,14 @@ else
 	then
 		echo -e "\033[0;31m🚫 Invalid or empty GITHUB_TOKEN, please make sure GITHUB_TOKEN exists in secrets.properties file in this path 👉 $SECRETS_FILE"
 	else
-		URL="https://github.com/Teavaro/FunnelConnectReactNativeSDK/releases"
+		URL="https://api.github.com/repos/Teavaro/FunnelConnectReactNativeSDK/releases"
 		#		
 		RESPONSE=$(curl -s -w %{http_code} -H Accept: application/vnd.github+json -H Authorization: Bearer $GITHUB_TOKEN $URL/latest)
 		HTTP_STATUS_CODE=$(tail -n1 <<< "$RESPONSE")  # get the last line.
 		HTTP_BODY=$(sed '$ d' <<< "$RESPONSE" )   # get all but the last line which contains the status code.
 		HTTP_BODY=$(echo $HTTP_BODY | sed -r 's/000000000//g')  # Remove leading zeros.
-		#echo "➡️ Status Code: $HTTP_STATUS_CODE"
-		#echo "➡️ Response: $HTTP_BODY"
+		echo "➡️ Status Code: $HTTP_STATUS_CODE"
+		echo "➡️ Response: $HTTP_BODY"
 		#
 		if [[ "$HTTP_STATUS_CODE" -ne 200 ]] ; then 
 			echo -e "\033[0;31m🚫 Error, Could not fetch the latest GitHub release!"
