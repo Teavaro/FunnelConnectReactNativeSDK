@@ -1,5 +1,5 @@
 # Ref: https://dev.to/astagi/publish-to-npm-using-github-actions-23fn
-name: deploy_to_npm
+name: yarn_deploy_to_npm
 on:
   # This action should run only when you create a new release on GitHub
   release:
