@@ -1,4 +1,4 @@
-## 
+## Publish a new version to NPM
 
 1. Commit new changes to the master or create a BR from the develop branch to the master branch.
 2. Create a new git tag but do not push it.

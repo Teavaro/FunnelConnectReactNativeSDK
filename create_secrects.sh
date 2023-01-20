@@ -54,6 +54,7 @@ else
 	echo "➡️ Creating $SECRETS_DIR directory..."
 	if mkdir $SECRETS_DIR_NAME; then
 		echo "✅ $SECRETS_DIR_NAME directory created successfully."
+		cd "$SECRETS_DIR"
 		echo "➡️ Creating $SECRETS_FILE_NAME file..."
 		if touch $SECRETS_FILE_NAME; then
 			echo "✅ $SECRETS_FILE_NAME created successfully."
