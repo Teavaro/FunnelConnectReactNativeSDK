@@ -1,3 +1,7 @@
+## Development:
+
+1. Run script => `scripts_runner.sh`
+
 ## Publish a new version to NPM
 
 1. Commit new changes to the master or create a BR from the develop branch to the master branch.

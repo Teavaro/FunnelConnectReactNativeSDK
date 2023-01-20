@@ -1,10 +1,5 @@
 # FunnelConnect React Native SDK
 
-## npm publishing:
-
-1. Run this script => scripts_runner.sh
-2. Read the [package publishing readme file](NPM_package_publishing.md).
-
 ## Installation
 
 ```sh
