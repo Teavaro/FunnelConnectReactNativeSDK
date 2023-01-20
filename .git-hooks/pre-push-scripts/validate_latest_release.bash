@@ -26,10 +26,10 @@ else
 		if [[ "$HTTP_STATUS_CODE" -ne 200 ]] ; then 
 			echo -e "\033[0;31m🚫 Error, Could not fetch the latest GitHub release!"
 		else
-			LATEST_GITHUB_RELEASE=$(echo $HTTP_BODY | jq -r '.tag_name')
+			LATEST_GITHUB_RELEASE=$(echo $HTTP_BODY | grep -o '"tag_name": "[^"]*' | grep -o '[^"]*$')
 			echo "➡️ Latest GitHub Release: $LATEST_GITHUB_RELEASE"
 			# npm version from Package.json file
-			LOCAL_NPM_VERSION=$(cat "${PWD%/*/*}/package.json" | jq -r ".version")
+			LOCAL_NPM_VERSION=$(cat "${PWD%/*/*}/package.json" | grep -o '"version": "[^"]*' | grep -o '[^"]*$')
 			echo "➡️ package.json version: $LOCAL_NPM_VERSION"
 			#
 			if [[ "$LATEST_GITHUB_RELEASE" > "$LOCAL_NPM_VERSION" ]] ; then
