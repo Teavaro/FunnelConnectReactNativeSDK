@@ -2,7 +2,7 @@
 GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 echo "➡️ On the $GIT_BRANCH branch."
 if [[ "$GIT_BRANCH" != main ]]; then
-	echo "➡️ Skip creating new release .. We only create release on puh to the main branch."
+	echo "➡️ Skip creating new release .. We only create release on push to the main branch."
 	exit 0
 else
 	#
