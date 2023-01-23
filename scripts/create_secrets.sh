@@ -1,8 +1,9 @@
 #!/bin/bash
 SECRETS_DIR_NAME=.secrets
-SECRETS_DIR="$PWD/$SECRETS_DIR_NAME"
 SECRETS_FILE_NAME=secrets.properties
-#
+
+cd ..
+SECRETS_DIR="$PWD/$SECRETS_DIR_NAME"
 if [ -d "$SECRETS_DIR" ];
 then
     echo "➡️ $SECRETS_DIR_NAME directory exists."
