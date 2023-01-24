@@ -11,8 +11,7 @@ do
 done
 echo "------------------------------------------------------"
 echo "✅ Creation scripts finished successfully."
-
-echo "➡️ Starting git scripts..."
+echo "➡️ Installing git scripts..."
 GIT_SCRIPT_NAME=install-git-hooks.bash
 cd ..
 cd .git-hooks/
