@@ -1,9 +1,10 @@
-# Ref: https://dev.to/astagi/publish-to-npm-using-github-actions-23fn
 name: yarn_deploy_to_npm
 on:
-  # This action should run only when you create a new release on GitHub
-  release:
-    types: [created]
+  push:
+    # DO NOT add branch 'main' there as the conditions works as an AND operation
+    # We only want to run the action on tag push, not every main push
+    tags:        
+      - '*'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -25,4 +26,3 @@ jobs:
       env:
         NODE_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}   # You need to set this in your repo settings
         
-# We can also use this one => https://github.com/marketplace/actions/publish-to-npm
