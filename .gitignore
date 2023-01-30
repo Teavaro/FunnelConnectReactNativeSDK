@@ -68,7 +68,3 @@ lib/
 
 # linked application
 example/
-
-# automation
-.secrets/secrets.properties
-release_notes.properties
