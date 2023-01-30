@@ -25,6 +25,8 @@ else
 fi
 
 # 2. Check the remote and local (package.json) version discrepancies.
+GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+echo "➡️ $GIT_BRANCH branch detected."
 LOCAL_NPM_VERSION=$(cat "${PWD}/package.json" | grep -o '"version": "[^"]*' | grep -o '[^"]*$')
 echo "➡️ Local package.json version: $LOCAL_NPM_VERSION"
 if [[ ! $LOCAL_NPM_VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
@@ -47,15 +49,13 @@ if [[ "$LATEST_REMOTE_GIT_TAG_VERSION" > "$LOCAL_NPM_VERSION" ]] ; then
 elif [[ "$LATEST_REMOTE_GIT_TAG_VERSION" == "$LOCAL_NPM_VERSION" ]] ; then
 	echo "📢 package.json npm version ($LOCAL_NPM_VERSION) is the same as the latest git tag version"
 	echo "📢 Skip creating a new git tag and npm version."
-	echo "✅ Pushing code to the feature branch..."
+	echo "✅ Pushing code to the ${GIT_BRANCH} branch..."
 	# Either feature branch or a hotfix to main which should not publish new version, let push
 	exit 0
 fi
 
 # 3. With LOCAL_NPM_VERSION bigger than the remote one, check the current branch.
 # With this condition, create tag for main, reject push for other branch.
-GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
-echo "➡️ $GIT_BRANCH branch detected."
 if [[ "$GIT_BRANCH" == main ]]; then
 	# Show message and wait for user confirmation on tagging
 	echo "➡️ Local version detected: ${LOCAL_NPM_VERSION}. \
