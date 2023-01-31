@@ -58,11 +58,10 @@ fi
 # With this condition, create tag for main, reject push for other branch.
 if [[ "$GIT_BRANCH" == main ]]; then
 	# Show message and wait for user confirmation on tagging
-	echo "➡️ Local version detected: ${LOCAL_NPM_VERSION}. \
-		Confirmation will add a tag with the same number and publish the new version to npm. \
-		Denying terminates the push. Do you confirm the new version? (Y/N)"
-	read -n1 ANSWER
-	if [[ "${ANSWER}" == "Y" ]] ; then
+	echo "➡️ Local version detected: ${LOCAL_NPM_VERSION}."
+	echo "Confirmation will add a tag with the same number and publish the new version to npm."
+	read -p "Denying terminates the push. Do you confirm the new version? (Y/N): " ANSWER </dev/tty
+	if [[ "${ANSWER}" == "Y" ]] || [[ "${ANSWER}" == "y" ]]; then
 		# Create new tag based on the package.json version
 		git tag -a $LOCAL_NPM_VERSION -m "${LOCAL_NPM_VERSION}"
 		if [ $? -eq 0 ]; then 	# Status 0 means that command exited with code 0 - success
@@ -77,6 +76,7 @@ if [[ "$GIT_BRANCH" == main ]]; then
 		fi
 	else
 		echo -e "🚫 Confirmation not granted. Terminating the push..."
+		exit 1
 	fi
 else	# Not a main branch (feature/fix branch etc.)
 	echo "⚠️ package.json npm version ($LOCAL_NPM_VERSION) is higher than the latest git tag version ($LATEST_REMOTE_GIT_TAG_VERSION)!"
