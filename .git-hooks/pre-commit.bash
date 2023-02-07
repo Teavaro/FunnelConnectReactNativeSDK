@@ -36,6 +36,7 @@ if [[ "$GIT_BRANCH" == main ]]; then
 	echo "Y - Confirmation adds a tag with the same version to publish to npm on push."
 	echo "T - Tag already present. Confirm, but do not try to create new tag."
 	echo "N - Denying terminates the commit."
+	# TODO: Remove an option to tag because the ref/tag will be at the wrong commit - the previous one before the version change in package.json, failing the publish
 	read -p "Do you confirm the new version? (Y/T/N): " ANSWER </dev/tty
 	if [[ "${ANSWER}" == "Y" ]] || [[ "${ANSWER}" == "y" ]]; then
 		# Create new tag based on the package.json version
