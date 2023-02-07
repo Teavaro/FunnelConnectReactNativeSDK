@@ -14,7 +14,7 @@ const funnelConnectSdk = {
   cdp,
   trustPid,
 };
-
+console.log('Test');
 export { funnelConnectSdk };
 
 export * from './funnelConnectSdkProxy/types/sdkTypes';
