@@ -2,6 +2,8 @@
 
 # 1. Check the remote and local (package.json) version discrepancies.
 # TODO: Make the npm version check against the diff, not a local file
+# TODO: 0.4.10 is lower than 0.4.9
+echo "➡️ Checking package version..."
 LOCAL_NPM_VERSION=$(cat "${PWD}/package.json" | grep -o '"version": "[^"]*' | grep -o '[^"]*$')
 if [[ ! $LOCAL_NPM_VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
 	echo "⚠️ package.json npm version ($LOCAL_NPM_VERSION) being committed is invalid!"
@@ -25,6 +27,7 @@ fi
 
 # 2. With LOCAL_NPM_VERSION bigger than the remote one, check the current branch.
 # With this condition, create tag for main, reject commit for other branch.
+echo "➡️ Checking branch..."
 GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 if [[ "$GIT_BRANCH" == main ]]; then
 	# Show message and wait for user confirmation on tagging

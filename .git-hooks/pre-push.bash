@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # 1. Check tags set up to be pushed to the remote
+echo "➡️ Checking branch..."
 GIT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 echo "➡️ $GIT_BRANCH branch detected."
 # TODO: Make the npm version check against the diff, not a local file
